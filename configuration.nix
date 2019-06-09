@@ -1,92 +1,117 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+	imports = [ ./hardware-configuration.nix ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+	boot = {
+		loader = {
+			systemd-boot.enable = true;
+			grub = {
+				enable = true;
+				version = 2;
+				efiSupport = true;
+				device = "nodev";
+				fsIdentifier = "label";
+				splashMode = "stretch";
+			};
+			efi = {
+				canTouchEfiVariables = true;
+				efiSysMountPoint = "/boot/efi";
+			};
+		};
+	};
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+	networking = {
+		hostName = "nixos";
+		networkmanager.enable = true;
+	};
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+	i18n = {
+		 consoleFont = "Lat2-Terminus16";
+		 consoleKeyMap = "us";
+		 defaultLocale = "en_GB.UTF-8";
+	};
 
-  # Select internationalisation properties.
-  # i18n = {
-  #   consoleFont = "Lat2-Terminus16";
-  #   consoleKeyMap = "us";
-  #   defaultLocale = "en_US.UTF-8";
-  # };
+	time.timeZone = "Europe/Zurich";
 
-  # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+	nixpkgs.config = {
+		allowUnfree = true;
+		allowBroken = false;
+	};
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  # environment.systemPackages = with pkgs; [
-  #   wget vim
-  # ];
+	environment = {
+		shells = [
+			"${pkgs.bash}/bin/bash"
+			"${pkgs.zsh}/bin/zsh"
+		];
+		variables = {
+			TERM = "xterm-256color";
+			LC_ALL = "en_GB.UTF-8";
+			LESSCHARSET = "utf-8";
+			BROWSER = pkgs.lib.mkOverride 0 "firefox";
+			EDITOR = pkgs.lib.mkOverride 0 "vim";
+		};
+		systemPackages = with pkgs; [
+			firefox
+			git
+			httpie
+			tmux
+			vimHugeX
+			wget
+			sway swayidle swaylock
+			zsh grml-zsh-config zsh-syntax-highlighting
+		];
+	};
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+	fonts = {
+		enableCoreFonts = true;
+		enableFontDir = true;
+		enableGhostscriptFonts = false;
+		fonts = with pkgs; [
+			corefonts
+			inconsolata
+			source-code-pro
+		];
+	};
 
-  # List services that you want to enable:
+	programs = {
+		bash = {
+			enableCompletion = true;
+		};
+		zsh = {
+			enable = true;
+			enableCompletion = true;
+			syntaxHighlighting.enable = true;
+			interactiveShellInit = ''
+				source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
+			'';
+		};
+		gnupg = {
+			agent = {
+				enable = true;
+				enableSSHSupport = true;
+			};
+		};
+		ssh = {
+		};
+		sway.enable = true;
+	};
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+	services = {
+		openssh.enable = true;
+		printing.enable = true;
+	};
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+	sound.enable = true;
+	hardware.pulseaudio.enable = true;
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+	users.users.ners = {
+		isNormalUser = true;
+		shell = pkgs.zsh;
+		extraGroups = [ "docker" "libvirtd" "networkmanager" "sway" "wheel" ];
+	};
 
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable touchpad support.
-  # services.xserver.libinput.enable = true;
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.jane = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  # };
-
-  # This value determines the NixOS release with which your system is to be
-  # compatible, in order to avoid breaking some software such as database
-  # servers. You should change this only after NixOS release notes say you
-  # should.
-  system.stateVersion = "19.03"; # Did you read the comment?
-
+	nix.maxJobs = 32;
+	nix.buildCores = 8;
+	system.stateVersion = "19.03";
 }
