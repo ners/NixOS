@@ -59,6 +59,7 @@
 			vimHugeX
 			wget
 			sway swayidle swaylock
+			silver-searcher
 			zsh grml-zsh-config zsh-syntax-highlighting
 		];
 	};
@@ -72,6 +73,7 @@
 			inconsolata
 			source-code-pro
 		];
+		fontconfig.defaultFonts.monospace = [ "Source Code Pro" ];
 	};
 
 	programs = {
@@ -100,6 +102,15 @@
 	services = {
 		openssh.enable = true;
 		printing.enable = true;
+		xserver = {
+			enable = true;
+			displayManager = {
+				gdm = {
+					enable = true;
+					wayland = true;
+				};
+			};
+		};
 	};
 
 	sound.enable = true;
