@@ -18,6 +18,7 @@
 		extraModulePackages = [ ];
 		loader = {
 				systemd-boot.enable = true;
+				timeout = 3;
 				efi = {
 					canTouchEfiVariables = true;
 					efiSysMountPoint = "/boot/efi";
@@ -79,8 +80,11 @@
 	powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
 	hardware.opengl = {
+		enable = true;
 		driSupport = true;
 		driSupport32Bit = true;
+		extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+		setLdLibraryPath = true;
 	};
 
 	hardware.cpu.intel.updateMicrocode = true;

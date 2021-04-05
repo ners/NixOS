@@ -9,6 +9,7 @@
 		interactiveShellInit = ''
 			source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
 			eval "$(starship init zsh)"
+			eval "$(direnv hook zsh)"
 		'';
 		shellAliases = {
 			vim = "nvim";

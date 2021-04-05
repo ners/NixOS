@@ -14,7 +14,14 @@ in
 	];
 
 	boot.kernelPackages = pkgs.linuxPackages_latest;
-	boot.loader.grub.theme = pkgs.nixos-grub2-theme;
+	boot.loader.grub = {
+		device = "nodev";
+		efiSupport = true;
+		enable = true;
+		fsIdentifier = "label";
+		gfxmodeEfi = "1920x1080";
+		theme = pkgs.nixos-grub2-theme;
+	};
 	
 	nix = {
 		autoOptimiseStore = true;
@@ -26,6 +33,8 @@ in
 		maxJobs = 16;
 		extraOptions = ''
 			binary-caches-parallel-connections = 50
+			keep-outputs = true
+			keep-derivations = true
 		'';
 	};
 
@@ -49,9 +58,6 @@ in
 		useNetworkd = true;
 	};
 
-	# Set your time zone.
-	time.timeZone = "Europe/Zurich";
-
 	# Select internationalisation properties.
 	i18n = {
 		defaultLocale = "en_GB.UTF-8";
@@ -63,6 +69,7 @@ in
 	services = {
 		xserver = {
 			enable = true;
+			videoDrivers = [ "nouveau" ];
 			displayManager = {
 				gdm = {
 					enable = true;
@@ -73,20 +80,22 @@ in
 			xkbOptions = "caps:escape";
 			libinput.enable = true;
 		};
-		dbus.packages = with pkgs; [ fprintd gnome3.dconf ];
 		udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
+		dbus.packages = with pkgs; [ fprintd gnome3.dconf gnome3.gvfs ];
 		flatpak.enable = true;
 		fprintd.enable = true;
 		fwupd.enable = true;
+		gvfs.enable = true;
+		localtime.enable = true;
 		openssh.enable = true;
-		printing.enable = true;
 		pipewire.enable = true;
+		printing.enable = true;
 		redshift.enable = true;
 	};
 	xdg.portal.enable = true;
 
 	systemd.package = pkgs.systemd.override { withSelinux = true; };
-	systemd.packages = with pkgs; [ fprintd ];
+	systemd.packages = with pkgs; [ fprintd gnome3.gvfs ];
 
 	security.pam.services = {
 		login.fprintAuth = true;
@@ -107,16 +116,17 @@ in
 		};
 		users.ners = {
 			isNormalUser = true;
+			createHome = true;
 			initialHashedPassword = "$6$P8pZJbrdjFXP7Bkf$CSxDmrTTO6o5pWUVXW0hy/c.Zdf7WtzNOPk1KiEDrDtyDf8x6V.ZvSzhh8kJWx0DKpObq4077SH1BRZZ0wgU/0";
-			extraGroups = [ "audio" "libvirtd" "networkmanager" "video" "wheel" ];
+			extraGroups = [ "audio" "libvirtd" "networkmanager" "video" "wheel" "dialout" ];
 		};
 	};
 
 	environment = {
 		systemPackages = with pkgs; [
-			any-nix-shell
 			aria2
 			boxes
+			direnv
 			entr
 			exfat
 			expect
@@ -146,6 +156,7 @@ in
 			mpv
 			neovim
 			neovim-qt
+			nix-direnv
 			nix-index
 			nix-zsh-completions
 			pavucontrol
@@ -180,6 +191,7 @@ in
 			EDITOR = "nvim";
 			VISUAL = "nvim-qt";
 		};
+		pathsToLink = [ "/share/nix-direnv" ];
 	};
 
 	fonts = {
@@ -187,20 +199,21 @@ in
 		enableFontDir = true;
 		enableGhostscriptFonts = true;
 		fonts = with pkgs; [
+			(nerdfonts.override { fonts = [ "RobotoMono" ]; })
 			corefonts
 			dejavu_fonts
 			inconsolata
 			inter
 			inter-ui
-			(nerdfonts.override { fonts = [ "RobotoMono" ]; })
 			noto-fonts
-			noto-fonts-extra
 			noto-fonts-emoji
+			noto-fonts-extra
 			roboto
 			roboto-mono
 			source-code-pro
 			source-sans-pro
 			source-serif-pro
+            carlito
 		];
 		fontconfig.defaultFonts = {
 			sansSerif = ["Arimo"];
@@ -220,18 +233,8 @@ in
 		nm-applet.enable = true;
 	};
 
-	# Open ports in the firewall.
-	# networking.firewall.allowedTCPPorts = [ ... ];
-	# networking.firewall.allowedUDPPorts = [ ... ];
-	# Or disable the firewall altogether.
-	# networking.firewall.enable = false;
+	networking.firewall.enable = false;
 
-	# This value determines the NixOS release from which the default
-	# settings for stateful data, like file locations and database versions
-	# on your system were taken. It‘s perfectly fine and recommended to leave
-	# this value at the release version of the first install of this system.
-	# Before changing this value read the documentation for this option
-	# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-	system.stateVersion = "20.09"; # Did you read the comment?
+	system.stateVersion = "21.03";
 }
 
