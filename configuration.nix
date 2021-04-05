@@ -134,6 +134,7 @@ in
 			fprintd
 			gimp
 			gitAndTools.gitFull
+			gitg
 			gnome3.adwaita-icon-theme
 			gnome3.eog
 			gnome3.evince

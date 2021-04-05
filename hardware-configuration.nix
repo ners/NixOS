@@ -14,7 +14,7 @@
 			"rtsx_pci_sdmmc"
 			"nouveau"
 		];
-		initrd.kernelModules = [ ];
+		initrd.kernelModules = [ "amdgpu" ];
 		extraModulePackages = [ ];
 		loader = {
 				systemd-boot.enable = true;
@@ -64,7 +64,12 @@
 		"/" = {
 			device = "/dev/disk/by-label/NixOS";
 			fsType = "btrfs";
-			options = [ "compress=zstd" ];
+			options = [ "subvol=root" "compress=zstd" ];
+		};
+		"/home" = {
+			device = "/dev/disk/by-label/NixOS";
+			fsType = "btrfs";
+			options = [ "subvol=home" "compress=zstd" ];
 		};
 		"/boot/efi" = {
 			device = "/dev/disk/by-label/EFI";
@@ -90,5 +95,5 @@
 	hardware.cpu.intel.updateMicrocode = true;
 	hardware.pulseaudio.enable = true;
 
-	services.xserver.videoDrivers = [ "nouveau" ];
+	services.xserver.videoDrivers = [ "amdgpu" ];
 }
