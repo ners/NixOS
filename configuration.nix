@@ -171,6 +171,7 @@ in
 			nix-index
 			nix-zsh-completions
 			nodejs
+			pciutils
 			pipewire
 			policycoreutils
 			pv
@@ -185,6 +186,7 @@ in
 			# firefox-wayland
 			latest.firefox-nightly-bin
 			unstable.vimPlugins.vim-nerdtree-syntax-highlight
+			usbutils
 			vimPlugins.base16-vim
 			vimPlugins.coc-git
 			vimPlugins.coc-nvim
