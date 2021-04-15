@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
 
 let
-	unstableTarball = fetchTarball
-		https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
-	unstable = import ( unstableTarball ) { config = config.nixpkgs.config; };
+	unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+	unstableOverride = import ( unstableTarball ) { config = config.nixpkgs.config; };
+	mozillaTarball = fetchTarball https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz;
+	mozillaOverlay = import ( mozillaTarball );
 in
 {
 	imports = [
@@ -42,15 +43,17 @@ in
 		allowUnfree = true;
 		allowBroken = false;
 		packageOverrides = pkgs: {
-			unstable = import unstableTarball {
-				config = config.nixpkgs.config;
-			};
+			unstable = unstableOverride;
 		};
 		firefox = {
 			# enableAdobeFlash = true;
 			enableGnomeExtensions = true;
 		};
 	};
+
+	nixpkgs.overlays = [
+		mozillaOverlay
+	];
 
 	networking = {
 		hostName = "nixos";
@@ -80,26 +83,40 @@ in
 			xkbOptions = "caps:escape";
 			libinput.enable = true;
 		};
-		udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
-		dbus.packages = with pkgs; [ fprintd gnome3.dconf gnome3.gvfs ];
+		gnome3 = {
+		  core-os-services.enable = true;
+		  core-shell.enable = true;
+		};
+		pipewire = {
+			enable = true;
+			#Coming in 21.05:
+			#media-session.enable = true;
+			#alsa.enable = true;
+			#alsa.support32Bit = true;
+			#pulse.enable = true;
+			#jack.enable = true;
+		};
 		flatpak.enable = true;
 		fprintd.enable = true;
 		fwupd.enable = true;
-		gvfs.enable = true;
 		localtime.enable = true;
 		openssh.enable = true;
-		pipewire.enable = true;
 		printing.enable = true;
 		redshift.enable = true;
 	};
-	xdg.portal.enable = true;
+	xdg.portal = {
+		enable = true;
+		extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-wlr ];
+	};
 
 	systemd.package = pkgs.systemd.override { withSelinux = true; };
-	systemd.packages = with pkgs; [ fprintd gnome3.gvfs ];
 
-	security.pam.services = {
-		login.fprintAuth = true;
-		xscreensaver.fprintAuth = true;
+	security = {
+		rtkit.enable = true;
+		pam.services = {
+			login.fprintAuth = true;
+			xscreensaver.fprintAuth = true;
+			};
 	};
 
 	virtualisation = {
@@ -125,22 +142,16 @@ in
 	environment = {
 		systemPackages = with pkgs; [
 			aria2
-			boxes
 			direnv
 			entr
 			exfat
 			expect
 			file
+			flatpak-builder
 			fprintd
-			gimp
 			gitAndTools.gitFull
-			gitg
 			gnome3.adwaita-icon-theme
-			gnome3.eog
-			gnome3.evince
-			gnome3.gnome-boxes
 			gnome3.gnome-tweak-tool
-			gnome3.gvfs
 			gnome3.networkmanagerapplet
 			gnomeExtensions.appindicator
 			gnumake
@@ -150,7 +161,6 @@ in
 			jq
 			killall
 			libappindicator
-			libreoffice
 			libsecret
 			libselinux
 			moreutils
@@ -160,16 +170,20 @@ in
 			nix-direnv
 			nix-index
 			nix-zsh-completions
-			pavucontrol
+			nodejs
+			pipewire
 			policycoreutils
+			pv
+			qjackctl
 			silver-searcher
 			sshfs-fuse
 			starship
-			thunderbird
+			subversion
 			tio
 			tmux
-			unstable.calibre
-			unstable.firefox-wayland
+			tree
+			# firefox-wayland
+			latest.firefox-nightly-bin
 			unstable.vimPlugins.vim-nerdtree-syntax-highlight
 			vimPlugins.base16-vim
 			vimPlugins.coc-git
@@ -183,6 +197,7 @@ in
 			wget
 			wineWowPackages.stable
 			winetricks
+			yaru-theme
 			zsh
 			zsh-autosuggestions
 			zsh-completions
