@@ -66,20 +66,23 @@
 			fsType = "btrfs";
 			options = [ "subvol=root" "compress=zstd" ];
 		};
+		"/boot/efi" = {
+			device = "/dev/disk/by-label/EFI";
+			fsType = "vfat";
+		};
 		"/home" = {
 			device = "/dev/disk/by-label/NixOS";
 			fsType = "btrfs";
 			options = [ "subvol=home" "compress=zstd" ];
 		};
-		"/boot/efi" = {
-			device = "/dev/disk/by-label/EFI";
-			fsType = "vfat";
+		"/swap" = {
+			device = "/dev/disk/by-label/NixOS";
+			fsType = "btrfs";
+			options = [ "subvol=swap" ];
 		};
 	};
 
-	swapDevices = [
-		# "/dev/disk/by-label/swap"
-	];
+	swapDevices = [ { device = "/swap/swapfile"; size = 4096; } ];
 
 	nix.maxJobs = lib.mkDefault 8;
 	powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
