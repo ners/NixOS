@@ -24,7 +24,10 @@ echo c       # change a partition's name
 echo 2       # Partition number
 echo NixOS   # Partition name
 echo w       # write table to disk and exit
+echo y       # confirm edit
 ) | sudo gdisk /dev/nvme0n1
+
+partprobe
 
 mkfs.fat -F32 -n EFI /dev/disk/by-partlabel/EFI
 mkfs.btrfs -f -L NixOS /dev/disk/by-partlabel/NixOS
