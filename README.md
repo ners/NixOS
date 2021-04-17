@@ -4,6 +4,7 @@ NixOS
 # Installation
 
 ```sh
+sudo sgdisk --zap-all /dev/nvme0n1
 (
 echo o       # create a new empty GUID partition table (GPT)
 echo y       # This option deletes all partitions and creates a new protective MBR. Proceed? (Y/N)
@@ -27,19 +28,19 @@ echo w       # write table to disk and exit
 echo y       # confirm edit
 ) | sudo gdisk /dev/nvme0n1
 
-partprobe
+sudo partprobe
 
-mkfs.fat -F32 -n EFI /dev/disk/by-partlabel/EFI
-mkfs.btrfs -f -L NixOS /dev/disk/by-partlabel/NixOS
+sudo mkfs.fat -F32 -n EFI /dev/disk/by-partlabel/EFI
+sudo mkfs.btrfs -f -L NixOS /dev/disk/by-partlabel/NixOS
 
-mount -o compress=zstd /dev/disk/by-partlabel/NixOS /mnt
-btrfs subvolume create /mnt/root
-btrfs subvolume create /mnt/home
-# btrfs subvolume create /mnt/swap
-umount /mnt
+sudo mount -o compress=zstd /dev/disk/by-partlabel/NixOS /mnt
+sudo btrfs subvolume create /mnt/root
+sudo btrfs subvolume create /mnt/home
+# sudo btrfs subvolume create /mnt/swap
+sudo umount /mnt
 
-mount -o subvol=root,compress=zstd /dev/disk/by-partlabel/NixOS /mnt
-mkdir -p /mnt/boot/efi /mnt/home
-mount /dev/disk/by-partlabel/EFI /mnt/boot/efi
-mount -o subvol=home,compress=zstd /dev/disk/by-partlabel/NixOS /mnt/home
+sudo mount -o subvol=root,compress=zstd /dev/disk/by-partlabel/NixOS /mnt
+sudo mkdir -p /mnt/boot/efi /mnt/home
+sudo mount /dev/disk/by-partlabel/EFI /mnt/boot/efi
+sudo mount -o subvol=home,compress=zstd /dev/disk/by-partlabel/NixOS /mnt/home
 ```
