@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
 	users.defaultUserShell = pkgs.zsh;
+
 	programs.zsh = {
 		enable = true;
 		autosuggestions.enable = true;
@@ -8,10 +9,11 @@
 		syntaxHighlighting.enable = true;
 		interactiveShellInit = ''
 			source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
-			eval "$(starship init zsh)"
-			eval "$(direnv hook zsh)"
+			eval "$(${pkgs.starship}/bin/starship init zsh)"
+			eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
 		'';
 		shellAliases = {
+			open = "xdg-open";
 			vim = "nvim";
 			gvim = "nvim-qt";
 			make = "make -j$(nproc)";
@@ -19,4 +21,10 @@
 		};
 		promptInit = "";
 	};
+
+	environment.systemPackages = with pkgs; [
+		nix-direnv
+	];
+
+	environment.pathsToLink = [ "/share/nix-direnv" ];
 }
