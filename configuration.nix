@@ -52,7 +52,7 @@
 	services = {
 		xserver = {
 			enable = true;
-			videoDrivers = [ "nouveau" ];
+			videoDrivers = [ "amdgpu" ];
 			xkbOptions = "caps:escape";
 			libinput.enable = true;
 		};

@@ -17,12 +17,13 @@
 			vim = "nvim";
 			gvim = "nvim-qt";
 			make = "make -j$(nproc)";
-            makevars = "make -pn | grep -A1 '^# makefile' | grep -v '^#\\|^--' | sort | uniq";
+			makevars = "make -pn | grep -A1 '^# makefile' | grep -v '^#\\|^--' | sort | uniq";
 		};
 		promptInit = "";
 	};
 
 	environment.systemPackages = with pkgs; [
+		direnv
 		nix-direnv
 	];
 

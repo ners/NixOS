@@ -42,7 +42,7 @@
 			source-code-pro
 			source-sans-pro
 			source-serif-pro
-            carlito
+			carlito
 		];
 		fontconfig.defaultFonts = {
 			sansSerif = ["Arimo"];
