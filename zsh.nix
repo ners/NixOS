@@ -18,6 +18,9 @@
 			gvim = "nvim-qt";
 			make = "make -j$(nproc)";
 			makevars = "make -pn | grep -A1 '^# makefile' | grep -v '^#\\|^--' | sort | uniq";
+			scp = "scp -F $HOME/.ssh/config";
+			ssh = "ssh -F $HOME/.ssh/config";
+			sshfs = "sshfs -F $HOME/.ssh/config";
 		};
 		promptInit = "";
 	};

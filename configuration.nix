@@ -1,4 +1,8 @@
 { config, pkgs, ... }:
+let
+	unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+	unstableOverride = import ( unstableTarball ) { config = config.nixpkgs.config; };
+in
 {
 	imports = [
 		./bootloader.nix
@@ -33,6 +37,9 @@
 	nixpkgs.config = {
 		allowUnfree = true;
 		allowBroken = false;
+		packageOverrides = pkgs: {
+			unstable = unstableOverride;
+		};
 	};
 
 	networking = {
