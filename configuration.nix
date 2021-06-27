@@ -8,7 +8,6 @@ in
 		./bootloader.nix
 		./btrfs.nix
 		./dvorak.nix
-		./firefox-nightly.nix
 		./gnome.nix
 		./hardware-configuration.nix
 		./pipewire.nix
@@ -95,10 +94,13 @@ in
 	environment = {
 		systemPackages = with pkgs; [
 			aria2
+			boxes
+			cabal2nix
 			entr
 			exfat
 			expect
 			file
+			firefox-wayland
 			flatpak-builder
 			fprintd
 			gitAndTools.gitFull
@@ -121,7 +123,9 @@ in
 			tmux
 			tree
 			usbutils
+			v4l-utils
 			wget
+			wofi
 			wineWowPackages.stable
 			winetricks
 		];
@@ -129,6 +133,6 @@ in
 
 	networking.firewall.enable = false;
 
-	system.stateVersion = "21.03";
+	system.stateVersion = "21.05";
 }
 

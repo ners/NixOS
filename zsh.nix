@@ -8,7 +8,9 @@
 		enableCompletion = true;
 		syntaxHighlighting.enable = true;
 		interactiveShellInit = ''
-			source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
+			bindkey "$terminfo[kcuu1]" history-substring-search-up
+			bindkey "$terminfo[kcud1]" history-substring-search-down
+			source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 			eval "$(${pkgs.starship}/bin/starship init zsh)"
 			eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
 		'';
