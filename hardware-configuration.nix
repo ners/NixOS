@@ -17,7 +17,7 @@
 		extraModulePackages = [ ];
 		loader = {
 		};
-		kernelModules = [ "amdgpu" "fuse" ];
+		kernelModules = [ "nouveau" "fuse" ];
 		
 		/*fuck spectre and meltdown*/
 		/* #makelinuxgreatagain */

@@ -58,18 +58,22 @@ in
 	services = {
 		xserver = {
 			enable = true;
-			videoDrivers = [ "amdgpu" ];
+			videoDrivers = [ "nouveau" ];
 			xkbOptions = "caps:escape";
 			libinput.enable = true;
 		};
 		flatpak.enable = true;
 		fprintd.enable = true;
 		fwupd.enable = true;
+		geoclue2.enable = true;
 		localtime.enable = true;
 		openssh.enable = true;
 		printing.enable = true;
 		redshift.enable = true;
 	};
+	
+	location.provider = "geoclue2";
+	time.timeZone = "Europe/Zurich";
 
 	security = {
 		rtkit.enable = true;
@@ -92,42 +96,30 @@ in
 	};
 
 	environment = {
+		enableDebugInfo = true;
 		systemPackages = with pkgs; [
-			aria2
-			boxes
-			cabal2nix
-			entr
+			chromium
 			exfat
 			expect
 			file
-			firefox-wayland
-			flatpak-builder
+			firefox
 			fprintd
 			gitAndTools.gitFull
 			gnumake
 			htop
-			httpie
 			jq
 			killall
-			libsecret
 			moreutils
-			mpv
 			nix-index
-			nodejs
 			pciutils
 			pv
 			silver-searcher
 			sshfs-fuse
-			subversion
 			tio
 			tmux
 			tree
 			usbutils
-			v4l-utils
 			wget
-			wofi
-			wineWowPackages.stable
-			winetricks
 		];
 	};
 

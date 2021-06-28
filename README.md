@@ -33,4 +33,8 @@ chmod 600 /mnt/swap/swapfile
 chattr +C /mnt/swap/swapfile
 fallocate /mnt/swap/swapfile -l4g
 mkswap /mnt/swap/swapfile
+swapon /mnt/swap/swapfile
+
+nix-build '<nixpkgs/nixos>' -A config.system.build.toplevel -I nixos-config=/mnt/etc/nixos/configuration.nix
+nixos-install --no-root-passwd
 ```

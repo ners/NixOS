@@ -29,6 +29,7 @@
 		enableGhostscriptFonts = true;
 		fonts = with pkgs; [
 			(nerdfonts.override { fonts = [ "RobotoMono" ]; })
+			carlito
 			corefonts
 			dejavu_fonts
 			inconsolata
@@ -42,8 +43,31 @@
 			source-code-pro
 			source-sans-pro
 			source-serif-pro
-			carlito
 		];
+		fontconfig.localConf = ''
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+	<alias binding="weak">
+		<family>monospace</family>
+		<prefer>
+			<family>emoji</family>
+		</prefer>
+	</alias>
+	<alias binding="weak">
+		<family>sans-serif</family>
+		<prefer>
+			<family>emoji</family>
+		</prefer>
+	</alias>
+	<alias binding="weak">
+		<family>serif</family>
+		<prefer>
+			<family>emoji</family>
+		</prefer>
+	</alias>
+</fontconfig>
+		'';
 		fontconfig.defaultFonts = {
 			sansSerif = ["Arimo"];
 			serif = ["Tinos"];
