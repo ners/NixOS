@@ -11,9 +11,10 @@ in {
     ./dvorak.nix
     ./graphical.nix
     ./hardware-configuration.nix
-    ./selinux.nix
     ./virtualisation.nix
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix = {
     autoOptimiseStore = true;

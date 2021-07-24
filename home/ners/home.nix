@@ -30,6 +30,7 @@ in {
     cabal2nix
     calibre
     entr
+    flatpak
     flatpak-builder
     gitg
     httpie

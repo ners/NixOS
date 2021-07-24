@@ -26,10 +26,16 @@
     settings = {
       background_opacity = 0.85;
       font = {
-        normal.family = "Cousine";
+        normal.family = "Cousine Nerd Font";
         size = 11;
         antialias = true;
         autohint = true;
+      };
+      window = {
+        padding = {
+          x = 10;
+          y = 5;
+        };
       };
     };
   };

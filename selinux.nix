@@ -2,7 +2,6 @@
   systemd.package = pkgs.systemd.override { withSelinux = true; };
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [ "security=selinux" ];
     kernelPatches = [{
       name = "selinux-config";
