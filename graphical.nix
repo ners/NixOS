@@ -84,6 +84,7 @@
       };
       desktopManager.gnome.enable = true;
     };
+    blueman.enable = true;
     gnome = {
       core-os-services.enable = true;
       core-shell.enable = true;

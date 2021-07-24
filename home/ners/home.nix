@@ -2,7 +2,7 @@
 
 {
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs.home-manager.enable = false;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -22,6 +22,7 @@
   imports = [ ./neovim.nix ./shell.nix ./sway.nix ];
 
   home.packages = with pkgs; [
+    (import ../../packages/winbox)
     (nerdfonts.override { fonts = [ "Cousine" "RobotoMono" ]; })
     aria2
     boxes
@@ -30,16 +31,18 @@
     flatpak-builder
     gitg
     httpie
+    libguestfs-with-appliance
+    libreoffice-fresh
     mpv
+    neofetch
     nix-index
     nodejs
+    pavucontrol
     pciutils
     subversion
     transmission-remote-gtk
     unzip
     v4l-utils
-    wineWowPackages.stable
-    winetricks
   ];
 
   programs.git = {
@@ -56,6 +59,8 @@
       credential.helper = "libsecret";
     };
   };
+
+  services.udiskie.enable = true;
 
   xdg.configFile."cabal/config".text = ''
     nix: True

@@ -5,11 +5,10 @@
     (imagemagick.overrideAttrs (_: { buildInputs = [ pkgs.pango ]; }))
     (import ../../packages/inter-nerd)
     (import ../../packages/screenlock)
-    albert
     alacritty
+    albert
     brightnessctl
     grim
-    kanshi
     mako
     pamixer
     playerctl
@@ -26,10 +25,22 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      background_opacity = 0.9;
+      background_opacity = 0.85;
       font = {
         normal.family = "Cousine";
         size = 11;
+        antialias = true;
+        autohint = true;
+      };
+    };
+  };
+
+  services.gnome-keyring.enable = true;
+  services.blueman-applet.enable = true;
+
+  services.kanshi = {
+    enable = true;
+    profiles = {
       };
     };
   };
@@ -80,6 +91,10 @@
           repeat_delay = "150";
           xkb_options = "caps:escape";
         };
+        "type:mouse" = {
+          accel_profile = "flat";
+          pointer_accel = "1";
+        };
         "type:touchpad" = {
           tap = "enabled";
           pointer_accel = "0.75";
@@ -108,10 +123,10 @@
         {
           command = ''
             swayidle -w \
-            	timeout 3000 screenlock \
-            	timeout 6000 'swaymsg \"output * dpms off\"' \
-            	resume 'swaymsg \"output * dpms on\"' \
-            	before-sleep screenlock
+                timeout 3000 screenlock \
+                timeout 6000 'swaymsg \"output * dpms off\"' \
+                resume 'swaymsg \"output * dpms on\"' \
+                before-sleep screenlock
           '';
           always = false;
         }
@@ -163,6 +178,7 @@
         "${modifier}+Shift+Right" = "move right";
         "${modifier}+h" = "splith";
         "${modifier}+v" = "splitv";
+        "${modifier}+r" = "mode resize";
         "Control+Print" = "exec grimshot save area";
         "Control+Shift+Print" = "exec grimshot copy area";
         "Alt+Print" = "exec grimshot save window";
@@ -195,14 +211,15 @@
       ];
       modules-right = [ "network" "pulseaudio" "cpu" "battery" "tray" "clock" ];
       modules = {
-        battery = {
+        battery = rec {
           interval = 1;
           states = {
             warning = 30;
             critical = 15;
           };
-          format-plugged = "{icon}";
           format = "{icon}";
+          format-plugged = "" + format;
+          format-charging = format-plugged;
           format-icons = [ "" "" "" "" "" "" "" "" "" "" ];
         };
 
@@ -254,10 +271,10 @@
           format = "{icon}  {volume}%";
           format-bluetooth = " {icon}  {volume}% ";
           format-muted = "ﱝ";
-          format-icons = {
-            headphones = "";
-            handsfree = "";
-            headset = "";
+          format-icons = rec {
+            headphones = "";
+            handsfree = headphones;
+            headset = headphones;
             phone = "";
             portable = "";
             car = "";
@@ -273,4 +290,14 @@
       };
     }];
   };
+
+  xdg.configFile."xdg-desktop-portal-wlr/config".text =
+    lib.generators.toINI { } {
+      screencast = {
+        output_name = "";
+        max_fps = "30";
+        chooser_cmd = "slurp -f %o -or";
+        chooser_type = "simple";
+      };
+    };
 }

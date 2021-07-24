@@ -5,7 +5,6 @@
 
   programs.direnv = {
     enable = true;
-    nix-direnv.enable = true;
     enableZshIntegration = true;
   };
 
@@ -56,11 +55,17 @@
   };
 
   home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim-qt";
     CABAL_CONFIG = "$HOME/.config/cabal/config";
+    FZF_ALT_C_COMMAND = "fd -t d . /home";
+    FZF_CTRL_T_COMMAND = "fd . /home";
+    FZF_DEFAULT_COMMAND = "fd . /home";
     GIT_SSH_COMMAND = "ssh -F \\$HOME/.ssh/config";
     MOZ_ENABLE_WAYLAND = "1";
-    FZF_DEFAULT_COMMAND = "fd . /home";
-    FZF_CTRL_T_COMMAND = "fd . /home";
-    FZF_ALT_C_COMMAND = "fd -t d . /home";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    SDL_VIDEODRIVER = "wayland";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 }
