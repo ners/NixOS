@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
-{
+let unstable = import <nixos-unstable> { };
+in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = false;
 
@@ -27,6 +28,7 @@
     aria2
     boxes
     cabal2nix
+    calibre
     entr
     flatpak-builder
     gitg
@@ -41,8 +43,10 @@
     pciutils
     subversion
     transmission-remote-gtk
+    universal-ctags
     unzip
     v4l-utils
+    x2goclient
   ];
 
   programs.git = {

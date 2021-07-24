@@ -9,14 +9,13 @@
     albert
     brightnessctl
     grim
-    mako
     pamixer
+    pavucontrol
     playerctl
     sway-contrib.grimshot
     swayidle
     swaylock
     waybar
-    wlsunset
     wdisplays
     wl-clipboard
     xwayland
@@ -34,16 +33,20 @@
       };
     };
   };
-
-  services.gnome-keyring.enable = true;
-  services.blueman-applet.enable = true;
+  programs.mako = { enable = true; };
 
   services.kanshi = {
     enable = true;
-    profiles = {
-      };
-    };
+    profiles = { };
   };
+  services.wlsunset = {
+    enable = true;
+    latitude = "47.3769";
+    longitude = "8.5417";
+  };
+  services.gnome-keyring.enable = true;
+  services.network-manager-applet.enable = true;
+  services.blueman-applet.enable = true;
 
   xdg.configFile."albert/albert.conf".text = lib.generators.toINI { } {
     General = { showTray = true; };
@@ -71,7 +74,6 @@
       theme = "Numix Rounded";
     };
     "org.albert.extension.calculator".enabled = true;
-    "org.albert.extension.files".enabled = true;
     "org.albert.extension.ssh".enabled = true;
   };
 
@@ -128,10 +130,6 @@
                 resume 'swaymsg \"output * dpms on\"' \
                 before-sleep screenlock
           '';
-          always = false;
-        }
-        {
-          command = "nm-applet --indicator";
           always = false;
         }
       ];

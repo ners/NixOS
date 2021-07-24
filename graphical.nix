@@ -8,6 +8,7 @@
     gnome3.networkmanagerapplet
     gnomeExtensions.appindicator
     libappindicator
+    libimobiledevice
     neovim-qt
     yaru-theme
   ];
@@ -39,26 +40,26 @@
       <?xml version="1.0"?>
       <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
       <fontconfig>
-      	<alias binding="weak">
-      		<family>monospace</family>
-      		<prefer>
-      			<family>emoji</family>
-      		</prefer>
-      	</alias>
-      	<alias binding="weak">
-      		<family>sans-serif</family>
-      		<prefer>
-      			<family>emoji</family>
-      		</prefer>
-      	</alias>
-      	<alias binding="weak">
-      		<family>serif</family>
-      		<prefer>
-      			<family>emoji</family>
-      		</prefer>
-      	</alias>
+        <alias binding="weak">
+          <family>monospace</family>
+          <prefer>
+            <family>emoji</family>
+          </prefer>
+        </alias>
+        <alias binding="weak">
+          <family>sans-serif</family>
+          <prefer>
+            <family>emoji</family>
+          </prefer>
+        </alias>
+        <alias binding="weak">
+          <family>serif</family>
+          <prefer>
+            <family>emoji</family>
+          </prefer>
+        </alias>
       </fontconfig>
-      		'';
+          '';
     fontconfig.defaultFonts = {
       sansSerif = [ "Arimo" ];
       serif = [ "Tinos" ];
@@ -89,17 +90,18 @@
       core-os-services.enable = true;
       core-shell.enable = true;
     };
+    pipewire = {
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      enable = true;
+      jack.enable = true;
+      media-session.enable = true;
+      pulse.enable = true;
+    };
     flatpak.enable = true;
     fprintd.enable = true;
     redshift.enable = true;
-    pipewire = {
-      enable = true;
-      media-session.enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
+    usbmuxd.enable = true;
   };
 
   programs = {

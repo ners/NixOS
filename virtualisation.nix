@@ -9,6 +9,7 @@
 
   environment.systemPackages = with pkgs; [
     OVMF
+    libguestfs
     spice-gtk
     spice-vdagent
     virt-manager

@@ -11,6 +11,7 @@
     withNodeJs = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
+      base16-vim
       coc-clangd
       coc-fzf
       coc-git
@@ -19,10 +20,12 @@
       delimitMate
       fzf-lsp-nvim
       fzfWrapper
+      incsearch-vim
       neoformat
       nerdtree
       nerdtree-git-plugin
       tagbar
+      vim-airline
       vim-code-dark
       vim-devicons
       vim-nerdtree-syntax-highlight
@@ -35,8 +38,8 @@
       set mouse=a
       set t_Co=256
       set t_ut=
-      colorscheme codedark
-      let g:airline_theme = 'codedark'
+      colorscheme base16-default-dark
+      let g:airline_theme = 'base16_default_dark'
       set number
       set list listchars=tab:›\ ,trail:~,extends:»,precedes:«,nbsp:_
       set ts=4 sts=4 sw=4 noexpandtab
@@ -62,6 +65,11 @@
       let g:NERDTreeDirArrows = 0
       let g:NERDTreeGitStatusUseNerdFonts = 1
       let g:NERDTreeShowHidden=1
+      let g:neoformat_tex_latexindent = {
+        \ 'exe': 'latexindent',
+        \ 'args': ['-l', '-m'],
+        \ 'stdin': 1
+        \ }
       autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
       autocmd BufWritePre * Neoformat
 
