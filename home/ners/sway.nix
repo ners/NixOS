@@ -7,7 +7,9 @@
     (import ../../packages/screenlock)
     alacritty
     albert
+    blueman
     brightnessctl
+    gnome3.networkmanagerapplet
     grim
     pamixer
     pavucontrol
@@ -15,6 +17,7 @@
     sway-contrib.grimshot
     swayidle
     swaylock
+    vanilla-dmz
     waybar
     wdisplays
     wl-clipboard
@@ -39,7 +42,27 @@
       };
     };
   };
-  programs.mako = { enable = true; };
+  programs.mako = {
+    enable = true;
+    defaultTimeout = 3000;
+    font = "Cousine 11";
+    extraConfig = ''
+      background-color=#181818
+      text-color=#d8d8d8
+      border-color=#7cafc2
+
+      [urgency=low]
+      background-color=#181818
+      text-color=#f7ca88
+      border-color=#7cafc2
+
+      [urgency=high]
+      background-color=#181818
+      text-color=#ab4642
+      border-color=#7cafc2
+      ignoreTimout=true
+    '';
+  };
 
   services.kanshi = {
     enable = true;
@@ -51,8 +74,6 @@
     longitude = "8.5417";
   };
   services.gnome-keyring.enable = true;
-  services.network-manager-applet.enable = true;
-  services.blueman-applet.enable = true;
 
   xdg.configFile."albert/albert.conf".text = lib.generators.toINI { } {
     General = { showTray = true; };
@@ -126,6 +147,14 @@
       startup = [
         {
           command = "albert";
+          always = true;
+        }
+        {
+          command = "blueman-applet";
+          always = true;
+        }
+        {
+          command = "nm-applet --indicator";
           always = true;
         }
         {

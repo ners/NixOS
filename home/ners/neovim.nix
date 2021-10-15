@@ -89,7 +89,9 @@
   xdg.configFile."nvim/ginit.vim".text = ''
     GuiFont! Cousine Nerd Font:h11
     highlight LineNr guibg=NONE
-    " highlight NonText guifg=bg
+    highlight NonText guifg=bg
+    highlight SignColumn guibg=NONE
+    set cursorline
   '';
 
   xdg.configFile."nvim/ftplugin/nix.vim".text = ''
@@ -100,7 +102,7 @@
     diagnostic = {
       errorSign = "🔥";
       warningSign = "⚠️";
-      infoSign = "ℹ️";
+      infoSign = "💡";
     };
     languageserver.haskell = {
       command = "haskell-language-server-wrapper";

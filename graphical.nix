@@ -1,9 +1,11 @@
 { config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     chromium
+    evince
+    evolution
     firefox
     fprintd
-    gnome3.adwaita-icon-theme
+    gnome.eog
     gnome3.gnome-tweak-tool
     gnome3.networkmanagerapplet
     gnomeExtensions.appindicator
@@ -20,13 +22,18 @@
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "RobotoMono" ]; })
+      (nerdfonts.override { fonts = [ "Cousine" "FiraCode" "RobotoMono" ]; })
       carlito
       corefonts
+      crimson
       dejavu_fonts
+      fira
+      fira-code
+      fira-mono
       inconsolata
       inter
       inter-ui
+      libertine
       noto-fonts
       noto-fonts-emoji
       noto-fonts-extra
@@ -76,12 +83,14 @@
   services = {
     xserver = {
       enable = true;
-      videoDrivers = [ "nouveau" ];
+      videoDrivers = [ "amdgpu" ];
       xkbOptions = "caps:escape";
       libinput.enable = true;
-      displayManager.gdm = {
-        enable = true;
-        wayland = true;
+      displayManager = {
+        gdm = {
+          enable = true;
+          wayland = true;
+        };
       };
       desktopManager.gnome.enable = true;
     };
@@ -89,6 +98,7 @@
     gnome = {
       core-os-services.enable = true;
       core-shell.enable = true;
+      gnome-keyring.enable = true;
     };
     pipewire = {
       alsa.enable = true;
@@ -102,6 +112,7 @@
     fprintd.enable = true;
     redshift.enable = true;
     usbmuxd.enable = true;
+    dbus.enable = true;
   };
 
   programs = {
@@ -124,6 +135,7 @@
     pam.services = {
       login.fprintAuth = true;
       xscreensaver.fprintAuth = true;
+      login.enableGnomeKeyring = true;
     };
   };
 

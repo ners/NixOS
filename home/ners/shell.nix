@@ -83,6 +83,7 @@
       scp = "scp -F $HOME/.ssh/config";
       ssh = "ssh -F $HOME/.ssh/config";
       sshfs = "sshfs -F $HOME/.ssh/config";
+      ls = "ls --color=auto";
     };
   };
 

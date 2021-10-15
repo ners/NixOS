@@ -20,20 +20,24 @@ in {
   # changes in each release.
   home.stateVersion = "21.05";
 
-  imports = [ ./neovim.nix ./shell.nix ./sway.nix ];
+  nixpkgs.config.allowUnfree = true;
+
+  imports = [ ./neovim.nix ./shell.nix ./sway.nix ./vscode.nix ];
 
   home.packages = with pkgs; [
     (import ../../packages/winbox)
-    (nerdfonts.override { fonts = [ "Cousine" "RobotoMono" ]; })
     aria2
     boxes
     cabal2nix
     calibre
+    element-desktop
     entr
     flatpak
     flatpak-builder
+    gimp
     gitg
     httpie
+    jdk11
     libguestfs-with-appliance
     libreoffice-fresh
     mpv
@@ -43,11 +47,14 @@ in {
     pavucontrol
     pciutils
     subversion
+    transmission-gtk
     transmission-remote-gtk
     universal-ctags
     unzip
     v4l-utils
+    wineWowPackages.stable
     x2goclient
+    (winetricks.override { wine = wineWowPackages.stable; })
   ];
 
   programs.git = {
