@@ -20,9 +20,6 @@ in {
   # changes in each release.
   home.stateVersion = "21.05";
 
-  nixpkgs.config.allowUnfree = true;
-
-  imports = [ ./neovim.nix ./shell.nix ./sway.nix ./vscode.nix ];
   imports = [
     ./fonts.nix
     ./neovim.nix
@@ -30,6 +27,7 @@ in {
     ./sway.nix
     ./vscode.nix
   ];
+  imports = [ ./neovim.nix ./shell.nix ./vscode.nix ];
 
   home.packages = with pkgs; [
     (import ../../packages/winbox)
@@ -88,12 +86,11 @@ in {
       push.default = "current";
       credential.helper = "libsecret";
       "filter \"lfs\"" = {
-        process = "git-lfs filter-process";
         required = true;
         clean = "git-lfs clean -- %f";
+        process = "git-lfs filter-process";
         smudge = "git-lfs smudge -- %f";
       };
-
     };
   };
 
@@ -103,8 +100,8 @@ in {
     nix: True
     jobs: $ncpus
   '';
+
   xdg.configFile."libvirt/qemu.conf".text = ''
     nvram = ["/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd"]
   '';
-
 }

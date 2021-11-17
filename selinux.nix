@@ -1,6 +1,6 @@
-{ config, pkgs, ... }: {
-  systemd.package = pkgs.systemd.override { withSelinux = true; };
+{ config, pkgs, ... }:
 
+{
   boot = {
     kernelParams = [ "security=selinux" ];
     kernelPatches = [{
@@ -18,4 +18,6 @@
   };
 
   environment.systemPackages = with pkgs; [ libselinux policycoreutils ];
+
+  systemd.package = pkgs.systemd.override { withSelinux = true; };
 }

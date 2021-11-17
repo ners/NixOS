@@ -1,4 +1,6 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+
+{
   environment.systemPackages = with pkgs; [
     evince
     evolution
@@ -99,15 +101,15 @@
     blueman.enable = true;
     gnome = {
       core-os-services.enable = true;
-      core-shell.enable = true;
       evolution-data-server.enable = true;
+      core-shell.enable = true;
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
     };
     pipewire = {
+      enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
-      enable = true;
       jack.enable = true;
       media-session.enable = true;
       pulse.enable = true;
@@ -143,5 +145,15 @@
     };
   };
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [ amdvlk ];
+    extraPackages32 = with pkgs; [ pkgsi686Linux.libva ];
+    setLdLibraryPath = true;
+  };
+
   sound.enable = true;
+  hardware.pulseaudio.enable = false;
 }

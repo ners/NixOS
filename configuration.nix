@@ -6,15 +6,14 @@ let
     import (unstableTarball) { config = config.nixpkgs.config; };
 in {
   imports = [
-    ./bootloader.nix
+    ./boot.nix
     ./btrfs.nix
     ./dvorak.nix
     ./graphical.nix
     ./hardware-configuration.nix
     ./virtualisation.nix
+    <home-manager/nixos>
   ];
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix = {
     autoOptimiseStore = true;
@@ -23,12 +22,6 @@ in {
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
-    maxJobs = 16;
-    extraOptions = ''
-      binary-caches-parallel-connections = 50
-      keep-outputs = true
-      keep-derivations = true
-    '';
   };
 
   nixpkgs.config = {
@@ -38,7 +31,7 @@ in {
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "godot";
     networkmanager.enable = true;
     useNetworkd = true;
   };
@@ -70,13 +63,8 @@ in {
       extraGroups =
         [ "audio" "libvirtd" "networkmanager" "video" "wheel" "dialout" ];
     };
-      createHome = true;
-      initialHashedPassword =
-        "$6$P8pZJbrdjFXP7Bkf$CSxDmrTTO6o5pWUVXW0hy/c.Zdf7WtzNOPk1KiEDrDtyDf8x6V.ZvSzhh8kJWx0DKpObq4077SH1BRZZ0wgU/0";
-      extraGroups =
-        [ "audio" "libvirtd" "networkmanager" "video" "wheel" "dialout" ];
-    };
   };
+  home-manager.users.ners = import ./home/ners/home.nix;
 
   environment = {
     enableDebugInfo = true;
@@ -108,6 +96,11 @@ in {
   };
 
   networking.firewall.enable = false;
+
+  security.tpm2 = {
+    enable = true;
+    abrmd.enable = true;
+  };
 
   system.stateVersion = "21.05";
 }
