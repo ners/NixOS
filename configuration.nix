@@ -40,15 +40,8 @@ in {
   i18n = { defaultLocale = "en_GB.UTF-8"; };
   console = { font = "Lat2-Terminus16"; };
 
-  services = {
-    fwupd.enable = true;
-    geoclue2.enable = true;
-    localtime.enable = true;
-    openssh.enable = true;
-    printing.enable = true;
-  };
+  services.openssh.enable = true;
 
-  location.provider = "geoclue2";
   time.timeZone = "Europe/Zurich";
 
   users = {

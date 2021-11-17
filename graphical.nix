@@ -114,12 +114,17 @@
       media-session.enable = true;
       pulse.enable = true;
     };
+    dbus.enable = true;
     flatpak.enable = true;
     fprintd.enable = true;
+    fwupd.enable = true;
+    geoclue2.enable = true;
+    localtime.enable = true;
+    printing.enable = true;
     redshift.enable = true;
     usbmuxd.enable = true;
-    dbus.enable = true;
   };
+  location.provider = "geoclue2";
 
   programs = {
     dconf.enable = true;
