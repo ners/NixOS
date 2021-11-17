@@ -66,4 +66,9 @@
 
   hardware.cpu.intel.updateMicrocode = true;
   hardware.pulseaudio.enable = false;
+
+  security.tpm2 = {
+    enable = true;
+    abrmd.enable = true;
+  };
 }

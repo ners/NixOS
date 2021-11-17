@@ -1,9 +1,12 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+
+{
   virtualisation = {
     podman.enable = true;
     libvirtd = {
       enable = true;
       qemuOvmf = true;
+      qemuRunAsRoot = false;
     };
   };
 
@@ -12,6 +15,7 @@
     libguestfs
     spice-gtk
     spice-vdagent
+    swtpm
     virt-manager
     virt-viewer
   ];

@@ -63,6 +63,13 @@ in {
     users.root = { initialHashedPassword = ""; };
     users.ners = {
       isNormalUser = true;
+      isSystemUser = false;
+      createHome = true;
+      initialHashedPassword =
+        "$6$P8pZJbrdjFXP7Bkf$CSxDmrTTO6o5pWUVXW0hy/c.Zdf7WtzNOPk1KiEDrDtyDf8x6V.ZvSzhh8kJWx0DKpObq4077SH1BRZZ0wgU/0";
+      extraGroups =
+        [ "audio" "libvirtd" "networkmanager" "video" "wheel" "dialout" ];
+    };
       createHome = true;
       initialHashedPassword =
         "$6$P8pZJbrdjFXP7Bkf$CSxDmrTTO6o5pWUVXW0hy/c.Zdf7WtzNOPk1KiEDrDtyDf8x6V.ZvSzhh8kJWx0DKpObq4077SH1BRZZ0wgU/0";
@@ -88,7 +95,7 @@ in {
       nix-index
       pciutils
       pv
-      silver-searcher
+      ripgrep
       sshfs-fuse
       tio
       tmux
@@ -96,6 +103,7 @@ in {
       usbutils
       wget
     ];
+    shells = with pkgs; [ bashInteractive zsh ];
     variables = { EDITOR = "nvim"; };
   };
 

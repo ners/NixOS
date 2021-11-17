@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> { };
+  unstable = import <nixos-unstable> { config.allowUnfree = true; };
   nix-env-selector = (unstable.vscode-utils.buildVscodeMarketplaceExtension {
     mktplcRef = {
       name = "nix-env-selector";

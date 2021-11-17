@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
-let unstable = import <nixos-unstable> { };
+let unstable = import <nixos-unstable> { config.allowUnfree = true; };
 in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = false;
@@ -23,10 +23,18 @@ in {
   nixpkgs.config.allowUnfree = true;
 
   imports = [ ./neovim.nix ./shell.nix ./sway.nix ./vscode.nix ];
+  imports = [
+    ./fonts.nix
+    ./neovim.nix
+    ./shell.nix
+    ./sway.nix
+    ./vscode.nix
+  ];
 
   home.packages = with pkgs; [
     (import ../../packages/winbox)
     aria2
+    bat
     boxes
     cabal2nix
     calibre
@@ -35,14 +43,17 @@ in {
     flatpak
     flatpak-builder
     gimp
+    git-lfs
     gitg
     httpie
+    inkscape
     jdk11
     libguestfs-with-appliance
     libreoffice-fresh
     mpv
     neofetch
     nix-index
+    nixops
     nodejs
     pavucontrol
     pciutils
@@ -50,6 +61,13 @@ in {
     transmission-gtk
     transmission-remote-gtk
     universal-ctags
+    unstable.chromium
+    unstable.discord
+    unstable.plexamp
+    unstable.skype
+    unstable.slack
+    unstable.tdesktop
+    unstable.zoom-us
     unzip
     v4l-utils
     wineWowPackages.stable
@@ -69,6 +87,13 @@ in {
       };
       push.default = "current";
       credential.helper = "libsecret";
+      "filter \"lfs\"" = {
+        process = "git-lfs filter-process";
+        required = true;
+        clean = "git-lfs clean -- %f";
+        smudge = "git-lfs smudge -- %f";
+      };
+
     };
   };
 
@@ -77,6 +102,9 @@ in {
   xdg.configFile."cabal/config".text = ''
     nix: True
     jobs: $ncpus
+  '';
+  xdg.configFile."libvirt/qemu.conf".text = ''
+    nvram = ["/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd"]
   '';
 
 }

@@ -1,21 +1,23 @@
 { config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    chromium
     evince
     evolution
-    firefox
     fprintd
     gnome.eog
+    gnome.geary
     gnome3.gnome-tweak-tool
     gnome3.networkmanagerapplet
     gnomeExtensions.appindicator
     libappindicator
     libimobiledevice
     neovim-qt
-    yaru-theme
+    unstable.firefox-devedition-bin
   ];
 
-  environment.variables = { VISUAL = "nvim-qt"; };
+  environment.variables = {
+    VISUAL = "nvim-qt";
+    MOZ_ENABLE_WAYLAND = "1";
+  };
 
   fonts = {
     fontconfig.enable = true;
@@ -98,7 +100,9 @@
     gnome = {
       core-os-services.enable = true;
       core-shell.enable = true;
+      evolution-data-server.enable = true;
       gnome-keyring.enable = true;
+      gnome-online-accounts.enable = true;
     };
     pipewire = {
       alsa.enable = true;

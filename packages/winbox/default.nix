@@ -2,7 +2,7 @@ with import <nixpkgs> { };
 
 pkgs.stdenv.mkDerivation rec {
   pname = "winbox";
-  version = "3.28";
+  version = "3.31";
 
   srcs = [
     (fetchurl {
