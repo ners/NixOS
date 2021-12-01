@@ -7,7 +7,7 @@ pkgs.stdenv.mkDerivation rec {
   srcs = [
     (fetchurl {
       url = "https://download.mikrotik.com/winbox/${version}/winbox.exe";
-      sha256 = "04f2kg7m3qwd7x0i3w9x01jjd8raznaba701vbx20zhyvfawl6kg";
+      sha256 = "01w0g7fp7grgrsa78mzjmmxjy8bld6zmybjn87arz5j9ki9s48nb";
     })
     (./winbox.svg)
     (./winbox.png)

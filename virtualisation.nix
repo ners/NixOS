@@ -5,8 +5,10 @@
     podman.enable = true;
     libvirtd = {
       enable = true;
-      qemuOvmf = true;
-      qemuRunAsRoot = false;
+      qemu = {
+        ovmf.enable = true;
+        runAsRoot = false;
+      };
     };
   };
 
@@ -20,8 +22,8 @@
     virt-viewer
   ];
 
-  security.wrappers.spice-client-glib-usb-acl-helper.source =
-    "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper";
+  # security.wrappers.spice-client-glib-usb-acl-helper.source =
+  #   "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper";
 
   boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
 }

@@ -1,6 +1,18 @@
 NixOS
 =====
 
+# Creating the boot media
+
+## Creating the ISO
+```
+nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=devices/iso-image
+```
+
+## Burn the ISO to USB drive
+```
+sudo dd if=result/iso/nixos-*.iso of=/dev/disk/by-id/<drive> bs=8M status=progress
+```
+
 # Installation
 
 ## Partitioning
@@ -18,7 +30,7 @@ cryptsetup luksFormat /dev/disk/by-partlabel/LUKS
 cryptsetup luksOpen /dev/disk/by-partlabel/LUKS cryptroot
 
 mkfs.fat -F32 -n EFI /dev/disk/by-partlabel/EFI
-mkfs.btrfs -f -L NixOS /dev/disk/by-label/NixOS
+mkfs.btrfs -f -L NixOS /dev/mapper/cryptroot
 
 mount /dev/disk/by-label/NixOS /mnt
 btrfs subvolume create /mnt/root
@@ -42,11 +54,19 @@ swapon /mnt/swap/swapfile
 
 ## Generate initial config
 ```
-nixos-generate-config --root /mnt
+sudo nixos-generate-config --root /mnt
+```
+
+## Add channels
+```
+sudo nix-channel --add https://nixos.org/channels/nixos-21.11 nixos
+sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
+sudo nix-channel --add https://github.com/NixOS/nixos-hardware/archive/master.tar.gz nixos-hardware
+sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
 ```
 
 ## Build config (install)
 ```
 nix-build '<nixpkgs/nixos>' -A config.system.build.toplevel -I nixos-config=/mnt/etc/nixos/configuration.nix
-nixos-install --no-root-passwd
+sudo nixos-install --no-root-passwd
 ```

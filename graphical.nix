@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
-{
+let unstable = import <nixos-unstable> { config.allowUnfree = true; };
+in {
   environment.systemPackages = with pkgs; [
     evince
     evolution
@@ -28,7 +29,6 @@
     fonts = with pkgs; [
       (nerdfonts.override { fonts = [ "Cousine" "FiraCode" "RobotoMono" ]; })
       carlito
-      corefonts
       crimson
       dejavu_fonts
       fira
@@ -46,6 +46,7 @@
       source-code-pro
       source-sans-pro
       source-serif-pro
+      unstable.corefonts
     ];
     fontconfig.localConf = ''
       <?xml version="1.0"?>
@@ -81,13 +82,15 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-wlr ];
+    gtkUsePortal = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+    ];
   };
 
   services = {
     xserver = {
       enable = true;
-      videoDrivers = [ "amdgpu" ];
       xkbOptions = "caps:escape";
       libinput.enable = true;
       displayManager = {
@@ -160,5 +163,5 @@
   };
 
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = pkgs.lib.mkForce false;
 }

@@ -129,11 +129,7 @@
           pointer_accel = "0.75";
         };
       };
-      output = {
-        "*" = {
-          bg = "$(find ~/Pictures/Wallpapers/ -type f | shuf -n 1) fill";
-        };
-      };
+      output = { "*" = { bg = "~/.background fill"; }; };
       gaps = {
         smartGaps = true;
         outer = 0;

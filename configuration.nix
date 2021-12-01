@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
-let
-  unstableTarball = fetchTarball
-    "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-  unstableOverride =
-    import (unstableTarball) { config = config.nixpkgs.config; };
+let unstable = import <nixos-unstable> { config.allowUnfree = true; };
 in {
   imports = [
     ./boot.nix
@@ -12,6 +8,7 @@ in {
     ./graphical.nix
     ./hardware-configuration.nix
     ./virtualisation.nix
+    ./devices/normandy
     <home-manager/nixos>
   ];
 
@@ -27,11 +24,10 @@ in {
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = false;
-    packageOverrides = pkgs: { unstable = unstableOverride; };
+    packageOverrides = pkgs: { unstable = unstable; };
   };
 
   networking = {
-    hostName = "godot";
     networkmanager.enable = true;
     useNetworkd = true;
   };
@@ -67,7 +63,6 @@ in {
       file
       gitAndTools.gitFull
       gnumake
-      home-manager
       htop
       jq
       killall
@@ -95,5 +90,5 @@ in {
     abrmd.enable = true;
   };
 
-  system.stateVersion = "21.05";
+  system.stateVersion = "21.11";
 }

@@ -18,20 +18,14 @@ in {
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.05";
+  home.stateVersion = "21.11";
 
-  imports = [
-    ./fonts.nix
-    ./neovim.nix
-    ./shell.nix
-    ./sway.nix
-    ./vscode.nix
-  ];
-  imports = [ ./neovim.nix ./shell.nix ./vscode.nix ];
+  imports = [ ./fonts.nix ./neovim.nix ./shell.nix ./sway.nix ./vscode.nix ];
 
   home.packages = with pkgs; [
     (import ../../packages/winbox)
     aria2
+    audacity
     bat
     boxes
     cabal2nix
@@ -40,6 +34,7 @@ in {
     entr
     flatpak
     flatpak-builder
+    fractal
     gimp
     git-lfs
     gitg
@@ -51,7 +46,6 @@ in {
     mpv
     neofetch
     nix-index
-    nixops
     nodejs
     pavucontrol
     pciutils
@@ -60,17 +54,18 @@ in {
     transmission-remote-gtk
     universal-ctags
     unstable.chromium
+    unstable.darktable
     unstable.discord
+    unstable.librecad
     unstable.plexamp
     unstable.skype
     unstable.slack
+    unstable.sweethome3d.application
     unstable.tdesktop
     unstable.zoom-us
     unzip
     v4l-utils
-    wineWowPackages.stable
     x2goclient
-    (winetricks.override { wine = wineWowPackages.stable; })
   ];
 
   programs.git = {
@@ -104,4 +99,11 @@ in {
   xdg.configFile."libvirt/qemu.conf".text = ''
     nvram = ["/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd"]
   '';
+
+  home.file.".face".source = ./images/ners.jpg;
+  home.file.".background".source = ./images/nix-wallpaper-nineish-dark-gray.png;
+  dconf.settings = {
+    "org/gnome/desktop/background" = { "picture-uri" = ".background"; };
+    "org/gnome/desktop/screensaver" = { "picture-uri" = ".background"; };
+  };
 }

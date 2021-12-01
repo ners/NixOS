@@ -15,6 +15,6 @@ let
     '';
   };
 in {
-  fonts.fontconfig.enable = true;
+  # fonts.fontconfig.enable = true;
   home.packages = [ pkgs.agave gula ];
 }
