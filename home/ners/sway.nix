@@ -66,7 +66,28 @@
 
   services.kanshi = {
     enable = true;
-    profiles = { };
+    profiles = {
+      home = {
+        outputs = [
+          {
+            criteria = "Dell Inc. DELL UP3017 Y7NWN6BU103L";
+            mode = "2560x1600";
+            position = "0,0";
+          }
+          {
+            criteria = "Dell Inc. DELL UP3017 Y7NWN6BU117L";
+            mode = "2560x1600";
+            position = "2560,0";
+          }
+        ];
+        exec = [
+          ''
+            swaymsg "workspace 1, move workspace to 'Dell Inc. DELL UP3017 Y7NWN6BU103L'"''
+          ''
+            swaymsg "workspace 2, move workspace to 'Dell Inc. DELL UP3017 Y7NWN6BU117L'"''
+        ];
+      };
+    };
   };
   services.wlsunset = {
     enable = true;
@@ -151,6 +172,10 @@
         }
         {
           command = "nm-applet --indicator";
+          always = true;
+        }
+        {
+          command = "systemctl --user restart kanshi";
           always = true;
         }
         {
