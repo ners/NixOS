@@ -139,7 +139,7 @@
           xkb_variant = "dvorak";
           repeat_rate = "50";
           repeat_delay = "150";
-          xkb_options = "caps:escape";
+          xkb_options = "caps:escape,compose:ralt";
         };
         "type:mouse" = {
           accel_profile = "flat";

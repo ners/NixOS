@@ -8,6 +8,7 @@ in {
     fprintd
     gnome.eog
     gnome.geary
+    gnome3.file-roller
     gnome3.gnome-tweak-tool
     gnome3.networkmanagerapplet
     gnomeExtensions.appindicator
@@ -83,9 +84,7 @@ in {
   xdg.portal = {
     enable = true;
     gtkUsePortal = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-    ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
   };
 
   services = {

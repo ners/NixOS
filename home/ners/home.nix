@@ -20,7 +20,8 @@ in {
   # changes in each release.
   home.stateVersion = "21.11";
 
-  imports = [ ./fonts.nix ./neovim.nix ./shell.nix ./sway.nix ./vscode.nix ];
+  imports =
+    [ ./apps.nix ./fonts.nix ./neovim.nix ./shell.nix ./sway.nix ./vscode.nix ];
 
   home.packages = with pkgs; [
     (import ../../packages/winbox)
@@ -49,6 +50,7 @@ in {
     nodejs
     pavucontrol
     pciutils
+    perl534Packages.FileMimeInfo
     subversion
     transmission-gtk
     transmission-remote-gtk
@@ -67,6 +69,22 @@ in {
     v4l-utils
     x2goclient
   ];
+
+  home.sessionVariables = {
+    BROWSER = "firefox";
+    CABAL_CONFIG = "$HOME/.config/cabal/config";
+    EDITOR = "nvim";
+    FZF_ALT_C_COMMAND = "fd -t d . /home";
+    FZF_CTRL_T_COMMAND = "fd . /home";
+    FZF_DEFAULT_COMMAND = "fd . /home";
+    GIT_SSH_COMMAND = "ssh -F \\$HOME/.ssh/config";
+    MOZ_ENABLE_WAYLAND = "1";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    SDL_VIDEODRIVER = "wayland";
+    VISUAL = "nvim-qt";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+  };
 
   programs.git = {
     enable = true;

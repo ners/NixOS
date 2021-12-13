@@ -42,7 +42,7 @@
       let g:airline_theme = 'base16_default_dark'
       set number
       set list listchars=tab:›\ ,trail:~,extends:»,precedes:«,nbsp:_
-      set ts=4 sts=4 sw=4 noexpandtab
+      set ts=4 sts=4 sw=4 expandtab
       set autoindent smartindent
       set incsearch hlsearch
       set ignorecase smartcase
