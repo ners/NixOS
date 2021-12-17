@@ -6,6 +6,7 @@ in {
     evince
     evolution
     fprintd
+    gnome-usage
     gnome.eog
     gnome.geary
     gnome3.file-roller

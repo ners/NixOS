@@ -20,8 +20,15 @@ in {
   # changes in each release.
   home.stateVersion = "21.11";
 
-  imports =
-    [ ./apps.nix ./fonts.nix ./neovim.nix ./shell.nix ./sway.nix ./vscode.nix ];
+  imports = [
+    ./apps.nix
+    ./dconf.nix
+    ./fonts.nix
+    ./neovim.nix
+    ./shell.nix
+    ./sway.nix
+    ./vscode.nix
+  ];
 
   home.packages = with pkgs; [
     (import ../../packages/winbox)
@@ -39,6 +46,7 @@ in {
     gimp
     git-lfs
     gitg
+    graphviz
     httpie
     inkscape
     jdk11
@@ -120,8 +128,4 @@ in {
 
   home.file.".face".source = ./images/ners.jpg;
   home.file.".background".source = ./images/nix-wallpaper-nineish-dark-gray.png;
-  dconf.settings = {
-    "org/gnome/desktop/background" = { "picture-uri" = ".background"; };
-    "org/gnome/desktop/screensaver" = { "picture-uri" = ".background"; };
-  };
 }
