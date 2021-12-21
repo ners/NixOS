@@ -21,7 +21,7 @@ sudo su
 
 sgdisk --zap-all -o \
     -n 1:0:+1G -t 1:EF00 -c 1:EFI \
-    -n 2:0:0 -t 1:8200 -c 2:LUKS \
+    -n 2:0:0 -t 2:8300 -c 2:LUKS \
     /dev/nvme0n1
 
 partprobe
