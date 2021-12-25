@@ -13,10 +13,13 @@ in {
     gnome3.gnome-tweak-tool
     gnome3.networkmanagerapplet
     gnomeExtensions.appindicator
+    gparted
     libappindicator
     libimobiledevice
     neovim-qt
     unstable.firefox-devedition-bin
+    virt-manager
+    virt-viewer
   ];
 
   environment.variables = {

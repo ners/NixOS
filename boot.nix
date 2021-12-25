@@ -7,10 +7,7 @@
     timeout = 3;
     grub.enable = false;
     systemd-boot.enable = true;
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
-    };
+    efi.canTouchEfiVariables = true;
   };
 
   boot.initrd.availableKernelModules = [ "aesni_intel" "cryptd" ];

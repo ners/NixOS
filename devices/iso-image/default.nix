@@ -1,14 +1,16 @@
-{ config, pkgs, ... }:
+{ modulesPath, pkgs, ... }:
 
 {
   imports = [
-    <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-graphical-base.nix>
-
-    # Provide an initial copy of the NixOS channel so that the user
-    # doesn't need to run "nix-channel --update" first.
-    <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
+    "${modulesPath}/installer/cd-dvd/installation-cd-graphical-base.nix"
+    "${modulesPath}/installer/cd-dvd/channel.nix"
 
     ../../dvorak.nix
     ../../graphical.nix
+  ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  users.users.nixos.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOpF57zQbYYnhtJfE83BNLj4nFwkv9Og3jqPJVvTlvL ners"
   ];
 }

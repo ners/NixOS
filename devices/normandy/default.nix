@@ -2,6 +2,9 @@
 
 {
   imports = [
+    ../../boot.nix
+    ../../graphical.nix
+    ../../ners.nix
     <nixos-hardware/common/pc>
     <nixos-hardware/common/pc/ssd>
     <nixos-hardware/common/cpu/intel>

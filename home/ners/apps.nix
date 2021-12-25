@@ -6,7 +6,7 @@ let
   document-viewer = [ "org.gnome.Evince.desktop" ];
   editor = [ "nvim-qt.desktop" ];
   email = [ "org.gnome.Evolution.desktop" ];
-  file-manager = [ "nautilus.desktop" "org.gnome.Nautilus.desktop" ];
+  file-manager = [ "org.gnome.Nautilus.desktop" ];
   image-viewer = [ "org.gnome.eog.desktop" ];
   video-viewer = [ "mpv.desktop" ];
 in {

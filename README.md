@@ -5,7 +5,8 @@ NixOS
 
 ## Creating the ISO
 ```
-nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=devices/iso-image
+nixos-generate --format iso --configuration devices/iso-image/default.nix
+# nix-shell -p nixos-generators --command 'nixos-generate --format iso --configuration devices/iso-image/default.nix'
 ```
 
 ## Burn the ISO to USB drive
@@ -32,6 +33,8 @@ cryptsetup luksOpen /dev/disk/by-partlabel/LUKS cryptroot
 mkfs.fat -F32 -n EFI /dev/disk/by-partlabel/EFI
 mkfs.btrfs -f -L NixOS /dev/mapper/cryptroot
 
+partprobe
+
 mount /dev/disk/by-label/NixOS /mnt
 btrfs subvolume create /mnt/root
 btrfs subvolume create /mnt/home
@@ -39,8 +42,8 @@ btrfs subvolume create /mnt/swap
 umount /mnt
 
 mount -o subvol=root,compress=zstd /dev/disk/by-label/NixOS /mnt
-mkdir -p /mnt/boot/efi /mnt/home /mnt/swap
-mount /dev/disk/by-label/EFI /mnt/boot/efi
+mkdir -p /mnt/boot /mnt/home /mnt/swap
+mount /dev/disk/by-label/EFI /mnt/boot
 mount -o subvol=home,compress=zstd /dev/disk/by-label/NixOS /mnt/home
 mount -o subvol=swap /dev/disk/by-label/NixOS /mnt/swap
 
@@ -54,19 +57,20 @@ swapon /mnt/swap/swapfile
 
 ## Generate initial config
 ```
-sudo nixos-generate-config --root /mnt
+nixos-generate-config --root /mnt
 ```
 
 ## Add channels
 ```
-sudo nix-channel --add https://nixos.org/channels/nixos-21.11 nixos
-sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
-sudo nix-channel --add https://github.com/NixOS/nixos-hardware/archive/master.tar.gz nixos-hardware
-sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
+nix-channel --add https://nixos.org/channels/nixos-21.11 nixos
+nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
+nix-channel --add https://github.com/NixOS/nixos-hardware/archive/master.tar.gz nixos-hardware
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
+nix-channel --update
 ```
 
 ## Build config (install)
 ```
 nix-build '<nixpkgs/nixos>' -A config.system.build.toplevel -I nixos-config=/mnt/etc/nixos/configuration.nix
-sudo nixos-install --no-root-passwd
+nixos-install --no-root-passwd
 ```

@@ -1,25 +1,35 @@
 { config, pkgs, ... }:
 
-{
+let
+  ovmf = pkgs.OVMF.override {
+    secureBoot = true;
+    tpmSupport = true;
+  };
+in {
   virtualisation = {
     podman.enable = true;
     libvirtd = {
       enable = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
       qemu = {
-        ovmf.enable = true;
+        ovmf = {
+          enable = true;
+          package = ovmf;
+        };
         runAsRoot = false;
+        verbatimConfig = ''
+          nvram = ["${ovmf.fd}/FV/OVMF.fd:${ovmf.fd}/FV/OVMF_VARS.fd"]
+        '';
       };
     };
   };
 
   environment.systemPackages = with pkgs; [
-    OVMF
     libguestfs
     spice-gtk
     spice-vdagent
     swtpm
-    virt-manager
-    virt-viewer
   ];
 
   # security.wrappers.spice-client-glib-usb-acl-helper.source =

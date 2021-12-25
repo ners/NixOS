@@ -42,6 +42,7 @@
       };
     };
   };
+
   programs.mako = {
     enable = true;
     defaultTimeout = 3000;
@@ -89,6 +90,7 @@
       };
     };
   };
+
   services.wlsunset = {
     enable = true;
     latitude = "47.3769";
@@ -179,6 +181,11 @@
           always = true;
         }
         {
+          command =
+            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          always = false;
+        }
+        {
           command = ''
             swayidle -w \
                 timeout 3000 screenlock \
@@ -248,6 +255,10 @@
         "XF86AudioPrev" = "exec playerctl previous";
       };
     };
+    extraSessionCommands = ''
+      eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh);
+      export SSH_AUTH_SOCK;
+    '';
   };
 
   programs.waybar = {
