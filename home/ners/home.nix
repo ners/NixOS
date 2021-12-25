@@ -54,10 +54,8 @@ in {
     libreoffice-fresh
     mpv
     neofetch
-    nix-index
     nodejs
     pavucontrol
-    pciutils
     perl534Packages.FileMimeInfo
     subversion
     transmission-gtk
