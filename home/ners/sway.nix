@@ -13,6 +13,7 @@
     pamixer
     pavucontrol
     playerctl
+    polkit_gnome
     sway-contrib.grimshot
     swayidle
     swaylock
@@ -27,7 +28,7 @@
     enable = true;
     settings = {
       main = {
-        # term = "xterm-256color";
+        term = "xterm-256color";
         font = "Cousine Nerd Font:size=11";
         dpi-aware = "yes";
         pad = "10x5 center";
@@ -113,7 +114,10 @@
   services.gnome-keyring.enable = true;
 
   xdg.configFile."albert/albert.conf".text = lib.generators.toINI { } {
-    General = { showTray = true; };
+    General = {
+      showTray = true;
+      terminal = "foot";
+    };
     "org.albert.extension.applications" = {
       enabled = true;
       fuzzy = false;

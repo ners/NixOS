@@ -57,6 +57,7 @@ in {
     nodejs
     pavucontrol
     perl534Packages.FileMimeInfo
+    rhythmbox
     subversion
     transmission-gtk
     transmission-remote-gtk

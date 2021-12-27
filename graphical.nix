@@ -129,6 +129,7 @@ in {
     printing.enable = true;
     redshift.enable = true;
     usbmuxd.enable = true;
+    gvfs.enable = true;
   };
   location.provider = "geoclue2";
 
