@@ -21,7 +21,7 @@ in {
       "application/x-extension-xhtml" = browser;
       "application/xhtml+xml" = browser;
       "image/apng" = image-viewer;
-      "image/avif " = image-viewer;
+      "image/avif" = image-viewer;
       "image/bmp" = image-viewer;
       "image/gif" = image-viewer;
       "image/jpeg" = image-viewer;

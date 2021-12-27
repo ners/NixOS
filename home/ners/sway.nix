@@ -5,7 +5,6 @@
     (imagemagick.overrideAttrs (_: { buildInputs = [ pkgs.pango ]; }))
     (import ../../packages/inter-nerd)
     (import ../../packages/screenlock)
-    alacritty
     albert
     blueman
     brightnessctl
@@ -24,21 +23,36 @@
     xwayland
   ];
 
-  programs.alacritty = {
+  programs.foot = {
     enable = true;
     settings = {
-      background_opacity = 0.85;
-      font = {
-        normal.family = "Cousine Nerd Font";
-        size = 11;
-        antialias = true;
-        autohint = true;
+      main = {
+        # term = "xterm-256color";
+        font = "Cousine Nerd Font:size=11";
+        dpi-aware = "yes";
+        pad = "10x5 center";
       };
-      window = {
-        padding = {
-          x = 10;
-          y = 5;
-        };
+      mouse = { hide-when-typing = "yes"; };
+      colors = {
+        alpha = 0.85;
+        background = "181818";
+        foreground = "D8D8D8";
+        regular0 = "181818"; # black
+        regular1 = "AB4642"; # red
+        regular2 = "A1B56C"; # green
+        regular3 = "F7CA88"; # yellow
+        regular4 = "7CAFC2"; # blue
+        regular5 = "BA8BAF"; # magenta
+        regular6 = "86C1B9"; # cyan
+        regular7 = "D8D8D8"; # white
+        bright0 = "585858"; # bright black
+        bright1 = "AB4642"; # bright red
+        bright2 = "A1B56C"; # bright green
+        bright3 = "F7CA88"; # bright yellow
+        bright4 = "7CAFC2"; # bright blue
+        bright5 = "BA8BAF"; # bright magenta
+        bright6 = "86C1B9"; # bright cyan
+        bright7 = "F8F8F8"; # bright white
       };
     };
   };
@@ -132,7 +146,7 @@
     systemdIntegration = true;
     config = rec {
       modifier = "Mod4";
-      terminal = "alacritty";
+      terminal = "foot";
       menu = "swaymsg exec -- albert show";
       bars = [{ command = "waybar"; }];
       input = {

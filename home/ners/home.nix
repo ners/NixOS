@@ -120,10 +120,6 @@ in {
     jobs: $ncpus
   '';
 
-  xdg.configFile."libvirt/qemu.conf".text = ''
-    nvram = ["/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd"]
-  '';
-
   home.file.".face".source = ./images/ners.jpg;
   home.file.".background".source = ./images/nix-wallpaper-nineish-dark-gray.png;
 }
