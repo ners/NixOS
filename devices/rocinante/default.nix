@@ -5,8 +5,8 @@
     ./boot.nix
     ./dragoncat.nix
     ./gold.nix
+    ./nfs.nix
     ./plex.nix
-    ./samba.nix
     ./transmission.nix
     ./windows.nix
     <nixos-hardware/common/cpu/amd>

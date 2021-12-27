@@ -8,14 +8,7 @@
     options = [ "compress=zstd" ];
   };
 
-  services.samba.shares."Gold" = {
-    path = "/mnt/Gold";
-    browseable = "yes";
-    "read only" = "no";
-    "guest ok" = "no";
-    "create mask" = "0644";
-    "directory mask" = "0755";
-    "force user" = "dragoncat";
-    "force group" = "gold";
-  };
+  services.nfs.server.exports = ''
+    /mnt/Gold *(rw,sync,no_root_squash,all_squash,anonuid=1000,anongid=1000)
+  '';
 }
