@@ -17,10 +17,11 @@ in {
       dates = "monthly";
       options = "--delete-older-than 30d";
     };
+    package = pkgs.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes
+      preallocate-contents = false
     '';
-    package = pkgs.nixUnstable;
   };
 
   nixpkgs.config = {
@@ -63,6 +64,7 @@ in {
       jq
       killall
       moreutils
+      nano
       neovim
       nix-index
       parted

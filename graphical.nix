@@ -16,7 +16,7 @@ in {
     gparted
     libappindicator
     libimobiledevice
-    neovim-qt
+    unstable.neovim-qt
     unstable.firefox-devedition-bin
     virt-manager
     virt-viewer
@@ -111,6 +111,7 @@ in {
       core-shell.enable = true;
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
+      sushi.enable = true;
     };
     pipewire = {
       enable = true;

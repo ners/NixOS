@@ -1,7 +1,15 @@
 { config, pkgs, ... }:
 
 let unstable = import <nixos-unstable> { config.allowUnfree = true; };
-in {
+in rec {
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = false;
+    packageOverrides = pkgs: {
+      unstable = unstable;
+      local = import "${home.homeDirectory}/Projects/nixpkgs" {}; };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = false;
 
@@ -24,7 +32,7 @@ in {
     ./apps.nix
     ./dconf.nix
     ./fonts.nix
-    ./neovim.nix
+    ./neovim
     ./shell.nix
     ./sway.nix
     ./vscode.nix
@@ -103,6 +111,7 @@ in {
         init.defaultBranch = "master";
         sshCommand = "ssh -F $HOME/.ssh/config";
       };
+      pull.rebase = true;
       push.default = "current";
       credential.helper = "libsecret";
       "filter \"lfs\"" = {

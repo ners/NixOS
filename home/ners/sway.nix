@@ -30,7 +30,7 @@
       main = {
         term = "xterm-256color";
         font = "Cousine Nerd Font:size=11";
-        dpi-aware = "yes";
+        dpi-aware = "auto";
         pad = "10x5 center";
       };
       mouse = { hide-when-typing = "yes"; };
@@ -148,6 +148,11 @@
   wayland.windowManager.sway = {
     enable = true;
     systemdIntegration = true;
+    wrapperFeatures.gtk = true;
+    extraSessionCommands = ''
+      eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh);
+      export SSH_AUTH_SOCK;
+    '';
     config = rec {
       modifier = "Mod4";
       terminal = "foot";
@@ -266,17 +271,13 @@
         "XF86AudioLowerVolume" = "exec pamixer --decrease 5";
         "XF86AudioMute" = "exec pamixer --toggle-mute";
         "XF86AudioMicMute" = "exec pamixer --default-source --toggle-mute";
-        "XF86MonBrightnessUp" = "exec brightnessctl s +20%";
-        "XF86MonBrightnessDown" = "exec brightnessctl s 20%-";
+        "XF86MonBrightnessUp" = "exec brightnessctl s +10%";
+        "XF86MonBrightnessDown" = "exec brightnessctl s 10%-";
         "XF86AudioPlay" = "exec playerctl play-pause";
         "XF86AudioNext" = "exec playerctl next";
         "XF86AudioPrev" = "exec playerctl previous";
       };
     };
-    extraSessionCommands = ''
-      eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh);
-      export SSH_AUTH_SOCK;
-    '';
   };
 
   programs.waybar = {
