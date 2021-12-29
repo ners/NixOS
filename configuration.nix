@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
+
 let unstable = import <nixos-unstable> { config.allowUnfree = true; };
 in {
   imports = [
     ./btrfs.nix
-    ./devices/normandy
+    ./device.nix
     ./dvorak.nix
     ./hardware-configuration.nix
     ./virtualisation.nix
