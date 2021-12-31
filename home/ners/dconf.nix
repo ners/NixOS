@@ -21,7 +21,7 @@
       thumbnail-limit = 10;
     };
 
-    "org/gnome/nautilus/list-view" = { use-tree-view = "true"; };
+    "org/gnome/nautilus/list-view" = { use-tree-view = true; };
 
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = [ "qemu:///session" ];
@@ -29,9 +29,8 @@
     };
 
     "org/gnome/gnome-system-monitor" = {
-      cpu-smooth-graph = "true";
-      cpu-stacked-area-chart = "true";
+      cpu-smooth-graph = true;
+      cpu-stacked-area-chart = true;
     };
-
   };
 }

@@ -29,7 +29,7 @@
     settings = {
       main = {
         term = "xterm-256color";
-        font = "Cousine Nerd Font:size=11";
+        font = "Monospace:size=11";
         dpi-aware = "auto";
         pad = "10x5 center";
       };
@@ -61,7 +61,7 @@
   programs.mako = {
     enable = true;
     defaultTimeout = 3000;
-    font = "Cousine 11";
+    font = "Monospace 11";
     extraConfig = ''
       background-color=#181818
       text-color=#d8d8d8

@@ -32,8 +32,9 @@ in {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "Cousine" "FiraCode" "RobotoMono" ]; })
+      (nerdfonts.override { fonts = [ "Cousine" "FiraCode" "RobotoMono" "SourceCodePro" ]; })
       carlito
+      charis-sil
       crimson
       dejavu_fonts
       fira
@@ -51,8 +52,15 @@ in {
       source-code-pro
       source-sans-pro
       source-serif-pro
+      twitter-color-emoji
       unstable.corefonts
     ];
+    fontconfig.defaultFonts = {
+      sansSerif = [ "Source Sans Pro" ];
+      serif = [ "Source Serif Pro" ];
+      monospace = [ "Cousine Nerd Font" ];
+      emoji = [ "Twitter Color Emoji" ];
+    };
     fontconfig.localConf = ''
       <?xml version="1.0"?>
       <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
@@ -77,12 +85,6 @@ in {
         </alias>
       </fontconfig>
           '';
-    fontconfig.defaultFonts = {
-      sansSerif = [ "Arimo" ];
-      serif = [ "Tinos" ];
-      monospace = [ "Cousine" ];
-      emoji = [ "Noto Color Emoji" ];
-    };
   };
 
   xdg.portal = {

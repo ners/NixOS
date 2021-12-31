@@ -73,6 +73,7 @@ in rec {
     unstable.chromium
     unstable.darktable
     unstable.discord
+    unstable.foliate
     unstable.librecad
     unstable.plexamp
     unstable.skype
