@@ -60,7 +60,6 @@ in rec {
     jdk11
     libguestfs-with-appliance
     libreoffice-fresh
-    mpv
     neofetch
     nodejs
     pavucontrol

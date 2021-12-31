@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
 
-let filesInDir = dir: builtins.attrNames (builtins.readDir dir);
-    map = builtins.map;
-    unlines = builtins.concatStringsSep "\n";
+with builtins;
+
+let filesInDir = dir: attrNames (readDir dir);
+    unlines = concatStringsSep "\n";
 in {
   nixpkgs.overlays = [
     (self: super: { neovim = pkgs.unstable.neovim; })
@@ -50,7 +51,7 @@ in {
     ];
     extraConfig = (
       let vimFiles = filesInDir ./vim;
-          vimParts = map (name: builtins.readFile "${./vim}/${name}") vimFiles;
+          vimParts = map (name: readFile "${./vim}/${name}") vimFiles;
           luaFiles = filesInDir ./lua;
           luaReqs = map (file: ":lua require('${pkgs.lib.removeSuffix ".lua" file}')") luaFiles;
       in unlines (vimParts ++ luaReqs)
@@ -61,7 +62,7 @@ in {
     "nvim/ftplugin".source = ./ftplugin;
     "nvim/ginit.vim".text = (
         let vimFiles = filesInDir ./gvim;
-            vimParts = map (name: builtins.readFile "${./gvim}/${name}") vimFiles;
+            vimParts = map (name: readFile "${./gvim}/${name}") vimFiles;
         in unlines vimParts
     );
   };

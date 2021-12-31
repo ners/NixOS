@@ -6,18 +6,20 @@ in {
     evince
     evolution
     fprintd
+    gnome-connections
     gnome-usage
     gnome.eog
+    gnome.file-roller
     gnome.geary
-    gnome3.file-roller
-    gnome3.gnome-tweak-tool
-    gnome3.networkmanagerapplet
+    gnome.gnome-tweak-tool
+    gnome.nautilus
     gnomeExtensions.appindicator
     gparted
     libappindicator
     libimobiledevice
-    unstable.neovim-qt
+    mpv
     unstable.firefox-devedition-bin
+    unstable.neovim-qt
     virt-manager
     virt-viewer
   ];
@@ -32,10 +34,8 @@ in {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "Cousine" "FiraCode" "RobotoMono" "SourceCodePro" ]; })
       carlito
-      charis-sil
-      crimson
+      corefonts
       dejavu_fonts
       fira
       fira-code
@@ -53,7 +53,6 @@ in {
       source-sans-pro
       source-serif-pro
       twitter-color-emoji
-      unstable.corefonts
     ];
     fontconfig.defaultFonts = {
       sansSerif = [ "Source Sans Pro" ];
@@ -84,13 +83,13 @@ in {
           </prefer>
         </alias>
       </fontconfig>
-          '';
+    '';
   };
 
   xdg.portal = {
     enable = true;
     gtkUsePortal = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
 
   services = {

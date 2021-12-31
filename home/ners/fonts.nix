@@ -11,10 +11,23 @@ let
     };
     setSourceRoot = "sourceRoot=`pwd`";
     installPhase = ''
-      install -m 644 -D "Gula FREE.otf" "$out/share/fonts/opentype/Gula.otf"
+      install -Dm644 -D "Gula FREE.otf" "$out/share/fonts/opentype/Gula.otf"
     '';
   };
 in {
   # fonts.fontconfig.enable = true;
-  home.packages = [ pkgs.agave gula ];
+  home.packages = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "Cousine"
+        "FiraCode"
+        "RobotoMono"
+        "SourceCodePro"
+      ];
+    })
+    agave
+    charis-sil
+    crimson
+    gula
+  ];
 }

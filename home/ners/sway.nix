@@ -8,7 +8,7 @@
     albert
     blueman
     brightnessctl
-    gnome3.networkmanagerapplet
+    gnome.networkmanagerapplet
     grim
     pamixer
     pavucontrol

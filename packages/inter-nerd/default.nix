@@ -6,8 +6,7 @@ pkgs.stdenv.mkDerivation rec {
   src = ./.;
 
   installPhase = ''
-    mkdir -p $out/share/fonts/opentype
-    install -Dm755 ./Inter\ Regular\ Nerd\ Font.otf $out/share/fonts/opentype/
+    install -Dm644 ./InterRegularNerd.otf $out/share/fonts/opentype/InterRegularNerd.otf
   '';
 
   meta = with lib; {

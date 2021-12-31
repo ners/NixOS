@@ -32,5 +32,10 @@
       cpu-smooth-graph = true;
       cpu-stacked-area-chart = true;
     };
+
+    "com/github/johnfactotum/Foliate/view" = {
+      autohide-cursor = true;
+      font = "Serif 16";
+    };
   };
 }
