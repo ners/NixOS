@@ -1,4 +1,4 @@
-#!python3
+#!/usr/bin/env python3
 
 import subprocess
 from i3ipc import Connection
@@ -6,20 +6,62 @@ from PIL import Image
 import io
 import os
 
+import pprint
+pp = pprint.PrettyPrinter()
+
+pprint = pp.pprint
+
 sway = Connection()
 
 bgfile = '/tmp/lock.jpg'
 
-def rect_to_area(rect):
-    return (rect.x, rect.y, rect.x + rect.width, rect.y + rect.height)
+def rect_to_area(rect, scale):
+    x = rect['x'] * scale
+    y = rect['y'] * scale
+    width = rect['width'] * scale
+    height = rect['height'] * scale
+    return (round(x), round(y), round(x + width), round(y + height))
 
 def fetch_windows():
-    tree = sway.get_tree()
-    bar_rect = tree.rect
-    bar_rect.y = bar_rect.height - 30
-    areas = [rect_to_area(bar_rect)]
-    for node in tree.leaves():
-        areas.append(rect_to_area(node.window_rect))
+    tree = sway.get_tree().ipc_data
+    areas = []
+    for output in tree['nodes']:
+        output_rect = output['rect']
+        scale = output.get('scale', 1.0)
+        print('Output:', output.get('name', 'NONAME'), 'rect:', output_rect, 'scale:', scale)
+        bar = None
+        for workspace in output.get('nodes', []):
+            workspace_active = False
+            workspace_rect = workspace['rect']
+            if not 'num' in workspace:
+                continue
+            print('  Workspace', workspace['num'], workspace_rect)
+            queue = workspace.get('nodes', []) + workspace.get('floating_nodes', [])
+            bar_height = output_rect['height'] - workspace_rect['height']
+            bar = {
+                'width': output['rect']['width'],
+                'height': bar_height,
+                'x': 0,
+                'y': output_rect['height'] - bar_height if output_rect['y'] == workspace_rect['y'] else 0,
+            }
+            while len(queue) > 0:
+                node = queue.pop(0)
+                queue.extend(node.get('nodes', []))
+                queue.extend(node.get('floating_nodes', []))
+                if node.get('visible', False):
+                    rect = node['rect']
+                    area = rect_to_area(rect, scale)
+                    print('    Window:', rect)
+                    areas.append(area)
+                    workspace_active = True
+                if workspace_active and 'deco_rect' in node:
+                    rect = node['deco_rect']
+                    print('    Deco:', rect)
+                    area = rect_to_area(rect, scale)
+                    areas.append(area)
+        if bar:
+            print('  Bar:', bar)
+            areas.append(rect_to_area(bar, scale))
     return areas
 
 def screenshot():
