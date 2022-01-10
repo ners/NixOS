@@ -9,18 +9,19 @@
     createHome = true;
     initialHashedPassword =
       "$6$P8pZJbrdjFXP7Bkf$CSxDmrTTO6o5pWUVXW0hy/c.Zdf7WtzNOPk1KiEDrDtyDf8x6V.ZvSzhh8kJWx0DKpObq4077SH1BRZZ0wgU/0";
+    group = "dragoncat";
     extraGroups = [
-      "dragoncat"
       "audio"
       "dialout"
+      "gold"
       "libvirtd"
       "networkmanager"
+      "plex"
       "qemu-libvirtd"
+      "transmission"
+      "users"
       "video"
       "wheel"
-      "plex"
-      "gold"
-      "transmission"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOpF57zQbYYnhtJfE83BNLj4nFwkv9Og3jqPJVvTlvL ners"
@@ -36,8 +37,12 @@
       stateVersion = "21.11";
     };
 
+    nixpkgs.config.packageOverrides = _: {
+      unstable = pkgs.unstable;
+    };
+
     imports = [
-      ../../home/ners/neovim.nix
+      ../../home/ners/neovim
       ../../home/ners/shell.nix
     ];
 
