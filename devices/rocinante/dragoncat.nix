@@ -43,7 +43,7 @@
 
     imports = [
       ../../home/ners/neovim
-      ../../home/ners/shell.nix
+      ../../home/ners/shell
     ];
 
     home.packages = with pkgs; [

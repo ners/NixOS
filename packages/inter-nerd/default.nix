@@ -1,6 +1,8 @@
-with import <nixpkgs> { };
+{ lib
+, stdenv
+}:
 
-pkgs.stdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
   name = "inter-nerd";
 
   src = ./.;

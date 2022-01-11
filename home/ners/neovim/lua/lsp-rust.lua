@@ -1,12 +1,17 @@
 -- Configure LSP through rust-tools.nvim plugin.
 -- rust-tools will configure and enable certain LSP features for us.
 -- See https://github.com/simrat39/rust-tools.nvim#configuration
+local home = os.getenv'HOME'
 require'rust-tools'.setup{
   tools = { -- rust-tools options
+	-- automatically set inlay hints (type hints)
 	autoSetHints = true,
 	hover_with_actions = true,
+	runnables = {
+		use_telescope = true,
+	},
 	inlay_hints = {
-	  show_parameter_hints = false,
+	  show_parameter_hints = true,
 	  parameter_hints_prefix = "",
 	  other_hints_prefix = "",
 	},
@@ -24,7 +29,7 @@ require'rust-tools'.setup{
 	  ["rust-analyzer"] = {
 		-- enable clippy on save
 		checkOnSave = {
-		  command = "clippy-driver"
+		  overrideCommand = 'clippy-driver'
 		},
 	  }
 	}

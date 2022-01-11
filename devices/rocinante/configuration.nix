@@ -5,6 +5,7 @@
     ./boot.nix
     ./dragoncat.nix
     ./gold.nix
+    ./hardware-configuration.nix
     ./nfs.nix
     ./plex.nix
     ./transmission.nix

@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
-let unstable = import <nixos-unstable> { config.allowUnfree = true; };
-in {
+{
+  imports = [ ./fonts.nix ];
+
   environment.systemPackages = with pkgs; [
     evince
     evolution
@@ -18,8 +19,8 @@ in {
     libappindicator
     libimobiledevice
     mpv
-    unstable.firefox-devedition-bin
-    unstable.neovim-qt
+    firefox-devedition-bin
+    neovim-qt
     virt-manager
     virt-viewer
   ];
@@ -27,63 +28,6 @@ in {
   environment.variables = {
     VISUAL = "nvim-qt";
     MOZ_ENABLE_WAYLAND = "1";
-  };
-
-  fonts = {
-    fontconfig.enable = true;
-    fontDir.enable = true;
-    enableGhostscriptFonts = true;
-    fonts = with pkgs; [
-      carlito
-      corefonts
-      dejavu_fonts
-      fira
-      fira-code
-      fira-mono
-      inconsolata
-      inter
-      inter-ui
-      libertine
-      noto-fonts
-      noto-fonts-emoji
-      noto-fonts-extra
-      roboto
-      roboto-mono
-      source-code-pro
-      source-sans-pro
-      source-serif-pro
-      twitter-color-emoji
-    ];
-    fontconfig.defaultFonts = {
-      sansSerif = [ "Source Sans Pro" ];
-      serif = [ "Source Serif Pro" ];
-      monospace = [ "Cousine Nerd Font" ];
-      emoji = [ "Twitter Color Emoji" ];
-    };
-    fontconfig.localConf = ''
-      <?xml version="1.0"?>
-      <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-      <fontconfig>
-        <alias binding="weak">
-          <family>monospace</family>
-          <prefer>
-            <family>emoji</family>
-          </prefer>
-        </alias>
-        <alias binding="weak">
-          <family>sans-serif</family>
-          <prefer>
-            <family>emoji</family>
-          </prefer>
-        </alias>
-        <alias binding="weak">
-          <family>serif</family>
-          <prefer>
-            <family>emoji</family>
-          </prefer>
-        </alias>
-      </fontconfig>
-    '';
   };
 
   xdg.portal = {
@@ -108,8 +52,8 @@ in {
     blueman.enable = true;
     gnome = {
       core-os-services.enable = true;
-      evolution-data-server.enable = true;
       core-shell.enable = true;
+      evolution-data-server.enable = true;
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
       sushi.enable = true;

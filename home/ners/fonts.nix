@@ -15,15 +15,10 @@ let
     '';
   };
 in {
-  # fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = lib.mkForce true;
   home.packages = with pkgs; [
     (nerdfonts.override {
-      fonts = [
-        "Cousine"
-        "FiraCode"
-        "RobotoMono"
-        "SourceCodePro"
-      ];
+      fonts = [ "Cousine" "FiraCode" "RobotoMono" "SourceCodePro" ];
     })
     agave
     charis-sil

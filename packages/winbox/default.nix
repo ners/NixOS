@@ -1,11 +1,18 @@
-with import <nixpkgs> { };
+{ lib
+, stdenv
+, wineWowPackages
+, makeDesktopItem
+, writeScriptBin
+}:
 
-pkgs.stdenv.mkDerivation rec {
+let wine = wineWowPackages.stable;
+in
+stdenv.mkDerivation rec {
   pname = "winbox";
   version = "3.31";
 
   srcs = [
-    (fetchurl {
+    (builtins.fetchurl {
       url = "https://download.mikrotik.com/winbox/${version}/winbox.exe";
       sha256 = "01w0g7fp7grgrsa78mzjmmxjy8bld6zmybjn87arz5j9ki9s48nb";
     })
@@ -13,7 +20,7 @@ pkgs.stdenv.mkDerivation rec {
     (./winbox.png)
   ];
 
-  winboxItem = pkgs.makeDesktopItem {
+  winboxItem = makeDesktopItem {
     name = "winbox";
     exec = "winbox";
     icon = "winbox";
@@ -23,9 +30,9 @@ pkgs.stdenv.mkDerivation rec {
     categories = "Network";
   };
 
-  winboxScript = pkgs.writeScriptBin "winbox" ''
-    #!${pkgs.stdenv.shell}
-    exec ${pkgs.wine}/bin/wine @out@/opt/winbox.exe
+  winboxScript = writeScriptBin "winbox" ''
+    #!${stdenv.shell}
+    exec ${wine}/bin/wine @out@/opt/winbox.exe
   '';
 
   unpackPhase = ''
@@ -43,8 +50,6 @@ pkgs.stdenv.mkDerivation rec {
     install -D winbox.svg $out/share/icons/hicolor/scalable/apps/winbox.svg
     install -D winbox.png $out/share/icons/hicolor/512x512/apps/winbox.png
   '';
-
-  nativeBuildInputs = with pkgs; [ wine winboxScript ];
 
   meta = with lib; {
     homepage = "https://mikrotik.com/software";

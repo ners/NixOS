@@ -16,23 +16,28 @@ let
     (map (pkgs.lib.removePrefix "MimeType="))
     (map (pkgs.lib.splitString ";"))
     concatLists
+    (filter (str: stringLength str > 0))
   ];
-  application = file: { desktop = baseNameOf file; mimeTypes = mimeTypes file; };
-  applications = pipe [
-    desktopFiles
-    (map application)
-  ];
+  application = file: {
+    desktop = baseNameOf file;
+    mimeTypes = mimeTypes file;
+  };
+  applications = pipe [ desktopFiles (map application) ];
   mimeApp = pipe [
     applications
-    (map (app: map (mimeType: { name = mimeType; value = app.desktop; }) app.mimeTypes))
+    (map (app:
+      map
+        (mimeType: {
+          name = mimeType;
+          value = app.desktop;
+        })
+        app.mimeTypes))
     concatLists
     listToAttrs
   ];
-  mimeApps = pipe [
-    (map mimeApp)
-    pkgs.lib.zipAttrs
-  ];
-in {
+  mimeApps = pipe [ (map mimeApp) pkgs.lib.zipAttrs ];
+in
+{
   xdg.mimeApps = {
     enable = true;
     defaultApplications = mimeApps (with pkgs; [

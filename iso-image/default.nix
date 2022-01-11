@@ -5,8 +5,8 @@
     "${modulesPath}/installer/cd-dvd/installation-cd-graphical-base.nix"
     "${modulesPath}/installer/cd-dvd/channel.nix"
 
-    ../../dvorak.nix
-    ../../graphical.nix
+    ../profiles/base
+    ../profiles/graphical
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

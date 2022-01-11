@@ -6,14 +6,10 @@ from PIL import Image
 import io
 import os
 
-import pprint
-pp = pprint.PrettyPrinter()
-
-pprint = pp.pprint
-
 sway = Connection()
+tree = sway.get_tree().ipc_data
 
-bgfile = '/tmp/lock.jpg'
+directory = '/tmp/screenlock'
 
 def rect_to_area(rect, scale):
     x = rect['x'] * scale
@@ -23,12 +19,14 @@ def rect_to_area(rect, scale):
     return (round(x), round(y), round(x + width), round(y + height))
 
 def fetch_windows():
-    tree = sway.get_tree().ipc_data
-    areas = []
+    outputs = {}
+    windows = []
     for output in tree['nodes']:
+        output_name = output['name']
         output_rect = output['rect']
         scale = output.get('scale', 1.0)
-        print('Output:', output.get('name', 'NONAME'), 'rect:', output_rect, 'scale:', scale)
+        print('Output:', output_name, 'rect:', output_rect, 'scale:', scale)
+        outputs[output_name] = rect_to_area(output_rect, scale)
         bar = None
         for workspace in output.get('nodes', []):
             workspace_active = False
@@ -39,10 +37,10 @@ def fetch_windows():
             queue = workspace.get('nodes', []) + workspace.get('floating_nodes', [])
             bar_height = output_rect['height'] - workspace_rect['height']
             bar = {
-                'width': output['rect']['width'],
+                'width': output_rect['width'],
                 'height': bar_height,
-                'x': 0,
-                'y': output_rect['height'] - bar_height if output_rect['y'] == workspace_rect['y'] else 0,
+                'x': workspace_rect['x'],
+                'y': output_rect['height'] - bar_height + workspace_rect['y'],
             }
             while len(queue) > 0:
                 node = queue.pop(0)
@@ -52,65 +50,84 @@ def fetch_windows():
                     rect = node['rect']
                     area = rect_to_area(rect, scale)
                     print('    Window:', rect)
-                    areas.append(area)
+                    windows.append(area)
                     workspace_active = True
                 if workspace_active and 'deco_rect' in node:
                     rect = node['deco_rect']
                     print('    Deco:', rect)
                     area = rect_to_area(rect, scale)
-                    areas.append(area)
+                    windows.append(area)
         if bar:
             print('  Bar:', bar)
-            areas.append(rect_to_area(bar, scale))
-    return areas
+            windows.append(rect_to_area(bar, scale))
+    return outputs, windows
 
 def screenshot():
     content = subprocess.run(['grim', '-t', 'ppm', '-'], stdout=subprocess.PIPE).stdout
     return Image.open(io.BytesIO(content))
 
 def obscure_image(image):
-  size = image.size
-  pixel_size = 8
+    size = image.size
+    pixel_size = 8
 
-  if size[0] < pixel_size or size[1] < pixel_size:
+    if size[0] < pixel_size or size[1] < pixel_size:
+        return image
+
+    image = image.resize(
+                (int(size[0] / pixel_size), int(size[1] / pixel_size)),
+                Image.NEAREST)
+
+    image = image.resize(
+                (int(size[0]), int(size[1])),
+                Image.NEAREST)
     return image
-
-  image = image.resize(
-          (int(size[0] / pixel_size), int(size[1] / pixel_size)),
-          Image.NEAREST)
-
-  image = image.resize(
-          (int(size[0]), int(size[1])),
-          Image.NEAREST)
-  return image
 
 def obscure(image, areas):
     for area in areas:
-        subimage = obscure_image(image.crop(area))
-        image.paste(subimage, area)
+        subimage = image.crop(area)
+        obscured_subimage = obscure_image(subimage)
+        image.paste(obscured_subimage, area)
     return image
 
-def lock_screen():
-  subprocess.run([
-      'swaylock',
-      '-i', bgfile,
-      '--indicator-radius', '30',
-      '--ring-color', 'FFFFFF',
-      '--key-hl-color', '333333'])
+def save_files(image, outputs):
+    os.makedirs(directory, exist_ok=True)
+    files = {}
+    for output_name, output_area in outputs.items():
+        subimage = image.crop(output_area)
+        filename = f'{directory}/{output_name}.jpg'
+        subimage.save(filename)
+        files[output_name] = filename
+    return files
+
+def lock_screen(files):
+    command = [
+        'swaylock',
+        '--indicator-radius', '30',
+        '--ring-color', 'FFFFFF',
+        '--key-hl-color', '333333']
+    for output_name, filename in files.items():
+        command.extend(['--image', f'{output_name}:{filename}'])
+    print(command)
+    subprocess.run(command)
+
+def remove_files(files):
+    for output_name, filename in files.items():
+        os.remove(filename)
+    os.rmdir(directory)
 
 if __name__ == '__main__':
-  # 1: Take a screenshot.
-  scr = screenshot()
+    # 1: Get the visible windows.
+    outputs, windows = fetch_windows()
 
-  # 2: Get the visible windows.
-  areas = fetch_windows()
+    # 2: Take a screenshot.
+    scr = screenshot()
 
-  # 3: Process and save the screenshot.
-  scr = obscure(scr, areas)
-  scr.save(bgfile)
+    # 3: Process and save the screenshot.
+    scr = obscure(scr, windows)
+    files = save_files(scr, outputs)
 
-  # 4: Lock the screen
-  lock_screen()
+    # 4: Lock the screen
+    lock_screen(files)
 
-  # 5: Remove the file
-  os.remove(bgfile)
+    # 5: Remove the file
+    remove_files(files)

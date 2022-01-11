@@ -5,7 +5,10 @@ let
   radeon-audio = "0000:29:00.1";
   usb-controller = "0000:2a:00.3"; # Zeppelin USB 3.0 Host controller
   nvme-controller = "0000:01:00.0";
-  ovmf = pkgs.OVMF.override { secureBoot = true; tpmSupport = true; };
+  ovmf = pkgs.OVMF.override {
+    secureBoot = true;
+    tpmSupport = true;
+  };
 in {
   boot.kernelParams = [
     "amd_iommu=on"

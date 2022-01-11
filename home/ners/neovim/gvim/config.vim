@@ -2,6 +2,9 @@ colorscheme base16-default-dark
 let g:airline_theme = 'base16_default_dark'
 GuiFont! Monospace:h11
 highlight LineNr guibg=NONE
-highlight NonText guifg=bg
+"highlight NonText guifg=bg
 highlight SignColumn guibg=NONE
-set cursorline
+highlight GitSignsAdd guibg=NONE guifg=green gui=bold
+highlight GitSignsChange guibg=NONE guifg=gray gui=bold
+highlight GitSignsDelete guibg=NONE guifg=red gui=bold
+" set cursorline

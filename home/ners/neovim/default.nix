@@ -2,16 +2,26 @@
 
 with builtins;
 
-let filesInDir = dir: attrNames (readDir dir);
-    unlines = concatStringsSep "\n";
-in {
+let
+  filesInDir = dir: attrNames (readDir dir);
+  unlines = concatStringsSep "\n";
+in
+{
   nixpkgs.overlays = [
-    (self: super: { neovim = pkgs.unstable.neovim; })
+    (self: super: {
+      neovim = pkgs.unstable.neovim;
+      neovim-unwrapped = pkgs.unstable.neovim-unwrapped;
+    })
   ];
-  home.packages = with pkgs; [ rnix-lsp rust-analyzer sumneko-lua-language-server ];
+  home.packages = with pkgs; [
+    clippy
+    nixfmt
+    rnix-lsp
+    rust-analyzer
+    sumneko-lua-language-server
+  ];
   programs.neovim = {
     enable = true;
-    package = pkgs.unstable.neovim-unwrapped;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
@@ -32,6 +42,10 @@ in {
       fzfWrapper
       gitsigns-nvim
       incsearch-vim
+      litee-calltree-nvim
+      litee-filetree-nvim
+      litee-nvim
+      litee-symboltree-nvim
       lsp_extensions-nvim
       lualine-nvim
       nvim-cmp
@@ -50,20 +64,26 @@ in {
       (nvim-treesitter.withPlugins (_: pkgs.unstable.tree-sitter.allGrammars))
     ];
     extraConfig = (
-      let vimFiles = filesInDir ./vim;
-          vimParts = map (name: readFile "${./vim}/${name}") vimFiles;
-          luaFiles = filesInDir ./lua;
-          luaReqs = map (file: ":lua require('${pkgs.lib.removeSuffix ".lua" file}')") luaFiles;
-      in unlines (vimParts ++ luaReqs)
+      let
+        vimFiles = filesInDir ./vim;
+        vimParts = map (name: readFile "${./vim}/${name}") vimFiles;
+        luaFiles = filesInDir ./lua;
+        luaReqs =
+          map (file: ":lua require('${pkgs.lib.removeSuffix ".lua" file}')")
+            luaFiles;
+      in
+      unlines (vimParts ++ luaReqs)
     );
   };
   xdg.configFile = {
     "nvim/lua".source = ./lua;
     "nvim/ftplugin".source = ./ftplugin;
     "nvim/ginit.vim".text = (
-        let vimFiles = filesInDir ./gvim;
-            vimParts = map (name: readFile "${./gvim}/${name}") vimFiles;
-        in unlines vimParts
+      let
+        vimFiles = filesInDir ./gvim;
+        vimParts = map (name: readFile "${./gvim}/${name}") vimFiles;
+      in
+      unlines vimParts
     );
   };
 }

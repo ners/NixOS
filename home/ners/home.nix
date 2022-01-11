@@ -1,13 +1,15 @@
 { config, pkgs, ... }:
 
 let unstable = import <nixos-unstable> { config.allowUnfree = true; };
-in rec {
+in
+rec {
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = false;
     packageOverrides = pkgs: {
       unstable = unstable;
-      local = import "${home.homeDirectory}/Projects/nixpkgs" {}; };
+      local = import "${home.homeDirectory}/Projects/nixpkgs" { };
+    };
   };
 
   # Let Home Manager install and manage itself.
@@ -30,22 +32,22 @@ in rec {
 
   imports = [
     ./apps.nix
+    ./calibre.nix
     ./dconf.nix
     ./fonts.nix
     ./neovim
-    ./shell.nix
+    ./shell
     ./sway.nix
     ./vscode.nix
   ];
 
   home.packages = with pkgs; [
-    (import ../../packages/winbox)
+    (callPackage ../../packages/winbox { })
     aria2
     audacity
     bat
     boxes
     cabal2nix
-    calibre
     element-desktop
     entr
     flatpak

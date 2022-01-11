@@ -3,8 +3,8 @@
 {
   home.packages = with pkgs; [
     (imagemagick.overrideAttrs (_: { buildInputs = [ pkgs.pango ]; }))
-    (import ../../packages/inter-nerd)
-    (import ../../packages/screenlock)
+    (callPackage ../../packages/inter-nerd { })
+    (callPackage ../../packages/screenlock { })
     albert
     blueman
     brightnessctl
@@ -149,10 +149,6 @@
     enable = true;
     systemdIntegration = true;
     wrapperFeatures.gtk = true;
-    extraSessionCommands = ''
-      eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh);
-      export SSH_AUTH_SOCK;
-    '';
     config = rec {
       modifier = "Mod4";
       terminal = "foot";
@@ -201,6 +197,11 @@
         }
         {
           command = "systemctl --user restart kanshi";
+          always = true;
+        }
+        {
+          command =
+            "export $(${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)";
           always = true;
         }
         {

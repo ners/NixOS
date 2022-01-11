@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  fileSystems."/".options = [ "compress=zstd" "noatime" "nodiratime" "discard" ];
+  fileSystems."/".options =
+    [ "compress=zstd" "noatime" "nodiratime" "discard" ];
   fileSystems."/home".options = [ "compress=zstd" ];
 
   swapDevices = [{

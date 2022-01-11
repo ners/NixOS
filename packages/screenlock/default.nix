@@ -1,10 +1,10 @@
-with import <nixpkgs> { };
-with pkgs.python3Packages;
+{ python3Packages }:
 
-buildPythonPackage rec {
+python3Packages.buildPythonPackage rec {
   name = "screenlock";
 
   src = [ ./screenlock ./setup.py ];
+
   unpackPhase = ''
     for srcFile in $src; do
     	cp $srcFile $(stripHash $srcFile)
@@ -16,5 +16,5 @@ buildPythonPackage rec {
 
   dontConfigure = true;
 
-  propagatedBuildInputs = [ python i3ipc pillow ];
+  propagatedBuildInputs = with python3Packages; [ i3ipc pillow ];
 }

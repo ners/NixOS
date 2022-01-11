@@ -5,8 +5,8 @@ NixOS
 
 ## Creating the ISO
 ```
-nixos-generate --format iso --configuration devices/iso-image/default.nix
-# nix-shell -p nixos-generators --command 'nixos-generate --format iso --configuration devices/iso-image/default.nix'
+nixos-generate --format iso --configuration iso-image/default.nix
+# nix-shell -p nixos-generators --command 'nixos-generate --format iso --configuration iso-image/default.nix'
 ```
 
 ## Burn the ISO to USB drive

@@ -1,10 +1,12 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.loader = {
-    timeout = 3;
+    timeout = mkDefault 3;
     grub.enable = false;
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
@@ -13,8 +15,8 @@
   boot.initrd.availableKernelModules = [ "aesni_intel" "cryptd" ];
 
   boot.initrd.luks.devices.cryptroot = {
-    # device = "/dev/disk/by-partlabel/LUKS";
-    preLVM = true;
-    allowDiscards = true;
+    device = mkDefault "/dev/disk/by-partlabel/LUKS";
+    preLVM = mkForce true;
+    allowDiscards = mkForce true;
   };
 }

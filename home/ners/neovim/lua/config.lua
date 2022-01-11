@@ -15,6 +15,9 @@ vim.o.hidden = true
 -- Show line numbers
 vim.opt.number = true
 
+-- Share the sign column with the number column to prevent text flicker
+vim.opt.signcolumn = 'number'
+
 -- Show invisible characters
 vim.opt.list = true
 vim.opt.listchars = { tab='› ', trail='~', extends='»', precedes='«', nbsp='_', }
@@ -26,7 +29,7 @@ vim.opt.showcmd = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 
 -- Autoindent
 vim.opt.autoindent = true
@@ -63,7 +66,7 @@ for _, sign in ipairs(signs) do
 	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
 end
 
-vim.diagnostic.config({
+vim.diagnostic.config{
 	virtual_text = true,
 	-- show signs
 	signs = {
@@ -80,7 +83,7 @@ vim.diagnostic.config({
 		header = '',
 		prefix = '',
 	},
-})
+}
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = "rounded",
