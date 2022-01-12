@@ -200,6 +200,12 @@
           always = true;
         }
         {
+          command = ''
+            export $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+    '';
+          always = true;
+        }
+        {
           command =
             "export $(${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)";
           always = true;

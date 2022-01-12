@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../profiles/base/boot.nix
+    ../../profiles/base
     ../../profiles/graphical
     ../../profiles/graphical/ners.nix
     ./hardware-configuration.nix
