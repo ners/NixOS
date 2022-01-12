@@ -37,12 +37,11 @@ rec {
     ./fonts.nix
     ./neovim
     ./shell
-    ./sway.nix
+    ./sway
     ./vscode.nix
   ];
 
   home.packages = with pkgs; [
-    (callPackage ../../packages/winbox { })
     aria2
     audacity
     bat

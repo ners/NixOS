@@ -4,6 +4,7 @@
   imports = [ ./fonts.nix ];
 
   environment.systemPackages = with pkgs; [
+    (callPackage ./winbox { })
     evince
     evolution
     fprintd

@@ -56,7 +56,7 @@ in
   environment = {
     enableDebugInfo = true;
     systemPackages = with pkgs; [
-      (callPackage ../../packages/nixos-update { })
+      (callPackage ./nixos-update { })
       exfat
       expect
       file
