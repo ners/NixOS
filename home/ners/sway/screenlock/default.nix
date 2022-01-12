@@ -1,4 +1,4 @@
-{ python3Packages }:
+{ python3Packages, grim }:
 
 python3Packages.buildPythonPackage rec {
   name = "screenlock";
@@ -16,5 +16,5 @@ python3Packages.buildPythonPackage rec {
 
   dontConfigure = true;
 
-  propagatedBuildInputs = with python3Packages; [ i3ipc pillow ];
+  propagatedBuildInputs = with python3Packages; [ i3ipc pillow grim ];
 }
