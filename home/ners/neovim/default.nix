@@ -7,21 +7,18 @@ let
   unlines = concatStringsSep "\n";
 in
 {
-  nixpkgs.overlays = [
-    (self: super: {
-      neovim = pkgs.unstable.neovim;
-      neovim-unwrapped = pkgs.unstable.neovim-unwrapped;
-    })
-  ];
   home.packages = with pkgs; [
     clippy
     nixfmt
     rnix-lsp
     rust-analyzer
     sumneko-lua-language-server
+    unstable.neovim-qt
   ];
+
   programs.neovim = {
     enable = true;
+    package = pkgs.unstable.neovim-unwrapped;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
