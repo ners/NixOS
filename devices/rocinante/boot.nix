@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   boot.loader = {
-    systemd-boot.enable = mkForce false;
+    systemd-boot.enable = lib.mkForce false;
     grub = {
-      enable = mkForce true;
+      enable = lib.mkForce true;
       efiSupport = true;
       device = "nodev";
       fsIdentifier = "label";

@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../../profiles/base
     ./boot.nix
     ./dragoncat.nix
     ./gold.nix
