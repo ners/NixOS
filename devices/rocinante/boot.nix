@@ -1,10 +1,12 @@
 { pkgs, lib, ... }:
 
+with lib;
+
 {
   boot.loader = {
-    systemd-boot.enable = lib.mkForce false;
+    systemd-boot.enable = mkForce false;
     grub = {
-      enable = lib.mkForce true;
+      enable = mkForce true;
       efiSupport = true;
       device = "nodev";
       fsIdentifier = "label";
@@ -12,4 +14,6 @@
       # theme = pkgs.nixos-grub2-theme;
     };
   };
+  boot.initrd.luks.devices = mkForce { };
+  hardware.video.hidpi.enable = true;
 }

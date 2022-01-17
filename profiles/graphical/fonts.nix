@@ -6,6 +6,9 @@
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
+      (nerdfonts.override {
+        fonts = [ "Cousine" "FiraCode" "RobotoMono" "SourceCodePro" ];
+      })
       carlito
       dejavu_fonts
       fira
@@ -30,7 +33,7 @@
     fontconfig.defaultFonts = {
       sansSerif = [ "Source Sans Pro" ];
       serif = [ "Source Serif Pro" ];
-      monospace = [ "Cousine Nerd Font" ];
+      monospace = [ "Fira Code Nerd Font" ];
       emoji = [ "Twitter Color Emoji" ];
     };
 

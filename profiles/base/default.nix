@@ -74,6 +74,7 @@ in
       pciutils
       pv
       ripgrep
+      smartmontools
       sshfs-fuse
       tio
       tmux

@@ -9,7 +9,8 @@ let
     secureBoot = true;
     tpmSupport = true;
   };
-in {
+in
+{
   boot.kernelParams = [
     "amd_iommu=on"
     "pcie_aspm=off"
@@ -82,8 +83,8 @@ in {
         -device tpm-tis,tpmdev=tpm0 \
         -boot order=cd \
         -bios ${ovmf.fd}/FV/OVMF.fd \
-        -drive file=/tmp/Windows11.iso,format=raw,media=cdrom \
-        -drive file=/tmp/virtio-win.iso,format=raw,media=cdrom \
+        -drive file=/var/Windows11.iso,format=raw,media=cdrom \
+        -drive file=/var/virtio-win.iso,format=raw,media=cdrom \
         -nographic \
         -vga none
     '';

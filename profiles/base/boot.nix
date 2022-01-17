@@ -16,10 +16,12 @@ with lib;
     };
     initrd = {
       availableKernelModules = [ "aesni_intel" "cryptd" ];
-      luks.devices.cryptroot = {
-        device = mkDefault "/dev/disk/by-partlabel/LUKS";
-        preLVM = mkForce true;
-        allowDiscards = mkForce true;
+      luks.devices = mkDefault {
+        cryptroot = {
+          device = mkDefault "/dev/disk/by-partlabel/LUKS";
+          preLVM = mkForce true;
+          allowDiscards = mkForce true;
+        };
       };
     };
   };

@@ -1,13 +1,13 @@
 function ask()
 {
 	while : ; do
-	echo -n "$1 [Y/n] "
-	read -r -t "$2" answer
-	case $answer in
-		"") echo; return 0 ;;
-		[yY]*) return 0 ;;
-		[nN]*) return 1 ;;
-	esac
+		echo -n "$1 [Y/n] "
+		read -r -t "$2" answer
+		case $answer in
+			"") echo; return 0 ;;
+			[yY]*) return 0 ;;
+			[nN]*) return 1 ;;
+		esac
 	done
 }
 
@@ -27,7 +27,7 @@ function rebuild()
 {
 	shout Rebuilding...
 	cd /etc/nixos
-	nixos-rebuild build
+	nix build --no-link -f '<nixpkgs/nixos>' config.system.build.toplevel
 	shout Rebuild succeeded
 	nvd diff /run/current-system "$PWD"/result
 }

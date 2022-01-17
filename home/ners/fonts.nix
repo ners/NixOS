@@ -14,12 +14,10 @@ let
       install -Dm644 -D "Gula FREE.otf" "$out/share/fonts/opentype/Gula.otf"
     '';
   };
-in {
+in
+{
   fonts.fontconfig.enable = lib.mkForce true;
   home.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [ "Cousine" "FiraCode" "RobotoMono" "SourceCodePro" ];
-    })
     agave
     charis-sil
     crimson

@@ -1,4 +1,6 @@
-{ modulesPath, pkgs, ... }:
+{ modulesPath, pkgs, lib, ... }:
+
+with lib;
 
 {
   imports = [
@@ -9,8 +11,17 @@
     ../profiles/graphical
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  users.users.nixos.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOpF57zQbYYnhtJfE83BNLj4nFwkv9Og3jqPJVvTlvL ners"
   ];
+
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    initrd.luks.devices = mkForce { };
+  };
+
+  users.users.nixos = {
+    initialHashedPassword = mkForce "$6$zX.Yogo86CRvoRh1$Totj9JN3E6yCW38QEOPk43bZ8.axtM64jKpe3jfNrMISQohkqoCjwDAcCLVoVoYMSyvSsgSrcyqSKLRuV9y310";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOpF57zQbYYnhtJfE83BNLj4nFwkv9Og3jqPJVvTlvL ners"
+    ];
+  };
 }

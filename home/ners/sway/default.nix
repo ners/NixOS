@@ -4,6 +4,7 @@
   imports = [
     ./albert.nix
     ./foot.nix
+    ./grim.nix
     ./kanshi.nix
     ./mako.nix
     ./waybar.nix
