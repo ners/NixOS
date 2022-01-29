@@ -52,7 +52,6 @@
       boxes
       entr
       httpie
-      nix-index
       nodejs
       unzip
     ];

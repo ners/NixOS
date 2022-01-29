@@ -72,7 +72,7 @@ vim.g.nvim_tree_icons = {
 	},
 }
 
-local tree = require('nvim-tree')
+local tree = require'nvim-tree'
 tree.setup {
 	disable_netrw       = true,
 	hijack_netrw        = true,

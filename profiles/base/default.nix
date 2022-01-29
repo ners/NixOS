@@ -17,10 +17,12 @@ in
       dates = "monthly";
       options = "--delete-older-than 30d";
     };
-    package = pkgs.unstable.nix_2_5;
+    package = pkgs.unstable.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
       preallocate-contents = false
+      keep-outputs = true
+      keep-derivations = true
     '';
   };
 

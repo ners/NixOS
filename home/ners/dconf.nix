@@ -24,8 +24,8 @@
     "org/gnome/nautilus/list-view" = { use-tree-view = true; };
 
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///session" ];
-      uris = [ "qemu:///session" ];
+      autoconnect = [ "qemu:///system" "qemu:///session" ];
+      uris = [ "qemu:///system" "qemu:///session" ];
     };
 
     "org/gnome/gnome-system-monitor" = {

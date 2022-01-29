@@ -5,6 +5,7 @@
 
   programs.direnv = {
     enable = true;
+    nix-direnv = { enable = true; enableFlakes = true; };
     enableZshIntegration = true;
   };
 
@@ -22,21 +23,24 @@
 
   programs.zsh = {
     enable = true;
-    initExtra = (let
-      scripts = [
-        "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-        "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
-        "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-        "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh"
-        "${pkgs.fzf}/share/fzf/completion.zsh"
-        "${pkgs.fzf}/share/fzf/key-bindings.zsh"
-        "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
-        "${pkgs.zsh-fzf-tab}/share/fzf-tab/lib/zsh-ls-colors/ls-colors.zsh"
-      ];
-      sources = map (script: ''source "${script}"'') scripts;
-      imports = builtins.concatStringsSep "\n" sources;
-      init = builtins.readFile ./init.sh;
-    in imports + "\n" + init);
+    initExtra = (
+      let
+        scripts = [
+          "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+          "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
+          "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+          "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh"
+          "${pkgs.fzf}/share/fzf/completion.zsh"
+          "${pkgs.fzf}/share/fzf/key-bindings.zsh"
+          "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
+          "${pkgs.zsh-fzf-tab}/share/fzf-tab/lib/zsh-ls-colors/ls-colors.zsh"
+        ];
+        sources = map (script: ''source "${script}"'') scripts;
+        imports = builtins.concatStringsSep "\n" sources;
+        init = builtins.readFile ./init.sh;
+      in
+      imports + "\n" + init
+    );
 
     shellAliases = {
       open = ''open() { xdg-open "$@" & disown }; open'';

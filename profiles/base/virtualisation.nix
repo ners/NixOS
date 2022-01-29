@@ -5,7 +5,8 @@ let
     secureBoot = true;
     tpmSupport = true;
   };
-in {
+in
+{
   virtualisation = {
     podman.enable = true;
     libvirtd = {
@@ -18,9 +19,6 @@ in {
           package = ovmf;
         };
         runAsRoot = false;
-        verbatimConfig = ''
-          nvram = ["${ovmf.fd}/FV/OVMF.fd:${ovmf.fd}/FV/OVMF_VARS.fd"]
-        '';
       };
     };
     spiceUSBRedirection.enable = true;

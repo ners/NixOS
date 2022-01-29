@@ -3,6 +3,7 @@
 import subprocess
 from i3ipc import Connection
 from PIL import Image
+from time import sleep
 import io
 import os
 
@@ -108,7 +109,8 @@ def lock_screen(files):
     for output_name, filename in files.items():
         command.extend(['--image', f'{output_name}:{filename}'])
     print(command)
-    subprocess.run(command)
+    subprocess.Popen(command, close_fds=True)
+    sleep(1)
 
 def remove_files(files):
     for output_name, filename in files.items():

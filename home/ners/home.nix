@@ -34,10 +34,12 @@ rec {
     ./apps.nix
     ./calibre.nix
     ./dconf.nix
+    ./firefox.nix
     ./fonts.nix
     ./neovim
     ./shell
     ./sway
+    ./xdg
     ./vscode.nix
   ];
 
@@ -73,9 +75,11 @@ rec {
     unstable.chromium
     unstable.darktable
     unstable.discord
+    unstable.drawio
     unstable.foliate
     unstable.librecad
     unstable.plexamp
+    unstable.podman-compose
     unstable.skype
     unstable.slack
     unstable.sweethome3d.application
@@ -125,11 +129,6 @@ rec {
   };
 
   services.udiskie.enable = true;
-
-  xdg.configFile."cabal/config".text = ''
-    nix: True
-    jobs: $ncpus
-  '';
 
   home.file.".face".source = ./images/ners.jpg;
   home.file.".background".source = ./images/nix-wallpaper-nineish-dark-gray.png;

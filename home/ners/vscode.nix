@@ -8,6 +8,7 @@
         haskell.haskell
         jnoortheen.nix-ide
         justusadam.language-haskell
+        matklad.rust-analyzer
         ms-vsliveshare.vsliveshare
         vscodevim.vim
       ];

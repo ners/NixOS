@@ -20,7 +20,7 @@
     libappindicator
     libimobiledevice
     mpv
-    firefox-devedition-bin
+    firefox-wayland
     neovim-qt
     virt-manager
     virt-viewer

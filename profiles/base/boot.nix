@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, options, ... }:
 
 with lib;
 
@@ -28,7 +28,6 @@ with lib;
 
   console = {
     earlySetup = true;
-    font = "ter-i32n";
-    packages = [ pkgs.terminus_font ];
+    packages = options.console.packages.default ++ [ pkgs.terminus_font ];
   };
 }

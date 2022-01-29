@@ -9,6 +9,7 @@ in
 {
   home.packages = with pkgs; [
     clippy
+    neovide
     nixfmt
     rnix-lsp
     rust-analyzer
@@ -24,7 +25,8 @@ in
     vimdiffAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    plugins = with pkgs.unstable.vimPlugins; [
+    plugins = with pkgs.unstable; with vimPlugins; [
+      (nvim-treesitter.withPlugins (_: tree-sitter.allGrammars))
       base16-vim
       cmp-buffer
       cmp-cmdline
@@ -34,6 +36,7 @@ in
       cmp-treesitter
       cmp-vsnip
       delimitMate
+      fidget-nvim
       fzf-lsp-nvim
       fzf-vim
       fzfWrapper
@@ -58,7 +61,7 @@ in
       telescope-nvim
       vim-vsnip
       vimtex
-      (nvim-treesitter.withPlugins (_: pkgs.unstable.tree-sitter.allGrammars))
+      which-key-nvim
     ];
     extraConfig = (
       let

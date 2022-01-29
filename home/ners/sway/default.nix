@@ -91,13 +91,12 @@
         }
         {
           command = ''
+            killall swayidle; \
             swayidle -w \
-                timeout 3000 screenlock \
-                timeout 6000 'swaymsg \"output * dpms off\"' \
-                resume 'swaymsg \"output * dpms on\"' \
-                before-sleep screenlock
+                timeout 300 screenlock \
+                timeout 1800 'systemctl suspend'
           '';
-          always = false;
+          always = true;
         }
       ];
       keybindings = {
