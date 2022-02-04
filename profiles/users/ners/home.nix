@@ -5,6 +5,7 @@
     ./calibre.nix
     ./firefox.nix
     ./fonts.nix
+    ./git.nix
     ./sway
     ./vscode.nix
   ];
@@ -25,7 +26,6 @@
     libreoffice-fresh
     nodejs
     pavucontrol
-    rhythmbox
     transmission-remote-gtk
     universal-ctags
     unstable.chromium
@@ -59,28 +59,6 @@
     SDL_VIDEODRIVER = "wayland";
     VISUAL = "nvim-qt";
     _JAVA_AWT_WM_NONREPARENTING = "1";
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "ners";
-    userEmail = "ners@gmx.ch";
-    ignores = [ ".*" "!.envrc" "!.gitignore" ];
-    extraConfig = {
-      core = {
-        init.defaultBranch = "master";
-        sshCommand = "ssh -F $HOME/.ssh/config";
-      };
-      pull.rebase = true;
-      push.default = "current";
-      credential.helper = "libsecret";
-      "filter \"lfs\"" = {
-        required = true;
-        clean = "git-lfs clean -- %f";
-        process = "git-lfs filter-process";
-        smudge = "git-lfs smudge -- %f";
-      };
-    };
   };
 
   services.udiskie.enable = true;
