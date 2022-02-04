@@ -43,7 +43,7 @@ function info()
 
 function debug()
 {
-	tput setaf 3 >&2
+	tput setaf 3
 	echo "${@}"
 	tput sgr 0
 }

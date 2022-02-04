@@ -1,6 +1,6 @@
 # A Somewhat Attractive NixOS Configuration
 
-> This is my flake. There are many like it, but this one is mine.
+> This is my Nix flake. There are many like it, but this one is mine.
 >
 > My flake is my best friend. It is my life. I must master it as I must master my life.
 >
@@ -18,14 +18,14 @@
 
 ## Overview
 
-This repository contains configuration files that can be used to build a NixOS image, or to configure Nix on other Linux distributions by using [home-manager][home-manager].
+This repository contains configuration files that can be used to build a [NixOS][nixos] image, or to configure [Nix on other Linux distributions][nix-on-linux] (including [WSL][nix-on-wsl]) by using [home-manager][home-manager].
 
 ## Who is this for?
 
-The primary purpose of this repository is to [Just Work™][just-work] as a configuration for [my][ners] [devices][devices].
+The primary purpose of this repository is to [Just Work™][just-work] as a configuration for [my][ners] [devices][configurations].
 
 However, the repository is also intended as a model of a fully-featured NixOS configuration.
-As such it can be used as a reference or starting point for others interested in learning Nix.
+As such it can be used as a reference or starting point for others interested in Nix and NixOS.
 
 ## Design goals
 
@@ -57,6 +57,8 @@ This largely comes down to choosing sensible defaults:
 
 In addition to desktop configurations, this repository should also make it easy to specify server configurations.
 Many of these goals also benefit the desktop experience:
+ - Full-disk encryption should be an easy default.
+ - Modern filesystems (e.g. [btrfs][btrfs]) add features such as subvolumes, snapshotting, transparent compression, and many more. These should be used to their full potential.
  - systemd and NetworkManager should be leveraged to their full extent.
 
 ### Easy to install and maintain
@@ -68,10 +70,14 @@ NixOS has no canonical guided installation yet, so this repository provides [one
 
 WIP
 
+[btrfs]: https://btrfs.wiki.kernel.org
 [configurations]: /configurations
-[ners]: https://github.com/ners
 [home-manager]: https://github.com/nix-community/home-manager
-[just-work]: https://youtu.be/CZFKWt3S2Ys
-[iso-image]: /configurations/iso-image
 [installation-wizard]: /overlays/pkgs/nixos-wizard
+[iso-image]: /configurations/iso-image
+[just-work]: https://youtu.be/CZFKWt3S2Ys
+[ners]: https://github.com/ners
+[nix-on-linux]: https://nixos.org/download.html#nix-install-linux
+[nix-on-wsl]: https://nixos.wiki/wiki/Nix_Installation_Guide#Windows_Subsystem_for_Linux_.28WSL.29
 [nixos-version-defined]: /flake.nix#L3
+[nixos]: https://nixos.org
