@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 # This module enables virtualisation guest agents and tools.
-# This improves host-guest interaction when the configuration is used as a guest.
+# These improve host-guest interaction when the configuration is used as a guest.
 {
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;

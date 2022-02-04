@@ -30,7 +30,7 @@ function ask()
 function error()
 {
 	tput setaf 1 >&2
-	echo -n "${@}" >&2
+	echo "${@}" >&2
 	tput sgr 0 >&2
 }
 

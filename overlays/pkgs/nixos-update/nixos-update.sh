@@ -2,7 +2,7 @@ peval cd /etc/nixos
 shout Updating...
 peval nix flake update
 shout Rebuilding...
-peval nixos-rebuild build "$(hostname)" config.system.build.toplevel
+peval nixos-rebuild build --flake ".#$(hostname)" --impure
 shout Rebuild succeeded
 peval nvd diff /run/current-system "$PWD"/result
 if ask "Perform switch? (sudo)" y; then
