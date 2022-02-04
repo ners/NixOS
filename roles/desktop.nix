@@ -21,6 +21,7 @@
     mpv
     neovim-qt
     spice-gtk
+    transmission-gtk
     virt-manager
     virt-viewer
   ];

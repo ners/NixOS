@@ -26,7 +26,6 @@
     nodejs
     pavucontrol
     rhythmbox
-    transmission-gtk
     transmission-remote-gtk
     universal-ctags
     unstable.chromium

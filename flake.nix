@@ -11,7 +11,7 @@
 
   outputs = inputs:
     let
-      lib = import ./profiles/lib.nix { inherit inputs; };
+      lib = import ./profiles/lib { inherit inputs; };
       overlays = builtins.attrValues (lib.findModules ./overlays);
     in
     {

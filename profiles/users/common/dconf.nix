@@ -1,13 +1,7 @@
 { pkgs, ... }:
 
-with pkgs.lib;
-let
-  merge = { name, value }: assert assertMsg (length name > 1) "Dconf configuration requires at least two-level names";
-    nameValuePair (concatStringsSep "/" (init name)) { ${last name} = value; };
-  flatten = flattenAttrsWith merge;
-in
 {
-  dconf.settings = flatten {
+  dconf.settings = pkgs.lib.dconfFlatten {
     org.gnome = {
       desktop = {
         interface = {
@@ -57,11 +51,6 @@ in
         };
       virt-manager.xmleditor-enabled = true;
       console.resize-guest = 1;
-    };
-
-    "com/github/johnfactotum/Foliate/view" = {
-      autohide-cursor = false;
-      font = "Serif 16";
     };
   };
 }

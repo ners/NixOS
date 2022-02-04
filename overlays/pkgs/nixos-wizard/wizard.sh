@@ -178,5 +178,5 @@ if is_mounted $ROOT_MOUNT && ask "Perform installation?" n; then
 		esac
 		break
 	done
-	peval nixos-install --flake "$NIXOS_DIR#$configuration" --impure
+	peval nixos-install --flake "$NIXOS_DIR#$configuration" --impure --no-root-passwd
 fi
