@@ -3,11 +3,11 @@
 with inputs;
 with builtins;
 
-let
-  configurations = attrNames (lib.findModules ./.);
-  mkSystem = name:
+lib.pipe ./. [
+  lib.findModules
+  (mapAttrs (name: path:
     let
-      system = with lib; pipe ./${name}/system [ readFile lines head ];
+      system = with lib; pipe (path + "/system") [ readFile lines head ];
       mkOverlay = o: import o { inherit lib inputs system; };
       pkgs = import nixpkgs-stable {
         localSystem = { inherit system; };
@@ -22,9 +22,9 @@ let
           networking.hostName = lib.mkDefault name;
           nixpkgs.pkgs = pkgs;
         }
-        (import ./${name})
+        (import path)
       ];
       specialArgs = { inherit lib inputs; };
-    };
-in
-lib.genAttrs configurations mkSystem
+    }
+  ))
+]

@@ -71,7 +71,7 @@ NixOS has no canonical guided installation yet, so this repository provides [an 
 
 There is also [a utility][update-wizard] for updating the system.
 
-## How to get started?
+## Getting started
 
 WIP
 
