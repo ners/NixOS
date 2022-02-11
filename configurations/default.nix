@@ -20,11 +20,12 @@ lib.pipe ./. [
         {
           system.stateVersion = self.nixosVersion;
           networking.hostName = lib.mkDefault name;
-          nixpkgs.pkgs = pkgs;
+          nixpkgs = { inherit pkgs; };
         }
         (import path)
       ];
       specialArgs = { inherit lib inputs; };
+      extraArgs = { flake = self; };
     }
   ))
 ]

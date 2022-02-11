@@ -1,4 +1,8 @@
-{ modulesPath, inputs, pkgs, ... }@args:
+{ modulesPath
+, inputs
+, pkgs
+, ...
+}@args:
 
 {
   imports = with inputs; [

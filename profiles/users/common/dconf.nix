@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  dconf.settings = pkgs.lib.dconfFlatten {
+  dconf.settings = lib.dconfFlatten {
     org.gnome = {
       desktop = {
         interface = {

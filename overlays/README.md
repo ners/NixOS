@@ -1,6 +1,7 @@
 ## Overlays
 
-This directory contains modules representing overlays that are applied over nixpkgs to build configurations.
+This directory contains modules representing overlays that are applied over stable nixpkgs to build configurations.
+This allows us to easily provide [new packages](./pkgs), or [replace existing ones](./OVMF.nix) in the standard repository.
 
 Each overlay module accepts the flake inputs and system definition, and emits the [overlay lambda](https://nixos.wiki/wiki/Overlays) that extends nixpkgs stable.
 

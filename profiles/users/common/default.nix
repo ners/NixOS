@@ -27,7 +27,7 @@ let
   ];
 in
 {
-  imports = [ inputs.home-manager.nixosModules.home-manager ];
+  imports = [ inputs.home-manager.nixosModule ];
 
   users.users.${username} = {
     inherit uid group initialHashedPassword extraGroups;
@@ -38,16 +38,12 @@ in
   };
   users.groups.${group} = { inherit gid; };
 
-  home-manager =
-    let specialArgs = {
-      inherit inputs pkgs username homeDirectory;
+  home-manager = {
+    useGlobalPkgs = true;
+    # useUserPackages = true;
+    extraSpecialArgs = {
+      inherit inputs username homeDirectory;
     };
-    in
-    {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      extraSpecialArgs = specialArgs;
-      users.${username} = import ./home.nix;
-    };
+    users.${username} = import ./home.nix;
+  };
 }
-

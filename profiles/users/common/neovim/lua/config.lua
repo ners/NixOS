@@ -16,7 +16,8 @@ vim.o.hidden = true
 vim.opt.number = true
 
 -- Share the sign column with the number column to prevent text flicker
-vim.opt.signcolumn = 'number'
+--vim.opt.signcolumn = 'number'
+vim.opt.signcolumn = 'yes'
 
 -- Show invisible characters
 vim.opt.list = true

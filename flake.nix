@@ -19,7 +19,7 @@
       nixosProfiles = lib.findModules ./profiles;
       nixosRoles = lib.findModules ./roles;
       nixosConfigurations = import ./configurations {
-        inherit lib inputs overlays;
+        inherit inputs lib overlays;
       };
     };
 }

@@ -1,12 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 
 # This file is responsible for defining default applications by mimetype.
-with pkgs.lib;
 {
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = mimePkgs (with pkgs; [
+    defaultApplications = lib.mimePkgs (with pkgs; [
       evince
       evolution
       firefox-wayland

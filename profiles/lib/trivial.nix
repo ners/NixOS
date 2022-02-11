@@ -8,4 +8,7 @@ with lib;
 
   # The unary function equivalent of ! operator
   not = x: !x;
+
+  # A convenient attribute to debug which version of lib we are using.
+  zzz = "zzz";
 }

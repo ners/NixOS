@@ -1,8 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.git = {
     enable = true;
+    delta.enable = true;
     userName = "ners";
     userEmail = "ners@gmx.ch";
     ignores = [ ".*" "!.envrc" "!.gitignore" ];
@@ -15,7 +16,12 @@
       core = {
         init.defaultBranch = "master";
         sshCommand = "ssh -F $HOME/.ssh/config";
+        pager = "delta";
       };
+      interactive.diffFilter = "delta --color-only";
+      delta.navigate = true;
+      merge.conflictStyle = "diff3";
+      diff.colorMoved = "default";
       pull.rebase = true;
       push.default = "current";
       credential.helper = "libsecret";
@@ -27,4 +33,10 @@
       };
     };
   };
+
+  # GitHub CLI
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.gh.enable
+  # Aliases config imported in flake.
+  programs.gh.enable = true;
+  programs.gh.settings.git_protocol = "ssh";
 }

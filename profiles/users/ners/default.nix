@@ -1,4 +1,8 @@
-{ inputs, ... }:
+{ inputs
+, pkgs
+, lib
+, ...
+}:
 
 {
   imports = with inputs; [

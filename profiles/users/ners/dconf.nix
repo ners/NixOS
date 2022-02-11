@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  dconf.settings = pkgs.lib.dconfFlatten {
+  dconf.settings = lib.dconfFlatten {
     com.github.johnfactotum.Foliate.view = {
       autohide-cursor = false;
       font = "Serif 16";

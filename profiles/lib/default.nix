@@ -11,6 +11,6 @@ lib.makeExtensible (self:
     filesystem.listFilesRecursive
     (filter (file: hasSuffix ".nix" file && file != ./default.nix))
     (map (file: import file { lib = self; }))
-    (foldr recursiveUpdate {})
+    (foldr recursiveUpdate { })
   ]
 )
