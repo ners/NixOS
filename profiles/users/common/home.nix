@@ -15,6 +15,7 @@
     # paths it should manage.
     inherit username homeDirectory;
 
+
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
     # when a new Home Manager release introduces backwards
@@ -25,6 +26,10 @@
     # changes in each release.
     stateVersion = inputs.self.nixosVersion;
   };
+
+  # Home-manager's generation is currently broken
+  # as it does not call modules with specialArgs.
+  manual.manpages.enable = lib.mkForce false;
 
   imports = [
     ./apps.nix

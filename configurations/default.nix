@@ -24,8 +24,8 @@ lib.pipe ./. [
         }
         (import path)
       ];
-      specialArgs = { inherit lib inputs; };
       extraArgs = { flake = self; };
+      specialArgs = { inherit inputs pkgs lib; };
     }
   ))
 ]
