@@ -16,9 +16,7 @@
       core = {
         init.defaultBranch = "master";
         sshCommand = "ssh -F $HOME/.ssh/config";
-        pager = "delta";
       };
-      interactive.diffFilter = "delta --color-only";
       delta.navigate = true;
       merge.conflictStyle = "diff3";
       diff.colorMoved = "default";
