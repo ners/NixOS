@@ -20,6 +20,7 @@
     libimobiledevice
     mpv
     neovim-qt
+    speedtest-cli
     spice-gtk
     transmission-gtk
     virt-manager

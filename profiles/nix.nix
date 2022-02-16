@@ -8,7 +8,7 @@
       dates = "monthly";
       options = "--delete-older-than 30d";
     };
-    package = pkgs.nixUnstable;
+    package = pkgs.unstable.nix;
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
       preallocate-contents = false
