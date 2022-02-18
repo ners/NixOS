@@ -36,6 +36,7 @@
       entr
       exfat
       expect
+      libfaketime
       file
       git-lfs
       gitAndTools.gitFull

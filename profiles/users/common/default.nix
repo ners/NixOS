@@ -14,6 +14,7 @@ let
   extraGroups = args.extraGroups or [
     "audio"
     "dialout"
+    "docker"
     "libvirtd"
     "networkmanager"
     "plugdev"
