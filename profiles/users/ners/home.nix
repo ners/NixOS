@@ -35,7 +35,6 @@
     unstable.foliate
     unstable.librecad
     unstable.plexamp
-    unstable.podman-compose
     unstable.skype
     unstable.slack
     unstable.sweethome3d.application

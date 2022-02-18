@@ -2,6 +2,7 @@
 
 {
   virtualisation = {
+    docker.enable = true;
     podman.enable = true;
     libvirtd = {
       enable = true;
@@ -19,6 +20,8 @@
     libguestfs
     spice-vdagent
     swtpm
+    unstable.docker-compose
+    unstable.podman-compose
   ];
 
   boot.kernelModules = [ "kvm-amd" "kvm-intel" ];

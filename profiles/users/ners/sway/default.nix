@@ -7,7 +7,7 @@
     ./grim.nix
     ./kanshi.nix
     ./mako.nix
-    ./waybar.nix
+    ./waybar
     ./xf86.nix
   ];
   home.packages = with pkgs; [

@@ -51,6 +51,7 @@
       nix-index
       nixos-option
       nixos-update
+      nvd
       parted
       pciutils
       perl534Packages.FileMimeInfo
