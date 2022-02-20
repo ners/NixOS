@@ -8,7 +8,7 @@
 self: super:
 let
   mkOverlay = o: import o args;
-  unstable = import inputs.nixpkgs-unstable {
+  importPkgs = pkgs: import pkgs {
     config.allowUnfree = true;
     localSystem = { inherit system; };
     overlays = with builtins; lib.pipe overlays [
@@ -16,10 +16,12 @@ let
       (map mkOverlay)
     ];
   };
+  unstable = importPkgs inputs.nixpkgs-unstable;
+  master = importPkgs inputs.nixpkgs-master;
 in
 with builtins; with lib; pipe ./. [
   findModules
   attrValues
-  (map (o: import o { inherit unstable; } self super))
-  (foldr recursiveUpdate { inherit unstable; })
+  (map (o: import o { inherit unstable master; } self super))
+  (foldr recursiveUpdate { inherit unstable master; })
 ]

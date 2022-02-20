@@ -17,6 +17,6 @@ in
   };
 
   services.nfs.server.exports = ''
-    ${mountPoint} *(rw,sync,no_root_squash,all_squash,anonuid=${toString uid},anongid=${toString gid})
+    ${mountPoint} *(rw,sync,no_root_squash,all_squash,insecure,anonuid=${toString uid},anongid=${toString gid})
   '';
 }

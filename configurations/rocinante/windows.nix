@@ -62,8 +62,8 @@ in
         -smp cores=6 \
         -m 16G \
         -mem-path /dev/hugepages \
-        -net nic,model=virtio \
-        -net bridge,br=virbr0 \
+        -device virtio-net,netdev=vmnic \
+        -netdev user,id=vmnic \
         -spice port=$SPICE_PORT,disable-ticketing=on \
         -chardev spiceport,id=spagent,name=org.spice-space.webdav.0,debug=0 \
         -chardev spicevmc,id=vdagent,name=vdagent,debug=0 \
@@ -91,8 +91,10 @@ in
           echo Unbinding $dev from $(readlink --canonicalize /sys/bus/pci/devices/$dev/driver)
           echo $dev > /sys/bus/pci/devices/$dev/driver/unbind
         fi
-        echo Binding $dev to $(readlink --canonicalize /tmp/defaultDrivers/$dev)
-        echo $dev > /tmp/defaultDrivers/$dev/bind
+        if [ -L /tmp/defaultDrivers/$dev/bind ]; then
+          echo Binding $dev to $(readlink --canonicalize /tmp/defaultDrivers/$dev)
+          echo $dev > /tmp/defaultDrivers/$dev/bind
+        fi
       done
     '';
     after = [ "swtpm.target" ];

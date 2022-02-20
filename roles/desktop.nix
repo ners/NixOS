@@ -29,6 +29,7 @@
 
   services = {
     xserver = {
+      enable = true;
       xkbOptions = "caps:escape";
       libinput.enable = true;
     };

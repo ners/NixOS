@@ -1,6 +1,7 @@
 { inputs
 , pkgs
 , lib
+, config
 , ...
 }@args:
 
@@ -44,6 +45,7 @@ in
     # useUserPackages = true;
     extraSpecialArgs = {
       inherit inputs username homeDirectory;
+      nixosConfig = config;
     };
     users.${username} = import ./home.nix;
   };

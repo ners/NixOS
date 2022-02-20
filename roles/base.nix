@@ -33,6 +33,8 @@
       aria2
       bat
       boxes
+      bridge_utils
+      dconf
       entr
       exfat
       expect
@@ -43,6 +45,7 @@
       gnumake
       htop
       httpie
+      iproute
       jq
       killall
       moreutils
