@@ -9,8 +9,12 @@
         jnoortheen.nix-ide
         justusadam.language-haskell
         matklad.rust-analyzer
+        matklad.rust-analyzer
+        ms-azuretools.vscode-docker
         ms-vsliveshare.vsliveshare
+        serayuzgur.crates
         vscodevim.vim
+        zxh404.vscode-proto3
       ];
     })
   ];

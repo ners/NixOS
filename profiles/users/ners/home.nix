@@ -3,7 +3,6 @@
 {
   imports = [
     ./calibre.nix
-    ./firefox.nix
     ./fonts.nix
     ./git.nix
     ./sway
@@ -11,6 +10,7 @@
   ];
 
   home.packages = with pkgs; [
+    goneovim
     audacity
     cabal2nix
     element-desktop
@@ -32,6 +32,7 @@
     unstable.darktable
     unstable.discord
     unstable.drawio
+    unstable.firefox-devedition-wayland
     unstable.foliate
     unstable.librecad
     unstable.plexamp
@@ -41,6 +42,7 @@
     unstable.tdesktop
     unstable.zoom-us
     v4l-utils
+    winbox
     x2goclient
   ];
 

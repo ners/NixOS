@@ -22,9 +22,8 @@ in
     vimdiffAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    plugins = with pkgs.unstable; with vimPlugins; [
+    plugins = with pkgs.master; with vimPlugins; [
       (nvim-treesitter.withPlugins (_: tree-sitter.allGrammars))
-      base16-vim
       bufferline-nvim
       cmp-buffer
       cmp-cmdline
@@ -52,6 +51,7 @@ in
       nvim-lspconfig
       nvim-tree-lua
       nvim-web-devicons
+      onedark-nvim
       plenary-nvim
       popup-nvim
       rust-tools-nvim

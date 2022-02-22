@@ -5,7 +5,7 @@ with lib;
 {
   # Given a package, find all the desktop files it contains
   desktopFiles = with lib; pipef [
-    (pkg: filesystem.listFilesRecursive "${storePath pkg}/share/applications")
+    (pkg: filesystem.listFilesRecursive "${pkg}/share/applications")
     (filter (hasSuffix ".desktop"))
   ];
 

@@ -139,7 +139,7 @@ local au = require'au'
 au.VimEnter = {
 	'*',
 	function()
-		tree.open()
+		require'nvim-tree'.open()
 		vim.api.nvim_command('wincmd p')
 	end
 }

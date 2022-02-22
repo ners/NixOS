@@ -11,6 +11,7 @@
       unstable.darktable
       unstable.discord
       unstable.drawio
+      unstable.firefox-devedition-wayland
       unstable.foliate
       unstable.librecad
       unstable.plexamp
