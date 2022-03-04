@@ -6,10 +6,10 @@
     ./dragoncat.nix
     ./gold.nix
     ./hardware-configuration.nix
-    ./home-assistant.nix
+    ./home-assistant
     ./plex.nix
     ./transmission.nix
-    ./windows.nix
+    ./windows
     nixos-hardware.nixosModules.common-cpu-amd
     nixos-hardware.nixosModules.common-pc
     nixos-hardware.nixosModules.common-pc-ssd

@@ -67,6 +67,7 @@
       tio
       tmux
       tree
+      tunctl
       unzip
       usbutils
       wget
