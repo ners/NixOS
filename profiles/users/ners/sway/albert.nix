@@ -3,16 +3,22 @@
 let modifier = config.wayland.windowManager.sway.config.modifier;
 in
 {
+  systemd.user.services.albert = {
+    Install = {
+      WantedBy = [ "sway-session.target" ];
+    };
+    Service = {
+      Restart = "on-failure";
+      ExecStart = "${pkgs.albert}/bin/albert";
+    };
+  };
+
   home.packages = with pkgs; [
     albert
     (imagemagick.overrideAttrs (_: { buildInputs = [ pango ]; }))
   ];
 
   wayland.windowManager.sway.config = {
-    startup = [{
-      command = "albert";
-      always = true;
-    }];
     keybindings = {
       "${modifier}+space" = "exec albert show";
     };

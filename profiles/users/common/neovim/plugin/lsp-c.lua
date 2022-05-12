@@ -1,5 +1,5 @@
 require'lspconfig'.clangd.setup{
-	autostart = true,
+	on_attach = require'on-attach',
 	cmd = {
 		'clangd',
 		'--background-index',

@@ -1,5 +1,5 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ calibre wineWowPackages.stable ];
+  home.packages = with pkgs; [ calibre wine ];
 }

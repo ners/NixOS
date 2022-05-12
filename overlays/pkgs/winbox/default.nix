@@ -1,15 +1,13 @@
 { lib
 , stdenv
-, wineWowPackages
+, wine
 , makeDesktopItem
 , writeScriptBin
 }:
 
-let wine = wineWowPackages.stable;
-in
 stdenv.mkDerivation rec {
   pname = "winbox";
-  version = "3.31";
+  version = "3.35";
 
   srcs = [
     (builtins.fetchurl {
@@ -31,7 +29,6 @@ stdenv.mkDerivation rec {
   };
 
   winboxScript = writeScriptBin "winbox" ''
-    #!${stdenv.shell}
     exec ${wine}/bin/wine @out@/opt/winbox.exe
   '';
 

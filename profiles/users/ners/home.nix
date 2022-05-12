@@ -10,7 +10,6 @@
   ];
 
   home.packages = with pkgs; [
-    goneovim
     audacity
     cabal2nix
     element-desktop
@@ -34,9 +33,8 @@
     unstable.drawio
     unstable.firefox-devedition-wayland
     unstable.foliate
-    unstable.librecad
+    unstable.nushell
     unstable.plexamp
-    unstable.skype
     unstable.slack
     unstable.sweethome3d.application
     unstable.tdesktop

@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   home.packages = [
-    (pkgs.unstable.vscode-with-extensions.override {
+    (pkgs.unstable.vscode-insiders-with-extensions.override {
       vscodeExtensions = with pkgs.unstable.vscode-extensions; [
         arrterian.nix-env-selector
         haskell.haskell

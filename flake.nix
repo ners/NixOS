@@ -9,14 +9,17 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+    vscodeInsiders = {
+      url = "github:cideM/visual-studio-code-insiders-nix";
+      inputs.unstable.follows = "nixpkgs-unstable";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs = inputs:
     let
       lib = import ./profiles/lib { inherit inputs; };
       overlays = builtins.attrValues (lib.findModules ./overlays);
-      system = lib.attrByPath [ "currentSystem" ] "x86_64-linux" builtins;
-      pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
     in
     {
       nixosVersion = inputs.nixpkgs-stable.lib.trivial.release;
@@ -25,8 +28,11 @@
       nixosConfigurations = import ./configurations {
         inherit inputs lib overlays;
       };
-      devShell.${system} = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [ nix nixfmt ];
-      };
-    };
+    } // inputs.flake-utils.lib.eachDefaultSystem (system:
+      let pkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; in
+      {
+        devShell = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [ nix nixfmt ];
+        };
+      });
 }

@@ -104,7 +104,31 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "vscodeInsiders": "vscodeInsiders"
+      }
+    },
+    "vscodeInsiders": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "unstable": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1652342757,
+        "narHash": "sha256-V3y3DIOXLyI3nD2cfl4uehCumUEjGJFYwXGXomqE1m0=",
+        "owner": "cideM",
+        "repo": "visual-studio-code-insiders-nix",
+        "rev": "f735a8ffb998f9917c1991b644a018c799e71f0a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cideM",
+        "repo": "visual-studio-code-insiders-nix",
+        "type": "github"
       }
     }
   },

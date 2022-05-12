@@ -40,6 +40,7 @@
       expect
       libfaketime
       file
+      fx
       git-lfs
       gitAndTools.gitFull
       gnumake
@@ -52,6 +53,7 @@
       nano
       neofetch
       neovim
+      nix-diff
       nix-index
       nixos-option
       nixos-update

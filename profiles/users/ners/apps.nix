@@ -13,9 +13,7 @@
       unstable.drawio
       unstable.firefox-devedition-wayland
       unstable.foliate
-      unstable.librecad
       unstable.plexamp
-      unstable.skype
       unstable.slack
       unstable.sweethome3d.application
       unstable.tdesktop

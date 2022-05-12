@@ -10,6 +10,7 @@
     ./waybar
     ./xf86.nix
   ];
+
   home.packages = with pkgs; [
     (callPackage ./inter-nerd { })
     (callPackage ./screenlock { })
@@ -30,6 +31,10 @@
     latitude = "47.3769";
     longitude = "8.5417";
   };
+  services.redshift = {
+    enable = true;
+    provider = "geoclue2";
+  };
   services.gnome-keyring.enable = true;
 
   wayland.windowManager.sway = {
@@ -37,6 +42,10 @@
     systemdIntegration = true;
     wrapperFeatures.gtk = true;
     config = rec {
+      fonts = {
+        names = [ "Inter Nerd Font" ];
+        size = 10.0;
+      };
       modifier = "Mod4";
       input = {
         "type:keyboard" = {
@@ -102,7 +111,7 @@
       keybindings = {
         "${modifier}+Shift+r" = "reload";
         "${modifier}+Shift+apostrophe" = "kill";
-        "${modifier}+l" = "screenlock";
+        "${modifier}+l" = "exec screenlock";
         "${modifier}+Shift+f" = "fullscreen";
         "${modifier}+s" = "layout stacking";
         "${modifier}+w" = "layout tabbed";

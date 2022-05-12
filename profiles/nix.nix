@@ -12,8 +12,9 @@
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
       preallocate-contents = false
-      keep-outputs = true
-      keep-derivations = true
+      #keep-outputs = true
+      #keep-derivations = true
     '';
+    trustedUsers = [ "root" "@wheel" ];
   };
 }

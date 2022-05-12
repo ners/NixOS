@@ -1,29 +1,31 @@
-{ config, pkgs, ... }:
-
-with builtins;
+{ config, pkgs, lib, ... }:
 
 let
-  filesInDir = dir: attrNames (readDir dir);
-  unlines = concatStringsSep "\n";
+  plugins = {
+    stable = pkgs.vimPlugins;
+    unstable = pkgs.unstable.vimPlugins;
+    master = pkgs.master.vimPlugins;
+    local = pkgs.local.vimPlugins;
+  };
+  concatFiles = lib.concatFilesInDir "\n";
 in
 {
   home.packages = with pkgs; [
+    neovim-qt
     nixfmt
     rnix-lsp
     sumneko-lua-language-server
-    unstable.neovim-qt
   ];
 
   programs.neovim = {
     enable = true;
-    package = pkgs.unstable.neovim-unwrapped;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    plugins = with pkgs.master; with vimPlugins; [
-      (nvim-treesitter.withPlugins (_: tree-sitter.allGrammars))
+    plugins = with plugins.master; [
+      (nvim-treesitter.withPlugins (_: pkgs.master.tree-sitter.allGrammars))
       bufferline-nvim
       cmp-buffer
       cmp-cmdline
@@ -32,12 +34,13 @@ in
       cmp-path
       cmp-treesitter
       cmp-vsnip
-      delimitMate
+      crates-nvim
       fidget-nvim
       fzf-lsp-nvim
       fzf-vim
       fzfWrapper
       gitsigns-nvim
+      impatient-nvim
       incsearch-vim
       litee-calltree-nvim
       litee-filetree-nvim
@@ -45,6 +48,9 @@ in
       litee-symboltree-nvim
       lsp_extensions-nvim
       lualine-nvim
+      mkdir-nvim
+      neoscroll-nvim
+      nvim-autopairs
       nvim-cmp
       nvim-dap
       nvim-dap-ui
@@ -61,27 +67,12 @@ in
       vimtex
       which-key-nvim
     ];
-    extraConfig = (
-      let
-        vimFiles = filesInDir ./vim;
-        vimParts = map (name: readFile "${./vim}/${name}") vimFiles;
-        luaFiles = filesInDir ./lua;
-        luaReqs =
-          map (file: ":lua require('${pkgs.lib.removeSuffix ".lua" file}')")
-            luaFiles;
-      in
-      unlines (vimParts ++ luaReqs)
-    );
+    extraConfig = concatFiles ./vim;
   };
   xdg.configFile = {
     "nvim/lua".source = ./lua;
+    "nvim/plugin".source = ./plugin;
     "nvim/ftplugin".source = ./ftplugin;
-    "nvim/ginit.vim".text = (
-      let
-        vimFiles = filesInDir ./gvim;
-        vimParts = map (name: readFile "${./gvim}/${name}") vimFiles;
-      in
-      unlines vimParts
-    );
+    "nvim/ginit.vim".text = concatFiles ./gvim;
   };
 }

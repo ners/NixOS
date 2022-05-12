@@ -8,7 +8,7 @@ lib.pipe ./. [
   (mapAttrs (name: path:
     let
       system = with lib; pipe (path + "/system") [ readFile lines head ];
-      mkOverlay = o: import o { inherit lib inputs system overlays; };
+      mkOverlay = o: import o { inherit lib inputs overlays; };
       pkgs = import nixpkgs-stable {
         localSystem = { inherit system; };
         overlays = map mkOverlay overlays;

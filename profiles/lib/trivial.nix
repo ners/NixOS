@@ -1,7 +1,9 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 
 with lib;
 {
+  inherit (inputs.nixpkgs-unstable.lib) throwIfNot;
+
   # Pipes a value through a list of functions.
   # Produces a lambda that accepts a starting value when called with just a list of functions.
   pipef = flip pipe;
