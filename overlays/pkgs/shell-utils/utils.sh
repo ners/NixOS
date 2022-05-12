@@ -57,7 +57,7 @@ function fatal()
 function peval()
 {
 	info "$@"
-	eval "$@"
+	eval "$*"
 }
 
 function is_root()

@@ -31,9 +31,8 @@ with lib;
           allowDiscards = mkForce true;
         };
       };
-      # TODO: enable in 22.05
       # Use systemd for PID 1.
-      #systemd.enable = true;
+      systemd.enable = true;
     };
 
     # Plymouth presents a graphic animation (also known as a bootsplash) while the system boots.

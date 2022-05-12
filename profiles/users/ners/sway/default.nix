@@ -12,10 +12,8 @@
   ];
 
   home.packages = with pkgs; [
-    (callPackage ./inter-nerd { })
-    (callPackage ./screenlock { })
     blueman
-    gnome.networkmanagerapplet
+    networkmanagerapplet
     pavucontrol
     polkit_gnome
     swayidle
@@ -24,6 +22,8 @@
     wdisplays
     wl-clipboard
     xwayland
+    inter-nerd
+    screenlock
   ];
 
   services.wlsunset = {

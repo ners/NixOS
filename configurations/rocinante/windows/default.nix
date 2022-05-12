@@ -38,7 +38,7 @@ in
 
   systemd.services.windows = {
     path = with pkgs; [
-      bridge_utils
+      bridge-utils
       kmod
       qemu
       tunctl

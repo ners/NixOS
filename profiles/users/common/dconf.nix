@@ -34,7 +34,7 @@ in
 
               shell.favorite-apps = [
                 "firefox.desktop"
-                "org.gnome.Terminal.desktop"
+                "org.gnome.Console.desktop"
                 "org.gnome.Nautilus.desktop"
               ];
 

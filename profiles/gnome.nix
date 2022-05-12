@@ -41,7 +41,7 @@
     gnome.eog
     gnome.file-roller
     gnome.geary
-    gnome.gnome-tweak-tool
+    gnome.gnome-tweaks
     gnome.nautilus
     gnomeExtensions.appindicator
   ];

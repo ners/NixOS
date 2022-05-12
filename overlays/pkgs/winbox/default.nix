@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
     comment = meta.description;
     desktopName = "WinBox";
     genericName = "Router Configurator";
-    categories = "Network";
+    categories = [ "Network" ];
   };
 
   winboxScript = writeScriptBin "winbox" ''

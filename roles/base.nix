@@ -33,7 +33,7 @@
       aria2
       bat
       boxes
-      bridge_utils
+      bridge-utils
       dconf
       entr
       exfat
