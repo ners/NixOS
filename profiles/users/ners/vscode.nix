@@ -3,7 +3,7 @@
 {
   home.packages = [
     (pkgs.unstable.vscode-insiders-with-extensions.override {
-      vscodeExtensions = with pkgs.unstable.vscode-extensions; [
+      vscodeExtensions = with pkgs.unstable.vscode-insiders-extensions; [
         arrterian.nix-env-selector
         haskell.haskell
         jnoortheen.nix-ide

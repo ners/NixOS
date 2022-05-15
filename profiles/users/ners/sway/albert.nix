@@ -6,6 +6,7 @@ in
   systemd.user.services.albert = {
     Install = {
       WantedBy = [ "sway-session.target" ];
+      After = [ "graphical-session.target" ];
     };
     Service = {
       Restart = "on-failure";
