@@ -4,11 +4,10 @@ with lib;
 
 {
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest.extend (self: super: {
-      # The ZFS package is sometimes broken, causing the entire system build to fail.
-      # As we don't use ZFS, we can safely ignore this.
-      zfs = super.zfs.overrideAttrs (_: { meta.broken = false; });
-    });
+    # This will install a pre-release of zfs.
+    # Required if you are running an newer kernel which is not yet officially supported by zfs,
+    # otherwise the zfs module will refuse to evaluate and show up as broken.
+    zfs.enableUnstable = true;
 
     loader = {
       # The number of seconds for user intervention before the default boot option is selected.
