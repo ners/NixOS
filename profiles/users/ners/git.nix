@@ -8,7 +8,7 @@ in
   programs.git = {
     enable = true;
     package = git;
-    delta.enable = true;
+    difftastic.enable = true;
     userName = "ners";
     userEmail = "ners@gmx.ch";
     ignores = [ ".*" "!.envrc" "!.gitignore" "!.gitkeep" ];
@@ -21,7 +21,6 @@ in
     extraConfig = {
       core.sshCommand = "ssh -F $HOME/.ssh/config";
       init.defaultBranch = "master";
-      delta.navigate = true;
       merge.conflictStyle = "diff3";
       diff.colorMoved = "default";
       pull.rebase = true;
