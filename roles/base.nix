@@ -41,6 +41,8 @@
       libfaketime
       file
       fx
+      fwupd
+      fwupd-efi
       git-lfs
       gitAndTools.gitFull
       gnumake

@@ -4,9 +4,11 @@ with lib;
 
 {
   boot = {
-    # This will install a pre-release of zfs.
-    # Required if you are running an newer kernel which is not yet officially supported by zfs,
-    # otherwise the zfs module will refuse to evaluate and show up as broken.
+    # Use the latest kernel!
+    kernelPackages = pkgs.linuxPackages_latest;
+
+    # This will install a pre-release of zfs. Required because the ZFS module may not yet
+    # support the latest kernel version and may report as broken.
     zfs.enableUnstable = true;
 
     loader = {

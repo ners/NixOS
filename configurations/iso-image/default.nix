@@ -13,8 +13,6 @@
   ];
 
   boot.initrd.luks.devices = { };
-  boot.extraModulePackages = [ ];
-
   environment.systemPackages = with pkgs; [
     nixos-wizard
   ];
