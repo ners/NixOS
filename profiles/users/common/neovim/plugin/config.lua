@@ -52,12 +52,12 @@ opt.magic = true -- set magic on, for regular expressions
 
 -- If ripgrep installed, use that as a grepper
 if fn.executable("rg") then
-  opt.grepprg = "rg --vimgrep --no-heading"
-  opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+	opt.grepprg = "rg --vimgrep --no-heading"
+	opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 end
 
 -- Show matching brackets
-vim.o.showmatch  = true
+vim.o.showmatch = true
 
 -- Split direction
 vim.opt.splitright = true
@@ -68,9 +68,8 @@ vim.opt.splitbelow = true
 -- menuone: popup even when there's only one match
 -- noinsert: Do not insert text until a selection is made
 -- noselect: Do not select, force user to select one from the menu
-vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
+vim.opt.completeopt = { 'menuone', 'noselect', 'noinsert' }
 
---local au = require'au'
---au.CursorHold = {'<buffer>', vim.lsp.buf.document_highlight}
---au.CursorHoldI = {'<buffer>', vim.lsp.buf.document_highlight}
---au.CursorMoved = {'<buffer>', vim.lsp.buf.clear_references}
+-- Prevent strange file save behaviour.
+-- https://github.com/srid/emanote/issues/180
+vim.opt.backupcopy = 'yes'
