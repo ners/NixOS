@@ -1,13 +1,9 @@
 { pkgs, ... }:
 
-let
-  git = pkgs.git.override { withLibsecret = true; };
-  git-credential-libsecret = git + "/bin/git-credential-libsecret";
-in
 {
   programs.git = {
     enable = true;
-    package = git;
+    package = pkgs.git.override { withLibsecret = true; };
     difftastic.enable = true;
     userName = "ners";
     userEmail = "ners@gmx.ch";
@@ -25,7 +21,7 @@ in
       diff.colorMoved = "default";
       pull.rebase = true;
       push.default = "current";
-      credential.helper = git-credential-libsecret;
+      credential.helper = "libsecret";
       "filter \"lfs\"" = {
         required = true;
         clean = "git-lfs clean -- %f";
