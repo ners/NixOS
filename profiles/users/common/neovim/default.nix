@@ -7,12 +7,11 @@ let
     master = pkgs.master.vimPlugins;
     local = pkgs.local.vimPlugins;
   };
-  concatFiles = lib.concatFilesInDir "\n";
 in
 {
   home.packages = with pkgs; [
     neovim-qt
-    nixfmt
+    nixpkgs-fmt
     rnix-lsp
     sumneko-lua-language-server
   ];
@@ -33,7 +32,7 @@ in
       cmp-omni
       cmp-path
       cmp-treesitter
-      cmp-vsnip
+      cmp_luasnip
       crates-nvim
       fidget-nvim
       fzf-lsp-nvim
@@ -42,14 +41,18 @@ in
       gitsigns-nvim
       impatient-nvim
       incsearch-vim
+      indent-blankline-nvim
       litee-calltree-nvim
       litee-filetree-nvim
       litee-nvim
       litee-symboltree-nvim
       lsp_extensions-nvim
+      lsp_signature-nvim
       lualine-nvim
+      luasnip
       mkdir-nvim
       neoscroll-nvim
+      neovim-ayu
       nvim-autopairs
       nvim-cmp
       nvim-dap
@@ -57,22 +60,22 @@ in
       nvim-lspconfig
       nvim-tree-lua
       nvim-web-devicons
-      onedark-nvim
       plenary-nvim
       popup-nvim
       rust-tools-nvim
       tagbar
+      telescope-fzf-native-nvim
       telescope-nvim
-      vim-vsnip
+      telescope-ui-select-nvim
       vimtex
       which-key-nvim
     ];
-    extraConfig = concatFiles ./vim;
+    extraConfig = builtins.readFile ./init.vim;
   };
   xdg.configFile = {
     "nvim/lua".source = ./lua;
     "nvim/plugin".source = ./plugin;
     "nvim/ftplugin".source = ./ftplugin;
-    "nvim/ginit.vim".text = concatFiles ./gvim;
+    "nvim/ginit.vim".text = builtins.readFile ./ginit.vim;
   };
 }

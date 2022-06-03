@@ -14,4 +14,13 @@ with lib;
     (map readFile)
     (concatStringsSep sep)
   ];
+
+  # Read the list of files and concatenate their contents by newline
+  concatFiles = concatFilesSep "\n";
+
+  # Prepend one string to another
+  addPrefix = prefix: str: prefix + str;
+
+  # Append one string to another
+  addSuffix = suffix: str: str + suffix;
 }

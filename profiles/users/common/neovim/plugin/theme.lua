@@ -1,14 +1,12 @@
-require'onedark'.setup {
-    style = 'warmer'
-}
-require'onedark'.load()
+require 'ayu'.setup {}
+require 'ayu'.colorscheme()
 
-require'lualine'.setup {
+require 'lualine'.setup {
 	options = {
-		theme = 'onedark',
+		theme = 'ayu',
 		icons_enabled = true,
-		component_separators = { left = '', right = ''},
-		section_separators = { left = '', right = ''},
+		component_separators = { left = '', right = '' },
+		section_separators = { left = '', right = '' },
 		disabled_filetypes = {},
 		always_divide_middle = true,
 	}
@@ -16,7 +14,7 @@ require'lualine'.setup {
 
 -- Show invisible characters
 vim.opt.list = true
-vim.opt.listchars = { tab='› ', trail='~', extends='»', precedes='«', nbsp='_', }
+vim.opt.listchars = { tab = '› ', trail = '~', extends = '»', precedes = '«', nbsp = '_', }
 
 local signs = {
 	{ name = 'DiagnosticSignError', text = '🔥' },
@@ -29,7 +27,7 @@ for _, sign in ipairs(signs) do
 	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
 end
 
-vim.diagnostic.config{
+vim.diagnostic.config {
 	virtual_text = true,
 	-- show signs
 	signs = {

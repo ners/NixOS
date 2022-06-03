@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.packages = with pkgs; [ exa fd fzf zsh-completions ];
@@ -35,11 +35,10 @@
           "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
           "${pkgs.zsh-fzf-tab}/share/fzf-tab/lib/zsh-ls-colors/ls-colors.zsh"
         ];
-        sources = map (script: ''source "${script}"'') scripts;
-        imports = builtins.concatStringsSep "\n" sources;
+        sources = map (lib.addPrefix "source ") scripts;
         init = builtins.readFile ./init.sh;
       in
-      imports + "\n" + init
+      lib.unlines (sources ++ [ init ])
     );
 
     shellAliases = {

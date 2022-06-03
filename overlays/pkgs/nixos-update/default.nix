@@ -11,7 +11,7 @@ writeShellApplication {
   text =
     let utilsDir = shell-utils + "/share/shell-utils";
     in
-    lib.concatFilesSep "\n" [
+    lib.concatFiles [
       (utilsDir + "/utils.sh")
       ./nixos-update.sh
     ];

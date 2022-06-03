@@ -8,9 +8,11 @@ with lib;
     attrNames
   ];
 
-  concatFilesInDir = separator: dir: pipe dir [
+  concatDirFilesSep = separator: dir: pipe dir [
     filesInDir
     (map (name: readFile "${dir}/${name}"))
     (concatStringsSep separator)
   ];
+
+  concatDirFiles = concatDirFilesSep "\n";
 }
