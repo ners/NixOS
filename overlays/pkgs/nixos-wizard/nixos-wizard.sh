@@ -73,7 +73,7 @@ if ask "Create fresh partitions?" n; then
 	if ! [ -b "$disk" ]; then
 		fatal "error: cannot find disk: $disk"
 	fi
-	echo "Selected disk: $disk"
+	info "Selected disk: $disk"
 	if ask "Encrypt data partition?" y; then
 		peval sgdisk --zap-all -o \
 			-n 1:0:+1G -t 1:EF00 -c 1:$EFI_LABEL \

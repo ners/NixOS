@@ -1,18 +1,16 @@
 { lib
 , writeShellApplication
 , shell-utils
-, nvd
 , ...
 }:
 
 writeShellApplication {
-  name = "nixos-update";
+  name = "nixos-cleanup";
   text =
     let utilsDir = shell-utils + "/share/shell-utils";
     in
     lib.concatFiles [
       (utilsDir + "/utils.sh")
-      ./nixos-update.sh
+      ./nixos-cleanup.sh
     ];
-  runtimeInputs = [ nvd ];
 }
