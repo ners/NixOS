@@ -1,8 +1,9 @@
 { inputs, lib, ... }:
 
 {
-  imports = with inputs; [
-    self.nixosRoles.base
+  imports = with inputs.self; [
+    nixosProfiles.boot
+    nixosRoles.base
   ];
 
   services.xserver.enable = false;

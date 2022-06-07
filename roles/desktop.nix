@@ -1,16 +1,16 @@
 { inputs, pkgs, ... }:
 
 {
-  imports = with inputs; [
-    self.nixosProfiles.boot
-    self.nixosProfiles.btrfs
-    self.nixosProfiles.fonts
-    self.nixosProfiles.fprintd
-    self.nixosProfiles.geoclue
-    self.nixosProfiles.gnome
-    self.nixosProfiles.pipewire
-    self.nixosProfiles.virtualisation
-    self.nixosRoles.base
+  imports = with inputs.self; [
+    nixosProfiles.boot
+    nixosProfiles.btrfs
+    nixosProfiles.fonts
+    nixosProfiles.fprintd
+    nixosProfiles.geoclue
+    nixosProfiles.gnome
+    nixosProfiles.pipewire
+    nixosProfiles.virtualisation
+    nixosRoles.base
   ];
 
   environment.systemPackages = with pkgs; [

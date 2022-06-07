@@ -7,8 +7,8 @@ qemu-system-x86_64 \
 	-smp cores=6 \
 	-m 16G \
 	-mem-path /dev/hugepages \
-	-device virtio-net,netdev=vmnic \
-	-netdev user,id=vmnic \
+	-device virtio-net-pci,netdev=winbr \
+	-netdev bridge,id=winbr,br=$BRIDGE_INTERFACE \
 	-spice port=$SPICE_PORT,disable-ticketing=on \
 	-chardev spiceport,id=spagent,name=org.spice-space.webdav.0,debug=0 \
 	-chardev spicevmc,id=vdagent,name=vdagent,debug=0 \
@@ -28,5 +28,3 @@ qemu-system-x86_64 \
 	-drive file=/var/virtio-win.iso,format=raw,media=cdrom \
 	-nographic \
 	-vga none
-	# -netdev bridge,id=br0,br=$BRIDGE_INTERFACE \
-	# -device virtio-net-pci,netdev=br0 \

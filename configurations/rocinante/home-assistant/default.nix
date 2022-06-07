@@ -6,7 +6,7 @@ let
 in
 with builtins;
 {
-  disabledModules = [ "services/misc/home-assistant.nix" ];
+  disabledModules = [ "services/home-automation/home-assistant.nix" ];
   imports = [ (inputs.nixpkgs-master + "/nixos/modules/services/home-automation/home-assistant.nix") ];
   services.home-assistant = {
     enable = true;
@@ -36,7 +36,7 @@ with builtins;
         echo skipped pytestCheckPhase
       '';
     });
-    config = with builtins; {
+    config = {
       homeassistant = {
         inherit name;
         latitude = 47.3769;

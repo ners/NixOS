@@ -5,8 +5,8 @@ let
   radeon-audio = "0000:29:00.1";
   usb-controller = "0000:2a:00.3"; # Zeppelin USB 3.0 Host controller
   nvme-controller = "0000:01:00.0";
-  world-interface = "wlp38s0";
-  bridge-interface = "win-br";
+  world-interface = "enp3s0f0u1u3";
+  bridge-interface = "winbr";
 in
 {
   boot.kernelParams = [
@@ -32,9 +32,9 @@ in
     wantedBy = [ "windows.service" ];
   };
 
-  # networking.bridges.${bridge-interface}.interfaces = [ world-interface ];
-  # networking.interfaces.${bridge-interface}.useDHCP = true;
-  # virtualisation.libvirtd.allowedBridges = [ bridge-interface ];
+  networking.bridges.${bridge-interface}.interfaces = [ world-interface ];
+  networking.interfaces.${bridge-interface}.useDHCP = true;
+  virtualisation.libvirtd.allowedBridges = [ bridge-interface ];
 
   systemd.services.windows = {
     path = with pkgs; [
