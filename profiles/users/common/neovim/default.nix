@@ -62,7 +62,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    neovim-qt
     nixpkgs-fmt
     rnix-lsp
     sumneko-lua-language-server

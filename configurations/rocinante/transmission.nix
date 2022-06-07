@@ -10,7 +10,7 @@
       rpc-host-whitelist-enabled = false;
       rpc-authentication-required = true;
       rpc-username = "dragoncat";
-      rpc-password = "{4731702a15712d42caf5a3233b20a6e4e25cf972yceOFpRr";
+      rpc-password = "{2cd1009e62a1466d5ad0bae354e178ebeace43dfuT0iEYsu";
       peer-limit-per-torrent = 100;
       peer-limit-global = 100000;
       download-queue-size = 50;
