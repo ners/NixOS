@@ -10,6 +10,13 @@
     networkmanager.enable = true;
     useNetworkd = true;
     firewall.enable = false;
+    dhcpcd.wait = "background";
+    dhcpcd.extraConfig = "noarp";
+  };
+
+  systemd.services = {
+    NetworkManager-wait-online.enable = false;
+    systemd-udev-settle.enable = false;
   };
 
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -38,11 +45,10 @@
       entr
       exfat
       expect
-      libfaketime
       file
-      fx
       fwupd
       fwupd-efi
+      fx
       git-lfs
       gitAndTools.gitFull
       gnumake
@@ -51,8 +57,11 @@
       iproute
       jq
       killall
+      libfaketime
+      lshw
       moreutils
       nano
+      ncdu
       neofetch
       neovim
       nix-diff
@@ -75,15 +84,11 @@
       unzip
       usbutils
       wget
+      zip
     ];
     shells = with pkgs; [ bashInteractive zsh ];
     variables = { EDITOR = "nvim"; };
   };
 
   programs.zsh.enable = true;
-
-  security.tpm2 = {
-    enable = true;
-    abrmd.enable = true;
-  };
 }

@@ -15,7 +15,6 @@
     # paths it should manage.
     inherit username homeDirectory;
 
-
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
     # when a new Home Manager release introduces backwards
@@ -37,7 +36,10 @@
     ./neovim
     ./shell
     ./xdg
+    inputs.nix-colors.homeManagerModule
   ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.default-dark;
 
   services.udiskie.enable = true;
 }

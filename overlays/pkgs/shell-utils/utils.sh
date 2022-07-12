@@ -65,16 +65,38 @@ function is_root()
 	[ "$EUID" -eq 0 ]
 }
 
+function is_tmux()
+{
+	[ -n "${TMUX+1}" ]
+}
+
 function ensure_root()
 {
-	if ! is_root; then
-		error This script should be run as root user!
-		if ask "Rerun as root? (sudo)" y; then
-			exec sudo "$0" "$@"
-		else
-			exit 1
-		fi
+	if is_root; then
+		return
 	fi
+	error This script should be run as root user!
+	if ask "Rerun as root? (sudo)" y; then
+		exec sudo "$0" "$@"
+	else
+		exit 1
+	fi
+}
+
+function ensure_tmux()
+{
+	if is_tmux; then
+		return
+	fi
+	local session="$1"
+	shift
+	local window="$session:0"
+	tmux start-server
+	if ! tmux has-session -t "$session" 2>/dev/null; then
+		tmux new-session -d -t "$session"
+	fi
+	tmux send-keys -t "$window" "$(basename "$0") $*" C-m
+	exec tmux attach-session -t "$session"
 }
 
 function is_mounted()

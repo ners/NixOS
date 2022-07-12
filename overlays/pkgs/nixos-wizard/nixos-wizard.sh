@@ -1,3 +1,4 @@
+ensure_tmux nixos-wizard "$@"
 ensure_root "$@"
 
 EFI_LABEL=EFI

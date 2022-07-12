@@ -2,6 +2,7 @@
 , writeShellApplication
 , shell-utils
 , nvd
+, tmux
 , ...
 }:
 
@@ -14,5 +15,5 @@ writeShellApplication {
       (utilsDir + "/utils.sh")
       ./nixos-update.sh
     ];
-  runtimeInputs = [ nvd ];
+  runtimeInputs = [ nvd tmux ];
 }

@@ -7,4 +7,8 @@
     self.nixosRoles.desktop
     self.nixosProfiles.users.ners
   ];
+
+  systemd.network.wait-online.extraArgs = [
+    "--interface=wlp0s20f3"
+  ];
 }

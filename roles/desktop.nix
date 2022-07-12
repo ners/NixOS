@@ -52,6 +52,11 @@
     };
   };
 
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
+
   security.rtkit.enable = true;
 
   hardware.opengl = {

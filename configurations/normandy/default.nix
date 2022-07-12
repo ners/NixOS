@@ -11,6 +11,10 @@
     self.nixosProfiles.users.ners
   ];
 
+  systemd.network.wait-online.extraArgs = [
+    "--interface=eno2"
+  ];
+
   hardware.keyboard.zsa.enable = true;
 
   environment.systemPackages = with pkgs; [

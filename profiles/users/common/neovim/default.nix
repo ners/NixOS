@@ -33,7 +33,8 @@ in
       cmp-path
       cmp-treesitter
       cmp_luasnip
-      crates-nvim
+      #TODO: broken
+      #crates-nvim
       fidget-nvim
       fzf-lsp-nvim
       fzf-vim
@@ -52,8 +53,8 @@ in
       luasnip
       mkdir-nvim
       neoscroll-nvim
-      neovim-ayu
       nvim-autopairs
+      nvim-base16
       nvim-cmp
       nvim-dap
       nvim-dap-ui
@@ -70,12 +71,22 @@ in
       vimtex
       which-key-nvim
     ];
-    extraConfig = builtins.readFile ./init.vim;
+    extraConfig = with config.colorScheme.colors; ''
+      ${builtins.readFile ./init.vim}
+      lua << EOF
+      require('base16-colorscheme').setup({
+          base00 = '#${base00}', base01 = '#${base01}', base02 = '#${base02}', base03 = '#${base03}',
+          base04 = '#${base04}', base05 = '#${base05}', base06 = '#${base06}', base07 = '#${base07}',
+          base08 = '#${base08}', base09 = '#${base09}', base0A = '#${base0A}', base0B = '#${base0B}',
+          base0C = '#${base0C}', base0D = '#${base0D}', base0E = '#${base0E}', base0F = '#${base0F}',
+      })
+      EOF
+    '';
   };
   xdg.configFile = {
     "nvim/lua".source = ./lua;
     "nvim/plugin".source = ./plugin;
     "nvim/ftplugin".source = ./ftplugin;
-    "nvim/ginit.vim".text = builtins.readFile ./ginit.vim;
+    "nvim/ginit.vim".source = ./ginit.vim;
   };
 }

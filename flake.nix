@@ -5,6 +5,7 @@
     nixpkgs-master.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    nix-colors.url = "github:misterio77/nix-colors";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -33,9 +34,9 @@
         inherit inputs lib overlays;
       };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; in
+      let pkgs = import inputs.nixpkgs-unstable { inherit system; }; in
       {
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [ nix nixfmt ];
         };
       });

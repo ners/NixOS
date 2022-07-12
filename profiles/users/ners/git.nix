@@ -3,7 +3,7 @@
 {
   programs.git = {
     enable = true;
-    package = pkgs.git.override { withLibsecret = true; };
+    package = pkgs.gitAndTools.gitFull;
     difftastic.enable = true;
     userName = "ners";
     userEmail = "ners@gmx.ch";

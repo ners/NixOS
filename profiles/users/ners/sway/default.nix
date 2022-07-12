@@ -2,11 +2,12 @@
 
 {
   imports = [
-    ./albert.nix
+    #./albert.nix
     ./foot.nix
     ./grim.nix
     ./kanshi.nix
     ./mako.nix
+    ./rofi.nix
     ./waybar
     ./xf86.nix
   ];

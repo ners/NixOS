@@ -14,13 +14,11 @@
     cabal2nix
     element-desktop
     flatpak
-    flatpak-builder
     fractal
     gimp
     gitg
     graphviz
     inkscape
-    jdk11
     libguestfs-with-appliance
     libreoffice-fresh
     nodejs
