@@ -1,5 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 
+let
+  swaymsg = command: ''${pkgs.sway}/bin/swaymsg "${command}"'';
+in
 {
   services.kanshi = {
     enable = true;
@@ -13,7 +16,7 @@
           }
         ];
         exec = [
-          "swaymsg 'workspace 1, move workspace to eDP-1'"
+          (swaymsg "workspace 1, move workspace to eDP-1")
         ];
       };
       normandy_home =
@@ -35,11 +38,12 @@
             }
           ];
           exec = [
-            "swaymsg 'workspace 1, move workspace to \"${left}\"'"
-            "swaymsg 'workspace 2, move workspace to \"${right}\"'"
+            (swaymsg "workspace 1, move workspace to '${left}'")
+            (swaymsg "workspace 2, move workspace to '${right}'")
           ];
         };
     };
   };
 }
+
 
