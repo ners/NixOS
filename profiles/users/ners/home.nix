@@ -11,8 +11,10 @@
 
   home.packages = with pkgs; [
     audacity
+    bintools
     cabal2nix
     element-desktop
+    ffmpeg
     flatpak
     fractal
     gimp

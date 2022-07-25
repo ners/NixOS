@@ -22,5 +22,6 @@ in
     charis-sil
     crimson
     gula
+    material-design-icons
   ];
 }

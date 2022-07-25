@@ -34,7 +34,7 @@
       sansSerif = [ "Source Sans Pro" ];
       serif = [ "Source Serif Pro" ];
       monospace = [ "Fira Code Nerd Font" ];
-      emoji = [ "Twitter Color Emoji" ];
+      emoji = [ "Noto Color Emoji" ];
     };
 
     fontconfig.localConf = ''

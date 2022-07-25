@@ -40,7 +40,10 @@ with lib;
     # It provides eye-candy and a more professional presentation for scenarios where the default
     # high-information text output might be undesirable.
     # It also handles boot prompts, such as entering disk encryption passwords.
-    plymouth.enable = true;
+    plymouth = {
+      enable = true;
+      theme = "breeze";
+    };
   };
 
   console = {

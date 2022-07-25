@@ -9,7 +9,7 @@ in
       plugins = [ rofi-calc rofi-emoji ];
     };
     extraConfig = {
-      modi = "drun,calc,emoji";
+      modi = "drun,run,calc,emoji";
     };
     theme =
       with config.lib.formats.rasi;
