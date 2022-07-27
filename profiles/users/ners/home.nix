@@ -25,8 +25,8 @@
     libreoffice-fresh
     nodejs
     pavucontrol
+    tmate
     transmission-remote-gtk
-    universal-ctags
     unstable.chromium
     unstable.darktable
     unstable.discord
@@ -41,7 +41,6 @@
     unstable.zoom-us
     v4l-utils
     winbox
-    x2goclient
   ];
 
   home.sessionVariables = {
