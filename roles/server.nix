@@ -3,6 +3,7 @@
 {
   imports = with inputs.self; [
     nixosProfiles.boot
+    nixosProfiles.btrfs
     nixosRoles.base
   ];
 

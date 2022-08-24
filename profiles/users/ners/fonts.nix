@@ -1,32 +1,43 @@
 { pkgs, lib, ... }:
 
 let
-  mkFont = { name, url, sha256 }: pkgs.stdenv.mkDerivation rec {
-    inherit name;
-    nativeBuildInputs = [ pkgs.unzip ];
-    src = pkgs.fetchurl {
-      inherit url sha256;
-      name = "${name}.zip";
+  mkFont =
+    { name
+    , url
+    , sha256
+    , sourceRoot ? "."
+    }: pkgs.stdenv.mkDerivation rec {
+      inherit name;
+      nativeBuildInputs = [ pkgs.unzip ];
+      src = pkgs.fetchurl {
+        inherit url sha256;
+        name = "${name}.zip";
+      };
+      setSourceRoot = "sourceRoot=`pwd`";
+      installPhase = ''
+        for f in ${sourceRoot}/*.ttf; do
+          install -Dm644 -D "$f" "$out/share/fonts/truetype/${name}/$f"
+        done
+        for f in ${sourceRoot}/*.otf; do
+          install -Dm644 -D "$f" "$out/share/fonts/opentype/${name}/$f"
+        done
+      '';
     };
-    setSourceRoot = "sourceRoot=`pwd`";
-    installPhase = ''
-      for f in *.ttf; do
-        install -Dm644 -D "$f" "$out/share/fonts/truetype/${name}/$f"
-      done
-      for f in *.otf; do
-        install -Dm644 -D "$f" "$out/share/fonts/opentype/${name}/$f"
-      done
-    '';
-  };
   oswald = mkFont {
     name = "oswald";
     url = "https://www.fontsquirrel.com/fonts/download/oswald";
-    sha256 = "sha256-+E/XVTPLKA6zKa+QZ/IrPp0RjLNEKf5WOO63oXGrROk=";
+    sha256 = "sha256-/gP2QI1Hlg1c2UOZtwBjNXlt1RbTZYVFsar9mVXOTFw=";
   };
   gula = mkFont {
     name = "gula";
     url = "https://dl.dafont.com/dl/?f=gula";
     sha256 = "sha256-kMop+cS9gKawaiyHmsD12WGPQkOJysUCQWYwtIlNE14=";
+  };
+  playfair = mkFont {
+    name = "playfair";
+    url = "https://github.com/clauseggers/Playfair/archive/refs/heads/master.zip";
+    sha256 = "sha256-TBrX49OJleicgZxdC12ywMr/Dsd06/uQloZuSPGaDAk=";
+    sourceRoot = "Playfair-master/fonts/VF-TTF";
   };
 in
 {
@@ -44,5 +55,6 @@ in
     paratype-pt-mono
     paratype-pt-sans
     paratype-pt-serif
+    playfair
   ];
 }

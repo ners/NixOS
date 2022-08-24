@@ -19,4 +19,13 @@ in
   services.nfs.server.exports = ''
     ${mountPoint} *(rw,sync,no_root_squash,all_squash,insecure,anonuid=${toString uid},anongid=${toString gid})
   '';
+
+  services.beesd.filesystems = {
+    gold = {
+      spec = "LABEL=Gold";
+      hashTableSizeMB = 2048;
+      verbosity = "crit";
+      extraOptions = [ "--loadavg-target" "2.0" ];
+    };
+  };
 }
