@@ -8,7 +8,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     vscodeInsiders = {
       url = "github:cideM/visual-studio-code-insiders-nix";

@@ -9,7 +9,7 @@ local capabilities = require 'cmp_nvim_lsp'.update_capabilities(
 require 'rust-tools'.setup {
 	tools = {
 		autoSetHints = true,
-		hover_with_actions = true,
+		-- DEPRECATED: hover_with_actions = true,
 		runnables = {
 			use_telescope = true,
 		},

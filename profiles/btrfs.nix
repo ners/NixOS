@@ -25,7 +25,7 @@
       spec = "LABEL=NixOS";
       hashTableSizeMB = 256;
       verbosity = "crit";
-      extraOptions = [ "--loadavg-target" "2.0" ];
+      extraOptions = [ "--loadavg-target" "5.0" ];
     };
   };
 }
