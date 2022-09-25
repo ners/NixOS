@@ -1,2 +1,1 @@
-nix: True
 jobs: $ncpus

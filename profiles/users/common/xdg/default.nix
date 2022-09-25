@@ -1,13 +1,11 @@
-{ config, pkgs, ... }:
-
-with builtins;
+{ config, pkgs, lib, ... }:
 
 {
-  xdg.configFile = pkgs.lib.pipe ./. [
-    pkgs.lib.filesystem.listFilesRecursive
-    (filter (file: ! pkgs.lib.hasSuffix ".nix" file))
+  xdg.configFile = with builtins; with lib; pipe ./. [
+    filesystem.listFilesRecursive
+    (filter (file: ! hasSuffix ".nix" file))
     (map (file: {
-      name = pkgs.lib.removePrefix "${toString ./.}/" (toString file);
+      name = removePrefix "${toString ./.}/" (toString file);
       value = { source = file; };
     }))
     listToAttrs

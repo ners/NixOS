@@ -33,6 +33,7 @@
     unstable.drawio
     unstable.firefox-devedition-wayland
     unstable.foliate
+    unstable.ngrok
     unstable.nushell
     unstable.plexamp
     unstable.slack

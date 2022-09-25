@@ -21,6 +21,7 @@
       diff.colorMoved = "default";
       pull.rebase = true;
       push.default = "current";
+      push.autoSetupRemote = true;
       credential.helper = "libsecret";
       "filter \"lfs\"" = {
         required = true;
