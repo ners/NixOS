@@ -1,19 +1,24 @@
-{ config, inputs, pkgs, ... }:
+{ config, inputs, pkgs, lib, ... }:
 
 let
   name = "Nest";
   port = 8123;
+  skipTests = p: p.overrideAttrs (_: {
+    pytestCheckPhase = ''
+      echo skipped pytestCheckPhase
+    '';
+  });
 in
 with builtins;
 {
   disabledModules = [ "services/home-automation/home-assistant.nix" ];
-  imports = [ (inputs.nixpkgs-master + "/nixos/modules/services/home-automation/home-assistant.nix") ];
+  imports = [ (inputs.nixpkgs-unstable + "/nixos/modules/services/home-automation/home-assistant.nix") ];
   services.home-assistant = {
     enable = true;
-    package = (pkgs.master.home-assistant.override {
+    package = skipTests (pkgs.unstable.home-assistant.override {
       extraPackages = ps: with ps; [
         accuweather
-        aiogithubapi
+        (skipTests aiogithubapi)
         aioharmony
         aiohomekit
         aiohue
@@ -31,10 +36,6 @@ with builtins;
         spotipy
         transmissionrpc
       ];
-    }).overrideAttrs (_: {
-      pytestCheckPhase = ''
-        echo skipped pytestCheckPhase
-      '';
     });
     config = {
       homeassistant = {

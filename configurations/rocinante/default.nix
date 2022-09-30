@@ -7,6 +7,7 @@
     ./gold.nix
     ./hardware-configuration.nix
     ./home-assistant
+    ./netdata.nix
     ./plex.nix
     ./transmission.nix
     ./windows
