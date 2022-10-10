@@ -1,5 +1,5 @@
 { inputs, ... }:
 
 {
-  inherit (inputs.nixpkgs-unstable.lib) licenses;
+  inherit (inputs.nixpkgs-master.lib) licenses;
 }

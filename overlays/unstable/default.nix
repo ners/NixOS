@@ -25,6 +25,6 @@ in
 with builtins; with lib; pipe ./. [
   findModules
   attrValues
-  (map (o: import o { inherit unstable master; } self super))
+  (map (o: import o { inherit lib unstable master; } self super))
   (foldr recursiveUpdate { inherit unstable master local; })
 ]

@@ -36,6 +36,7 @@
     unstable.ngrok
     unstable.nushell
     unstable.plexamp
+    unstable.signal-desktop
     unstable.slack
     unstable.sweethome3d.application
     unstable.tdesktop
