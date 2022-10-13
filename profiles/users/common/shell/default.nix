@@ -13,33 +13,56 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
+      format = builtins.concatStringsSep "" [
+        "$username"
+        "$hostname"
+        "$shlvl"
+        "$directory"
+        "$git_branch"
+        "$git_state"
+        "$git_status"
+        "$cmd_duration"
+        "$line_break"
+        "$character"
+      ];
+      directory.style = "blue";
       character = {
-        success_symbol = "[»](bold green)";
-        error_symbol = "[»](bold red)";
-        vicmd_symbol = "[«](bold green)";
+        success_symbol = "[»](purple)";
+        error_symbol = "[»](red)";
+        vicmd_symbol = "[«](green)";
+      };
+      git_branch = {
+        format = "[$branch]($style)";
+        style = "bright-black";
+      };
+      git_status = {
+        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
+        style = "cyan";
+      };
+      git_state = {
+        #format = ''\([$state( $progress_current/$progress_total)]($style)\) '';
+        style = "bright-black";
+      };
+      cmd_duration = {
+        format = "[$duration]($style) ";
+        style = "yellow";
       };
     };
   };
 
   programs.zsh = {
     enable = true;
-    initExtra = (
-      let
-        scripts = [
-          "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-          "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
-          "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-          "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh"
-          "${pkgs.fzf}/share/fzf/completion.zsh"
-          "${pkgs.fzf}/share/fzf/key-bindings.zsh"
-          "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
-          "${pkgs.zsh-fzf-tab}/share/fzf-tab/lib/zsh-ls-colors/ls-colors.zsh"
-        ];
-        sources = map (lib.addPrefix "source ") scripts;
-        init = builtins.readFile ./init.sh;
-      in
-      lib.unlines (sources ++ [ init ])
-    );
+    initExtra = ''
+      source "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+      source "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
+      source "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+      source "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh"
+      source "${pkgs.fzf}/share/fzf/completion.zsh"
+      source "${pkgs.fzf}/share/fzf/key-bindings.zsh"
+      source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
+      source "${pkgs.zsh-fzf-tab}/share/fzf-tab/lib/zsh-ls-colors/ls-colors.zsh"
+      ${builtins.readFile ./init.sh}
+    '';
 
     shellAliases = {
       open = ''open() { xdg-open "$@" & disown }; open'';
@@ -57,37 +80,40 @@
 
   programs.tmux = {
     enable = true;
-    extraConfig = ''
+    extraConfig = with config.colorScheme.colors; ''
       # COLOUR (base16)
 
       # default statusbar colors
-      set-option -g status-style "fg=#b8b8b8,bg=#282828"
+      set-option -g status-style "fg=#${base04},bg=#${base01}"
 
       # default window title colors
-      set-window-option -g window-status-style "fg=#b8b8b8,bg=default"
+      set-window-option -g window-status-style "fg=#${base04},bg=default"
 
       # active window title colors
-      set-window-option -g window-status-current-style "fg=#f7ca88,bg=default"
+      set-window-option -g window-status-current-style "fg=#${base0A},bg=default"
 
       # pane border
-      set-option -g pane-border-style "fg=#282828"
-      set-option -g pane-active-border-style "fg=#383838"
+      set-option -g pane-border-style "fg=#${base01}"
+      set-option -g pane-active-border-style "fg=#${base02}"
 
       # message text
-      set-option -g message-style "fg=#d8d8d8,bg=#282828"
+      set-option -g message-style "fg=#${base05},bg=#${base01}"
 
       # pane number display
-      set-option -g display-panes-active-colour "#a1b56c"
-      set-option -g display-panes-colour "#f7ca88"
+      set-option -g display-panes-active-colour "#${base0B}"
+      set-option -g display-panes-colour "#${base0A}"
 
       # clock
-      set-window-option -g clock-mode-colour "#a1b56c"
+      set-window-option -g clock-mode-colour "#${base0B}"
 
       # copy mode highligh
-      set-window-option -g mode-style "fg=#b8b8b8,bg=#383838"
+      set-window-option -g mode-style "fg=#${base04},bg=#${base02}"
 
       # bell
-      set-window-option -g window-status-bell-style "fg=#282828,bg=#ab4642"
+      set-window-option -g window-status-bell-style "fg=#${base01},bg=#${base08}"
+
+      # scrolling with mouse
+      set-option -g mouse on
     '';
   };
 }

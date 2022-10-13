@@ -53,7 +53,6 @@
       gitAndTools.gitFull
       gnumake
       htop
-      httpie
       iproute
       jq
       killall
@@ -84,6 +83,7 @@
       unzip
       usbutils
       wget
+      xh
       zip
     ];
     shells = with pkgs; [ bashInteractive zsh ];

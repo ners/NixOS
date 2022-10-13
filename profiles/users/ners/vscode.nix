@@ -9,7 +9,7 @@
         haskell.haskell
         jnoortheen.nix-ide
         justusadam.language-haskell
-        matklad.rust-analyzer
+        #matklad.rust-analyzer
         ms-azuretools.vscode-docker
         ms-vscode.cpptools
         ms-vsliveshare.vsliveshare
