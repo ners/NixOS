@@ -100,12 +100,14 @@ if ask "Create fresh partitions?" n; then
 	peval btrfs subvolume create $SWAP_VOL
 	peval umount $ROOT_MOUNT
 	mount_all
-	peval touch $SWAP_FILE
-	peval chmod 600 $SWAP_FILE
-	peval chattr +C $SWAP_FILE
-	peval fallocate $SWAP_FILE -l4g
-	peval mkswap $SWAP_FILE
-	peval swapon $SWAP_FILE
+	if ask "Create swap file?" y; then
+		peval touch $SWAP_FILE
+		peval chmod 600 $SWAP_FILE
+		peval chattr +C $SWAP_FILE
+		peval fallocate $SWAP_FILE -l4g
+		peval mkswap $SWAP_FILE
+		peval swapon $SWAP_FILE
+	fi
 fi
 
 if ! is_mounted $ROOT_MOUNT && ask "Mount partitions?" y; then mount_all; fi

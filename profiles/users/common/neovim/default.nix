@@ -23,6 +23,7 @@ let
     cmp-treesitter
     cmp_luasnip
     crates-nvim
+    direnv-vim
     fidget-nvim
     fzf-lsp-nvim
     fzf-vim
@@ -56,6 +57,7 @@ let
     telescope-fzf-native-nvim
     telescope-nvim
     telescope-ui-select-nvim
+    trouble-nvim
     vimtex
     which-key-nvim
   ];

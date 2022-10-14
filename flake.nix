@@ -24,7 +24,12 @@
   outputs = inputs:
     let
       lib = import ./profiles/lib { inherit inputs; };
-      overlays = builtins.attrValues (lib.findModules ./overlays);
+      overlaySrcs = builtins.attrValues (lib.findModules ./overlays);
+      mkOverlay = o: import o {
+        inherit lib inputs;
+        overlays = overlaySrcs;
+      };
+      overlays = map mkOverlay overlaySrcs;
     in
     {
       nixosVersion = inputs.nixpkgs-stable.lib.trivial.release;
@@ -34,10 +39,15 @@
         inherit inputs lib overlays;
       };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import inputs.nixpkgs-unstable { inherit system; }; in
+      let pkgs = import inputs.nixpkgs-stable { inherit system overlays; }; in
       {
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [ nix nixfmt ];
         };
+        apps = builtins.mapAttrs
+          (name: drv: inputs.flake-utils.lib.mkApp { inherit drv; })
+          {
+            wizard = pkgs.nixos-wizard;
+          };
       });
 }
