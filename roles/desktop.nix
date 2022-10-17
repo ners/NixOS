@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, options, ... }:
 
 {
   imports = with inputs.self; [
@@ -9,6 +9,7 @@
     nixosProfiles.geoclue
     nixosProfiles.gnome
     nixosProfiles.pipewire
+    nixosProfiles.plymouth
     nixosProfiles.virtualisation
     nixosRoles.base
   ];
@@ -68,4 +69,10 @@
     setLdLibraryPath = true;
   };
 
+  console = {
+    # Enable setting virtual console options as early as possible (in initrd).
+    earlySetup = true;
+    # Provide a hi-dpi console font.
+    packages = options.console.packages.default ++ [ pkgs.terminus_font ];
+  };
 }

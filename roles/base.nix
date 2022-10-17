@@ -49,9 +49,6 @@
       fwupd
       fwupd-efi
       fx
-      git-lfs
-      gitAndTools.gitFull
-      gnumake
       htop
       iproute
       jq
@@ -75,7 +72,6 @@
       ripgrep
       smartmontools
       sshfs-fuse
-      subversion
       tio
       tmux
       tree

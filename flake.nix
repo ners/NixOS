@@ -44,10 +44,8 @@
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [ nix nixfmt ];
         };
-        apps = builtins.mapAttrs
-          (name: drv: inputs.flake-utils.lib.mkApp { inherit drv; })
-          {
-            wizard = pkgs.nixos-wizard;
-          };
+        packages = {
+          wizard = pkgs.nixos-wizard;
+        };
       });
 }

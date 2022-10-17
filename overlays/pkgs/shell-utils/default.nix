@@ -1,23 +1,18 @@
-{ stdenv
-, lib
+{ lib
+, writeShellApplication
+, writeText
+, tmux
 , ...
 }:
 
-stdenv.mkDerivation rec {
-  name = "shell-utils";
-  version = "0.0.1";
-  src = ./.;
-  installPhase = ''
-    for script in ./*.sh; do
-      install -Dm644 $script $out/share/${name}/$script
-    done
-  '';
-
-  meta = with lib; {
-    homepage = "https://github.com/ners/NixOS";
-    description = "A collection of utility functions for shell scripting";
-    license = licenses.mit;
-    platforms = platforms.all;
-    maintainers = with maintainers; [ ners ];
+let
+  app = writeShellApplication {
+    name = "shell-utils";
+    text = builtins.readFile ./utils.sh;
+    runtimeInputs = [ tmux ];
   };
-}
+in
+writeText "shell-utils" ''
+  # shellcheck disable=SC1091
+  source ${app}/bin/${app.name}
+''

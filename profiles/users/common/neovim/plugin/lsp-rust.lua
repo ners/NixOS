@@ -2,10 +2,6 @@
 -- rust-tools will configure and enable certain LSP features for us.
 -- See https://github.com/simrat39/rust-tools.nvim#configuration
 
-local capabilities = require 'cmp_nvim_lsp'.update_capabilities(
-	vim.lsp.protocol.make_client_capabilities()
-)
-
 require 'rust-tools'.setup {
 	tools = {
 		autoSetHints = true,
@@ -26,7 +22,7 @@ require 'rust-tools'.setup {
 	-- these override the defaults set by rust-tools.nvim
 	-- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
 	server = {
-		capabilities = capabilities,
+		capabilities = require 'cmp_nvim_lsp'.default_capabilities(),
 		on_attach = require 'on-attach',
 		settings = {
 			-- to enable rust-analyzer settings visit:

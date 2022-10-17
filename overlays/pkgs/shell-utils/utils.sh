@@ -5,6 +5,8 @@ function is_interactive()
 
 function ask()
 {
+	local default
+	local answer
 	if [[ "${2:-y}" =~ ^[yY] ]]
 		then default=0
 		else default=1
@@ -34,6 +36,13 @@ function error()
 	tput sgr 0 >&2
 }
 
+function warn()
+{
+	tput setaf 3 >&2
+	echo "${@}" >&2
+	tput sgr 0 >&2
+}
+
 function info()
 {
 	tput dim
@@ -57,7 +66,8 @@ function fatal()
 function peval()
 {
 	info "$@"
-	eval "$*"
+	# shellcheck disable=SC2294
+	eval "$@"
 }
 
 function is_root()
@@ -88,14 +98,23 @@ function ensure_tmux()
 	if is_tmux; then
 		return
 	fi
-	local session="$1"
+	local session
+	session="$1"
 	shift
-	local window="$session:0"
+	local window
+	window="$session:0"
 	tmux start-server
 	if ! tmux has-session -t "$session" 2>/dev/null; then
 		tmux new-session -d -t "$session"
 	fi
-	tmux send-keys -t "$window" "$(basename "$0") $*" C-m
+	local command
+	command="$0"
+	local shortCommand
+	shortCommand="$(basename "$command")"
+	if command -v "$shortCommand" >/dev/null; then
+		command="$shortCommand"
+	fi
+	tmux send-keys -t "$window" "$command $*" C-m
 	exec tmux attach-session -t "$session"
 }
 

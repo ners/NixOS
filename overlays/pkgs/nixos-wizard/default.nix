@@ -1,16 +1,18 @@
 { lib
 , writeShellApplication
 , shell-utils
+, gptfdisk
+, git
+, jq
 , ...
 }:
 
 writeShellApplication {
   name = "nixos-wizard";
   text =
-    let utilsDir = shell-utils + "/share/shell-utils";
-    in
     lib.concatFiles [
-      (utilsDir + "/utils.sh")
+      shell-utils
       ./nixos-wizard.sh
     ];
+  runtimeInputs = [ gptfdisk git jq ];
 }

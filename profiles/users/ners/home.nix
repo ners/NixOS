@@ -23,7 +23,6 @@
     inkscape
     libguestfs-with-appliance
     libreoffice-fresh
-    nodejs
     pavucontrol
     tmate
     transmission-remote-gtk
