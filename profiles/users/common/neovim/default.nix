@@ -38,6 +38,7 @@ let
     litee-symboltree-nvim
     lsp_extensions-nvim
     lsp_signature-nvim
+    lspkind-nvim
     lualine-nvim
     luasnip
     mkdir-nvim

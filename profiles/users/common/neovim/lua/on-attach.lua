@@ -19,19 +19,20 @@ local function on_attach(client, buffer)
 	vim.api.nvim_buf_set_keymap(buffer, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(buffer, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(buffer, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(buffer, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 	if client.server_capabilities.documentHighlightProvider then
 		local group = vim.api.nvim_create_augroup('CursorHighlight', {})
 		-- Highlight occurrences under the cursor
 		vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
 			group = group,
-			callback = vim.lsp.buf.document_highlight
+			callback = vim.lsp.buf.document_highlight,
+			buffer = buffer,
 		})
 		-- Clear occurrences when the cursor moves
 		vim.api.nvim_create_autocmd('CursorMoved', {
 			group = group,
-			callback = vim.lsp.buf.clear_references
+			callback = vim.lsp.buf.clear_references,
+			buffer = buffer,
 		})
 	end
 
@@ -39,7 +40,8 @@ local function on_attach(client, buffer)
 		-- Format the file before it is written
 		vim.api.nvim_create_autocmd('BufWritePre', {
 			group = vim.api.nvim_create_augroup('FormatOnWrite', {}),
-			callback = function() vim.lsp.buf.format(nil, 1000) end
+			callback = function() vim.lsp.buf.format(nil, 1000) end,
+			buffer = buffer,
 		})
 	end
 end
