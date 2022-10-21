@@ -76,11 +76,11 @@ def obscure_image(image):
 
     image = image.resize(
                 (int(size[0] / pixel_size), int(size[1] / pixel_size)),
-                Image.NEAREST)
+                Image.Resampling.NEAREST)
 
     image = image.resize(
                 (int(size[0]), int(size[1])),
-                Image.NEAREST)
+                Image.Resampling.NEAREST)
     return image
 
 def obscure(image, areas):
