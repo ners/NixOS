@@ -4,6 +4,8 @@ let
   swaymsg = command: ''${pkgs.sway}/bin/swaymsg "${command}"'';
 in
 {
+  #systemd.user.services.kanshi.Install.After = [ "graphical-session.target" ];
+
   services.kanshi = {
     enable = true;
     profiles = {

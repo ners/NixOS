@@ -1,16 +1,20 @@
 { config, pkgs, lib, ... }:
 
-let modifier = config.wayland.windowManager.sway.config.modifier;
+let
+  modifier = config.wayland.windowManager.sway.config.modifier;
+  session = "sway-session.target";
 in
 {
   systemd.user.services.albert = {
-    Install = {
-      WantedBy = [ "sway-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
     Service = {
       Restart = "on-failure";
       ExecStart = "${pkgs.albert}/bin/albert";
+    };
+    Install.WantedBy = [ session ];
+    Unit = {
+      PartOf = session;
+      Requires = session;
+      After = session;
     };
   };
 

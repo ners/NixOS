@@ -3,28 +3,27 @@
 {
   imports = [
     #./albert.nix
+    ./applets.nix
+    ./cgroups.nix
     ./foot.nix
+    ./gnome.nix
     ./grim.nix
     ./kanshi.nix
     ./mako.nix
     ./rofi.nix
+    ./swayidle.nix
     ./waybar
+    ./wlr.nix
     ./xf86.nix
   ];
 
   home.packages = with pkgs; [
-    blueman
-    networkmanagerapplet
     pavucontrol
-    polkit_gnome
-    swayidle
-    swaylock
     vanilla-dmz
     wdisplays
     wl-clipboard
     xwayland
     inter-nerd
-    screenlock
   ];
 
   services.wlsunset = {
@@ -85,29 +84,6 @@
           command = "nm-applet --indicator";
           always = true;
         }
-        {
-          command = "systemctl --user restart kanshi";
-          always = true;
-        }
-        {
-          command =
-            "export $(${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)";
-          always = true;
-        }
-        {
-          command =
-            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-          always = false;
-        }
-        {
-          command = ''
-            killall swayidle; \
-            swayidle -w \
-                timeout 300 screenlock \
-                timeout 1800 'systemctl suspend'
-          '';
-          always = true;
-        }
       ];
       keybindings = {
         "${modifier}+Shift+r" = "reload";
@@ -154,14 +130,4 @@
       };
     };
   };
-
-  xdg.configFile."xdg-desktop-portal-wlr/config".text =
-    lib.generators.toINI { } {
-      screencast = {
-        output_name = "";
-        max_fps = "30";
-        chooser_cmd = "slurp -f %o -or";
-        chooser_type = "simple";
-      };
-    };
 }

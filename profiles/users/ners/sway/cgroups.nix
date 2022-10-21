@@ -4,10 +4,10 @@ let
   session = "sway-session.target";
 in
 {
-  systemd.user.services.mako = {
+  systemd.user.services.assign-cgroups = {
     Service = {
       Restart = "always";
-      ExecStart = "${pkgs.mako}/bin/mako";
+      ExecStart = "${pkgs.assign-cgroups}/bin/assign-cgroups";
     };
     Install.WantedBy = [ session ];
     Unit = {
@@ -15,11 +15,5 @@ in
       Requires = session;
       After = session;
     };
-  };
-
-  programs.mako = {
-    enable = true;
-    defaultTimeout = 3000;
-    font = "Monospace 11";
   };
 }
