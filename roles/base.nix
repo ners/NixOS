@@ -3,36 +3,18 @@
 {
   imports = with inputs; [
     self.nixosProfiles.dvorak
+    self.nixosProfiles.network
     self.nixosProfiles.nix
+    self.nixosProfiles.ssh
+    self.nixosProfiles.zram
+    self.nixosProfiles.zsh
   ];
-
-  networking = {
-    networkmanager.enable = true;
-    useNetworkd = true;
-    firewall.enable = false;
-    dhcpcd.wait = "background";
-    dhcpcd.extraConfig = "noarp";
-  };
-
-  systemd.services = {
-    NetworkManager-wait-online.enable = false;
-    systemd-udev-settle.enable = false;
-  };
 
   i18n.defaultLocale = "en_GB.UTF-8";
 
-  services.openssh = {
-    enable = true;
-    passwordAuthentication = false;
-    permitRootLogin = lib.mkForce "no";
-  };
-
   time.timeZone = "Europe/Zurich";
 
-  users = {
-    defaultUserShell = pkgs.zsh;
-    users.root.initialHashedPassword = "";
-  };
+  users.users.root.initialHashedPassword = "";
 
   environment = {
     enableDebugInfo = true;
@@ -82,9 +64,6 @@
       xh
       zip
     ];
-    shells = with pkgs; [ bashInteractive zsh ];
     variables = { EDITOR = "nvim"; };
   };
-
-  programs.zsh.enable = true;
 }

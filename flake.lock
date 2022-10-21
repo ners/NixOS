@@ -55,11 +55,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1665991686,
-        "narHash": "sha256-VbhugQ+NhybgCfU1gpbEQ6QFYrVQ3jRioYIYFVZ+KPs=",
+        "lastModified": 1666253070,
+        "narHash": "sha256-MtaNgghmfp+ywh5mv9FcspFT4ACaYINSN+D98PCkrP0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e901c8d86082be74a8be70773bbb6d401ff21e49",
+        "rev": "c485669ca529e01c1505429fa9017c9a93f15559",
         "type": "github"
       },
       "original": {
@@ -119,11 +119,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1666077666,
-        "narHash": "sha256-8kOobijR49r/Mm2kVMNL8H7JbHJgqEYSwP0yrzBdT1Q=",
+        "lastModified": 1666360603,
+        "narHash": "sha256-EbTKhA5z4us1tOwitpbwHy42K6VF0jeisHuM197Ak5I=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d9f2904cb7a36377c75beefa04eb2fc9f43f198d",
+        "rev": "2615fa1055a8462db5c5be0b2ef5fd77b42aad10",
         "type": "github"
       },
       "original": {
@@ -134,11 +134,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1666014999,
-        "narHash": "sha256-gvKl8xlPJreezNG1NVTJv/HdGC69MSrM+IpCxS+eFvw=",
+        "lastModified": 1666249138,
+        "narHash": "sha256-CzK8NA8xEMKAhvHXB8UMODckcH97sZXm6lziKNWLv0M=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1935dd8fdab8e022a9d958419663162fd840014c",
+        "rev": "44fc3cb097324c9f9f93313dd3f103e78d722968",
         "type": "github"
       },
       "original": {
@@ -150,11 +150,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1665940183,
-        "narHash": "sha256-cPe3F7CtnxU9YbJpc3Adl4d9kX+turqTv5FxM98i8vg=",
+        "lastModified": 1666282307,
+        "narHash": "sha256-O1T2HGLARLKDLfdOmjPBfn3eC4cSIaQD71wUN4I/6/s=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "104e8082de1b20f9d0e1f05b1028795ed0e0e4bc",
+        "rev": "b7d8c687782c8f9a1d425a7e486eb989654f6468",
         "type": "github"
       },
       "original": {
@@ -202,11 +202,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1665735023,
-        "narHash": "sha256-BQvrb2xU6pERc14Sk0L6LJ+sf9aG0P61OvvW5ZUQGho=",
+        "lastModified": 1666253265,
+        "narHash": "sha256-uTlF3ICmCePgX01HqdfnKuWN2ltQ64kSetghgQFDnD4=",
         "owner": "cideM",
         "repo": "visual-studio-code-insiders-nix",
-        "rev": "3de6ea0e14a6c1b722d8d594348e786aa4a47f54",
+        "rev": "de2d47701550193b905d9adfd4976c079dde366e",
         "type": "github"
       },
       "original": {
