@@ -2,8 +2,6 @@
 
 {
   imports = with inputs.self; [
-    nixosProfiles.boot
-    nixosProfiles.btrfs
     nixosProfiles.fonts
     nixosProfiles.fprintd
     nixosProfiles.geoclue

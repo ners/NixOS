@@ -7,7 +7,7 @@ python3Packages.buildPythonPackage rec {
 
   unpackPhase = ''
     for srcFile in $src; do
-    	cp $srcFile $(stripHash $srcFile)
+      cp $srcFile $(stripHash $srcFile)
     done
   '';
   installPhase = ''

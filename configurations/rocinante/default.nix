@@ -3,7 +3,6 @@
 {
   imports = with inputs; [
     ./boot.nix
-    ./dragoncat.nix
     ./gold.nix
     ./hardware-configuration.nix
     ./home-assistant

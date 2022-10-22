@@ -2,6 +2,8 @@
 
 {
   imports = with inputs; [
+    self.nixosProfiles.boot
+    self.nixosProfiles.btrfs
     self.nixosProfiles.dvorak
     self.nixosProfiles.network
     self.nixosProfiles.nix

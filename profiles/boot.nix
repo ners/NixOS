@@ -1,7 +1,8 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-  inherit (lib) mkDefault mkForce;
+  inherit (lib) mkDefault;
+  hasEfi = config.fileSystems."/boot".fsType == "vfat";
 in
 {
   boot = {
@@ -15,10 +16,15 @@ in
     loader = {
       # The number of seconds for user intervention before the default boot option is selected.
       timeout = mkDefault 3;
-      efi.canTouchEfiVariables = true;
-      grub.enable = false;
+      efi.canTouchEfiVariables = hasEfi;
+      grub = {
+        enable = mkDefault (!hasEfi);
+        efiSupport = mkDefault false;
+        device = "nodev";
+        fsIdentifier = "label";
+      };
       systemd-boot = {
-        enable = true;
+        enable = mkDefault hasEfi;
         # The resolution of the console. A higher resolution displays more entries.
         consoleMode = "max";
       };
@@ -26,13 +32,6 @@ in
 
     initrd = {
       availableKernelModules = [ "aesni_intel" "cryptd" ];
-      luks.devices = mkDefault {
-        cryptroot = {
-          device = mkDefault "/dev/disk/by-partlabel/LUKS";
-          preLVM = mkForce true;
-          allowDiscards = mkForce true;
-        };
-      };
       # Use systemd for PID 1.
       systemd.enable = true;
     };

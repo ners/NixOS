@@ -128,13 +128,15 @@ function unmount_all()
 
 function mount_all()
 {
-	if "$efi"; then
-		maybe_mount $EFI_DEVICE $BOOT_VOL
-	fi
 	if "$luks"; then
 		luks_open
 	fi
 	maybe_mount -o subvol=root,compress=zstd $NIXOS_DEVICE $ROOT_MOUNT
+	if "$efi"; then
+		maybe_mount $EFI_DEVICE $BOOT_VOL
+	else
+		maybe_mount -o subvol=boot $NIXOS_DEVICE $BOOT_VOL
+	fi
 	maybe_mount -o subvol=home,compress=zstd $NIXOS_DEVICE $HOME_VOL
 	maybe_mount -o subvol=swap $NIXOS_DEVICE $SWAP_VOL
 	if [ -f $SWAP_FILE ] && ! is_swapped; then
@@ -179,8 +181,11 @@ if ask "Create fresh partitions?" "$answer" "$format"; then
 			select mode in "UEFI BIOS"; do break; done
 			if [ "$mode" = UEFI ]; then
 				efi=true
+			else
+				efi=false
 			fi
 		else
+			efi=false
 			warn 'System does not support UEFI boot, defaulting to BIOS'
 		fi
 	fi
@@ -191,6 +196,7 @@ if ask "Create fresh partitions?" "$answer" "$format"; then
 		luks=true
 		rootLabel=$LUKS_LABEL
 	else
+		luks=false
 		rootLabel=$NIXOS_LABEL
 	fi
 	p=0
@@ -217,6 +223,9 @@ if ask "Create fresh partitions?" "$answer" "$format"; then
 	peval btrfs subvolume create $ROOT_VOL
 	peval btrfs subvolume create $HOME_VOL
 	peval btrfs subvolume create $SWAP_VOL
+	if ! "$efi"; then
+		peval btrfs subvolume create $BOOT_VOL
+	fi
 	peval umount $ROOT_MOUNT
 	mount_all
 	if ask "Create swap file?" y "$swap"; then
@@ -291,7 +300,7 @@ function create_new_configuration()
 		cat <<-EOS
 		mkdir -p $configurationDir
 		nix eval --raw --impure --expr builtins.currentSystem > $configurationDir/system
-		nixos-generate-config --show-hardware-config > $configurationDir/hardware-configuration.nix
+		nixos-generate-config --root $ROOT_MOUNT --show-hardware-config > $configurationDir/hardware-configuration.nix
 		cat <<-EOF >$configurationDir/default.nix
 		{ inputs, ... }@args:
 
@@ -303,7 +312,6 @@ function create_new_configuration()
 		  ];
 		}
 		EOF
-		git -C $configurationDir add .
 		EOS
 	)
 	peval "$script"
@@ -313,7 +321,7 @@ if is_mounted $ROOT_MOUNT && ask "Perform installation?" n "$install"; then
 	if ! [ -f $NIXOS_DIR/flake.nix ] && ask "No valid configuration found. Generate new configuration?" n; then
 		peval rm -rf $NIXOS_DIR
 		peval mkdir -p $NIXOS_DIR
-		peval git clone https://github.com/ners/NixOS $NIXOS_DIR
+		peval git clone https://github.com/ners/NixOS --branch ceres $NIXOS_DIR
 		peval chown 1000:1000 -R $NIXOS_DIR
 	fi
 	if ! [ -f $NIXOS_DIR/flake.nix ]; then
@@ -334,5 +342,8 @@ if is_mounted $ROOT_MOUNT && ask "Perform installation?" n "$install"; then
 			break
 		done
 	fi
+	configurationDir=$NIXOS_DIR/configurations/$configuration
+	peval "nixos-generate-config --root $ROOT_MOUNT --show-hardware-config > $configurationDir/hardware-configuration.nix"
+	peval git -C "$configurationDir" add .
 	peval nixos-install --flake "$NIXOS_DIR#$configuration" --impure --no-root-password
 fi
