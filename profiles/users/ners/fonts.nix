@@ -26,7 +26,7 @@ let
   oswald = mkFont {
     name = "oswald";
     url = "https://www.fontsquirrel.com/fonts/download/oswald";
-    sha256 = "sha256-/gP2QI1Hlg1c2UOZtwBjNXlt1RbTZYVFsar9mVXOTFw=";
+    sha256 = "sha256-GllqwB39rzIz+bsatfGFjqa7LIQ5Ex70IjDvpe8RdmY=";
   };
   gula = mkFont {
     name = "gula";

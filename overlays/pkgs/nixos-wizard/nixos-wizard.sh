@@ -321,7 +321,7 @@ if is_mounted $ROOT_MOUNT && ask "Perform installation?" n "$install"; then
 	if ! [ -f $NIXOS_DIR/flake.nix ] && ask "No valid configuration found. Generate new configuration?" n; then
 		peval rm -rf $NIXOS_DIR
 		peval mkdir -p $NIXOS_DIR
-		peval git clone https://github.com/ners/NixOS --branch ceres $NIXOS_DIR
+		peval git clone https://github.com/ners/NixOS $NIXOS_DIR
 		peval chown 1000:1000 -R $NIXOS_DIR
 	fi
 	if ! [ -f $NIXOS_DIR/flake.nix ]; then
