@@ -32,10 +32,10 @@
     options = [ "subvol=home" ];
   };
 
-  fileSystems."/swap" = {
+  fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/c393bb6d-f50f-4622-a994-385cfc829ca7";
     fsType = "btrfs";
-    options = [ "subvol=swap" ];
+    options = [ "subvol=nix" ];
   };
 
   swapDevices = [ ];

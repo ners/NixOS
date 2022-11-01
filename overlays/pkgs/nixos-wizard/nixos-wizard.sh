@@ -93,6 +93,7 @@ ROOT_MOUNT=/mnt
 ROOT_VOL=$ROOT_MOUNT/root
 BOOT_VOL=$ROOT_MOUNT/boot
 HOME_VOL=$ROOT_MOUNT/home
+NIX_VOL=$ROOT_MOUNT/nix
 SWAP_VOL=$ROOT_MOUNT/swap
 SWAP_FILE=$SWAP_VOL/swapfile
 NIXOS_DIR=$ROOT_MOUNT/etc/nixos
@@ -121,6 +122,7 @@ function unmount_all()
 	if is_swapped; then peval swapoff $SWAP_FILE; fi
 	maybe_unmount $BOOT_VOL
 	maybe_unmount $HOME_VOL
+	maybe_unmount $NIX_VOL
 	maybe_unmount $SWAP_VOL
 	maybe_unmount $ROOT_MOUNT
 	luks_close
@@ -138,6 +140,7 @@ function mount_all()
 		maybe_mount -o subvol=boot $NIXOS_DEVICE $BOOT_VOL
 	fi
 	maybe_mount -o subvol=home,compress=zstd $NIXOS_DEVICE $HOME_VOL
+	maybe_mount -o subvol=nix,compress=zstd $NIXOS_DEVICE $NIX_VOL
 	maybe_mount -o subvol=swap $NIXOS_DEVICE $SWAP_VOL
 	if [ -f $SWAP_FILE ] && ! is_swapped; then
 		peval swapon $SWAP_FILE
@@ -222,6 +225,7 @@ if ask "Create fresh partitions?" "$answer" "$format"; then
 	peval mount $NIXOS_DEVICE $ROOT_MOUNT
 	peval btrfs subvolume create $ROOT_VOL
 	peval btrfs subvolume create $HOME_VOL
+	peval btrfs subvolume create $NIX_VOL
 	peval btrfs subvolume create $SWAP_VOL
 	if ! "$efi"; then
 		peval btrfs subvolume create $BOOT_VOL

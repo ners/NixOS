@@ -12,6 +12,13 @@
     "compress=zstd"
   ];
 
+  fileSystems."/nix".options = [
+    "compress=zstd"
+    "noatime"
+    "nodiratime"
+    "discard"
+  ];
+
   boot.initrd.supportedFilesystems = [ "btrfs" ];
   environment.systemPackages = with pkgs; [ btrfs-progs compsize ];
 
