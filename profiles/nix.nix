@@ -8,7 +8,7 @@
       dates = "monthly";
       options = "--delete-older-than 30d";
     };
-    package = pkgs.unstable.nix;
+    package = pkgs.unstable.nix-monitored;
     registry.nixpkgs.flake = inputs.nixpkgs-unstable;
     nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
     extraOptions = ''
