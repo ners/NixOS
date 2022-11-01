@@ -13,7 +13,7 @@ let
   '';
   loadPlugins = lib.pipef [ (builtins.map loadPlugin) lib.unlines ];
   plugins = with vimPlugins.unstable; [
-    (nvim-treesitter.withPlugins (_: pkgs.master.tree-sitter.allGrammars))
+    (nvim-treesitter.withPlugins (_: pkgs.unstable.tree-sitter.allGrammars))
     bufferline-nvim
     cmp-buffer
     cmp-cmdline
@@ -48,7 +48,9 @@ let
     nvim-cmp
     nvim-dap
     nvim-dap-ui
+    nvim-hlslens
     nvim-lspconfig
+    nvim-scrollbar
     nvim-tree-lua
     nvim-web-devicons
     plenary-nvim

@@ -33,9 +33,12 @@
   imports = [
     ./apps.nix
     ./dconf.nix
+    ./direnv.nix
     ./neovim
-    ./shell
+    ./starship.nix
+    ./tmux.nix
     ./xdg
+    ./zsh
     inputs.nix-colors.homeManagerModule
   ];
 

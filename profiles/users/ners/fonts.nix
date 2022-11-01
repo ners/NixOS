@@ -25,8 +25,8 @@ let
     };
   oswald = mkFont {
     name = "oswald";
-    url = "https://www.fontsquirrel.com/fonts/download/oswald";
-    sha256 = "sha256-GllqwB39rzIz+bsatfGFjqa7LIQ5Ex70IjDvpe8RdmY=";
+    url = "https://github.com/googlefonts/OswaldFont/archive/refs/heads/main.zip";
+    sha256 = "sha256-7W3N5BYhW6YjknCIMIxxp8ENTmhjO3PpjMcP+xEXAok=";
   };
   gula = mkFont {
     name = "gula";
@@ -36,7 +36,7 @@ let
   playfair = mkFont {
     name = "playfair";
     url = "https://github.com/clauseggers/Playfair/archive/refs/heads/master.zip";
-    sha256 = "sha256-TBrX49OJleicgZxdC12ywMr/Dsd06/uQloZuSPGaDAk=";
+    sha256 = "sha256-Xmme9g1Ay8vRLQ5BIfRtEkGRGC2Z++NIk8UrEPzsbqA=";
     sourceRoot = "Playfair-master/fonts/VF-TTF";
   };
 in
