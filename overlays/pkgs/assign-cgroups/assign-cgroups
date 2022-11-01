@@ -20,9 +20,9 @@ import socket
 import struct
 from typing import Optional
 
-from dbus_next import Variant
-from dbus_next.aio import MessageBus
-from dbus_next.errors import DBusError
+from dbus_fast import Variant
+from dbus_fast.aio import MessageBus
+from dbus_fast.errors import DBusError
 from i3ipc import Event
 from i3ipc.aio import Con, Connection
 from psutil import Process

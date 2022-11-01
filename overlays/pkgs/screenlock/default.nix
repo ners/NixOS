@@ -1,20 +1,19 @@
-{ python3Packages, grim }:
+{ python3Packages
+, grim
+, ...
+}:
 
-python3Packages.buildPythonPackage rec {
+python3Packages.buildPythonApplication {
   name = "screenlock";
+  format = "other";
 
-  src = [ ./screenlock ./setup.py ];
+  src = ./.;
 
-  unpackPhase = ''
-    for srcFile in $src; do
-      cp $srcFile $(stripHash $srcFile)
-    done
-  '';
   installPhase = ''
+    runHook preInstall
     install -Dm 0755 screenlock $out/bin/screenlock
+    runHook postInstall
   '';
-
-  dontConfigure = true;
 
   propagatedBuildInputs = with python3Packages; [ i3ipc pillow grim ];
 }

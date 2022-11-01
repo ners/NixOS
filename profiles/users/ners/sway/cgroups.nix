@@ -7,7 +7,7 @@ in
   systemd.user.services.assign-cgroups = {
     Service = {
       Restart = "always";
-      ExecStart = "${pkgs.assign-cgroups}/bin/assign-cgroups";
+      ExecStart = "${pkgs.unstable.assign-cgroups}/bin/assign-cgroups";
     };
     Install.WantedBy = [ session ];
     Unit = {

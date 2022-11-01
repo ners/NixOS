@@ -1,17 +1,16 @@
 { config, lib, pkgs, ... }:
 
 let
-  inherit (lib) mkDefault;
-  hasEfi = config.fileSystems."/boot".fsType == "vfat";
+  inherit (lib) mkDefault mkForce;
+  hasEfi = (config.fileSystems."/boot".fsType or "") == "vfat";
 in
 {
   boot = {
     # Use the latest kernel!
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = mkForce pkgs.linuxPackages_latest;
 
-    # This will install a pre-release of zfs. Required because the ZFS module may not yet
-    # support the latest kernel version and may report as broken.
-    zfs.enableUnstable = true;
+    # Remove undesired filesystems such as ZFS that causes kernel breakages.
+    supportedFilesystems = mkForce [ "vfat" "btrfs" "ext4" ];
 
     loader = {
       # The number of seconds for user intervention before the default boot option is selected.

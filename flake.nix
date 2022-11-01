@@ -42,10 +42,8 @@
       let pkgs = import inputs.nixpkgs-stable { inherit system overlays; }; in
       {
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [ nix nixfmt ];
+          nativeBuildInputs = with pkgs.unstable; [ nix nixfmt ];
         };
-        packages = {
-          wizard = pkgs.nixos-wizard;
-        };
+        packages = pkgs;
       });
 }

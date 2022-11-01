@@ -40,6 +40,7 @@
     # useUserPackages = true;
     extraSpecialArgs = {
       inherit inputs username homeDirectory;
+      lib = lib // inputs.home-manager.lib;
       nixosConfig = config;
     };
     users.${username} = import ./home.nix;

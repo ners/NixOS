@@ -1,20 +1,19 @@
-{ python3Packages, grim }:
+{ python3Packages
+, grim
+, ...
+}:
 
-python3Packages.buildPythonPackage rec {
+python3Packages.buildPythonApplication {
   name = "assign-cgroups";
+  format = "other";
 
-  src = [ ./assign-cgroups ./setup.py ];
+  src = ./.;
 
-  unpackPhase = ''
-    for srcFile in $src; do
-      cp $srcFile $(stripHash $srcFile)
-    done
-  '';
   installPhase = ''
+    runHook preInstall
     install -Dm 0755 assign-cgroups $out/bin/assign-cgroups
+    runHook postInstall
   '';
 
-  dontConfigure = true;
-
-  propagatedBuildInputs = with python3Packages; [ dbus-next i3ipc psutil tenacity xlib ];
+  propagatedBuildInputs = with python3Packages; [ dbus-fast i3ipc psutil tenacity xlib ];
 }

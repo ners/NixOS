@@ -25,15 +25,17 @@
       bat
       boxes
       bridge-utils
+      btop
       dconf
       entr
+      exa
       exfat
       expect
+      fd
       file
       fwupd
       fwupd-efi
       fx
-      htop
       iproute
       jq
       killall
@@ -46,6 +48,7 @@
       neovim
       nix-diff
       nix-index
+      nix-top
       nixos-option
       nixos-update
       nvd

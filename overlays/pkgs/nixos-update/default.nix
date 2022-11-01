@@ -1,6 +1,7 @@
-{ lib
+{ inputs
 , writeShellApplication
 , shell-utils
+, nix-output-monitor
 , nvd
 , tmux
 , ...
@@ -9,9 +10,9 @@
 writeShellApplication {
   name = "nixos-update";
   text =
-    lib.concatFiles [
+    inputs.lib.concatFiles [
       shell-utils
       ./nixos-update.sh
     ];
-  runtimeInputs = [ nvd tmux ];
+  runtimeInputs = [ nix-output-monitor nvd tmux ];
 }

@@ -3,6 +3,7 @@
 , wine
 , makeDesktopItem
 , writeScriptBin
+, ...
 }:
 
 stdenv.mkDerivation rec {
