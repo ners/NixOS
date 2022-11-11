@@ -49,6 +49,7 @@
       nix-diff
       nix-index
       nix-top
+      nix-tree
       nixos-option
       nixos-update
       nvd
