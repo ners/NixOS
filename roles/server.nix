@@ -2,7 +2,7 @@
 
 {
   imports = with inputs.self; [
-    nixosRoles.base
+    roles.base
   ];
 
   services.xserver.enable = lib.mkForce false;

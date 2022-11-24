@@ -23,7 +23,7 @@
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    stateVersion = inputs.self.nixosVersion;
+    stateVersion = inputs.self.version;
   };
 
   # Home-manager's generation is currently broken

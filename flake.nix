@@ -10,6 +10,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     vscodeInsiders = {
       url = "github:cideM/visual-studio-code-insiders-nix";
       inputs.unstable.follows = "nixpkgs-unstable";
@@ -32,10 +36,13 @@
       overlays = map mkOverlay overlaySrcs;
     in
     {
-      nixosVersion = inputs.nixpkgs-stable.lib.trivial.release;
-      nixosProfiles = lib.findModules ./profiles;
-      nixosRoles = lib.findModules ./roles;
-      nixosConfigurations = import ./configurations {
+      version = inputs.nixpkgs-stable.lib.trivial.release;
+      profiles = lib.findModules ./profiles;
+      roles = lib.findModules ./roles;
+      nixosConfigurations = import ./nixos {
+        inherit inputs lib overlays;
+      };
+      darwinConfigurations = import ./darwin {
         inherit inputs lib overlays;
       };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:

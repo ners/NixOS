@@ -7,8 +7,8 @@
 {
   imports = with inputs; [
     "${modulesPath}/installer/cd-dvd/installation-cd-graphical-base.nix"
-    self.nixosRoles.desktop
-    (import self.nixosProfiles.users.common (args // {
+    Roles.desktop
+    (import Profiles.users.common (args // {
       username = "nixos";
       initialHashedPassword = "";
       sshKeys = [

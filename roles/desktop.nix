@@ -2,14 +2,14 @@
 
 {
   imports = with inputs.self; [
-    nixosProfiles.fonts
-    nixosProfiles.fprintd
-    nixosProfiles.geoclue
-    nixosProfiles.gnome
-    nixosProfiles.pipewire
-    nixosProfiles.plymouth
-    nixosProfiles.virtualisation
-    nixosRoles.base
+    profiles.fonts
+    profiles.fprintd
+    profiles.geoclue
+    profiles.gnome
+    profiles.pipewire
+    profiles.plymouth
+    profiles.virtualisation
+    roles.base
   ];
 
   environment.systemPackages = with pkgs; [

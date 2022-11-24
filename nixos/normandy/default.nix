@@ -7,8 +7,8 @@
     nixos-hardware.nixosModules.common-gpu-amd
     nixos-hardware.nixosModules.common-pc
     nixos-hardware.nixosModules.common-pc-ssd
-    self.nixosRoles.desktop
-    self.nixosProfiles.users.ners
+    self.roles.desktop
+    self.profiles.users.ners
   ];
 
   systemd.network.wait-online.extraArgs = [

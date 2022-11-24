@@ -14,11 +14,11 @@ lib.pipe ./. [
       inherit system;
       modules = [
         {
-          system.stateVersion = self.nixosVersion;
+          system.stateVersion = inputs.self.version;
           networking.hostName = lib.mkDefault name;
           nixpkgs = { inherit pkgs; };
         }
-        (import path)
+        path
       ];
       specialArgs = { inherit inputs pkgs lib; };
     }

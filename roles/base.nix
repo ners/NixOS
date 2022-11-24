@@ -2,14 +2,14 @@
 
 {
   imports = with inputs; [
-    self.nixosProfiles.boot
-    self.nixosProfiles.btrfs
-    self.nixosProfiles.dvorak
-    self.nixosProfiles.network
-    self.nixosProfiles.nix
-    self.nixosProfiles.ssh
-    self.nixosProfiles.zram
-    self.nixosProfiles.zsh
+    self.profiles.boot
+    self.profiles.btrfs
+    self.profiles.dvorak
+    self.profiles.network
+    self.profiles.nix
+    self.profiles.ssh
+    self.profiles.zram
+    self.profiles.zsh
   ];
 
   i18n.defaultLocale = "en_GB.UTF-8";

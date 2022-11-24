@@ -286,9 +286,9 @@ function create_new_configuration()
 		fatal 'Invalid admin username'
 	fi
 	if [ "$username" = ners ]; then
-		userProfile=self.nixosProfiles.users.ners
+		userProfile=self.profiles.users.ners
 	else
-		userProfile="(import self.nixosProfiles.users.common (args // { username = \"$username\"; }))"
+		userProfile="(import self.profiles.users.common (args // { username = \"$username\"; }))"
 	fi
 	roles=()
 	basename --suffix=.nix $NIXOS_DIR/roles/*.nix | while read -r line; do
@@ -311,7 +311,7 @@ function create_new_configuration()
 		{
 		  imports = with inputs; [
 		    ./hardware-configuration.nix
-		    self.nixosRoles.$role
+		    self.roles.$role
 		    $userProfile
 		  ];
 		}

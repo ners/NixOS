@@ -87,6 +87,27 @@
         "type": "github"
       }
     },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1668784520,
+        "narHash": "sha256-gGgVAMwYPPmrfnvnoRi6OkEB5KRsNTb9uYzEceLdO/g=",
+        "owner": "lnl7",
+        "repo": "nix-darwin",
+        "rev": "6349b99bc2b96ded34d068a88c7c5ced406b7f7f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lnl7",
+        "ref": "master",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1669146234,
@@ -119,11 +140,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1669276570,
-        "narHash": "sha256-aaMYOeda8aNCYe09qpygVjfJHL9qp9eeLXBQr5kLJS4=",
+        "lastModified": 1669279344,
+        "narHash": "sha256-8Mx/ZylGsq67R3KEapwv0irSfUHdxW2wAeECX6rYAqg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "cd77d358f9491ce2b268317d2ae2cdb5af92e077",
+        "rev": "f7fb04aaa9e4e7b5d52de2b3be30a80894894e1c",
         "type": "github"
       },
       "original": {
@@ -170,6 +191,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nix-colors": "nix-colors",
+        "nix-darwin": "nix-darwin",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
