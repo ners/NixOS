@@ -8,8 +8,6 @@
 
 stdenvNoCC.mkDerivation {
   inherit (nix)
-    debug
-    man
     meta
     name
     outputs

@@ -42,7 +42,7 @@
       let pkgs = import inputs.nixpkgs-stable { inherit system overlays; }; in
       {
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs.unstable; [ nix nixfmt ];
+          nativeBuildInputs = with pkgs.unstable; [ nix-monitored nixfmt ];
         };
         packages = pkgs;
       });
