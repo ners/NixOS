@@ -15,18 +15,21 @@ let
       };
       setSourceRoot = "sourceRoot=`pwd`";
       installPhase = ''
-        for f in ${sourceRoot}/*.ttf; do
-          install -Dm644 -D "$f" "$out/share/fonts/truetype/${name}/$f"
+        find ${sourceRoot} -type f -name '*.ttf' | while read f; do
+          echo installing "$f" to "/share/fonts/truetype/${name}/$(basename $f)"
+          install -Dm644 -D "$f" "$out/share/fonts/truetype/${name}/$(basename $f)"
         done
-        for f in ${sourceRoot}/*.otf; do
-          install -Dm644 -D "$f" "$out/share/fonts/opentype/${name}/$f"
+        find ${sourceRoot} -type f -name '*.otf' | while read f; do
+          echo installing "$f" to "/share/fonts/opentype/${name}/$(basename $f)"
+          install -Dm644 -D "$f" "$out/share/fonts/opentype/${name}/$(basename $f)"
         done
       '';
     };
   oswald = mkFont {
     name = "oswald";
     url = "https://github.com/googlefonts/OswaldFont/archive/refs/heads/main.zip";
-    sha256 = "sha256-7W3N5BYhW6YjknCIMIxxp8ENTmhjO3PpjMcP+xEXAok=";
+    sha256 = "sha256-I0qJXb7dW6Hz77YwgUVxwy6c5ry4cnkj6Sqmb1Wcu1w=";
+    sourceRoot = "OswaldFont-main/fonts";
   };
   gula = mkFont {
     name = "gula";
@@ -36,7 +39,7 @@ let
   playfair = mkFont {
     name = "playfair";
     url = "https://github.com/clauseggers/Playfair/archive/refs/heads/master.zip";
-    sha256 = "sha256-Xmme9g1Ay8vRLQ5BIfRtEkGRGC2Z++NIk8UrEPzsbqA=";
+    sha256 = "sha256-j+xciORyOuV993D5d7DnFnaI7oX3S4noVn8NQda39kA=";
     sourceRoot = "Playfair-master/fonts/VF-TTF";
   };
 in

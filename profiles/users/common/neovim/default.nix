@@ -7,9 +7,9 @@ let
     master = pkgs.master.vimPlugins;
     local = pkgs.local.vimPlugins;
   };
-  loadPlugin = plugin: ''
-    set rtp^=${plugin}
-    set rtp+=${plugin}/after
+  loadPlugin = p: ''
+    set rtp^=${p.plugin or p}
+    set rtp+=${p.plugin or p}/after
   '';
   loadPlugins = lib.pipef [ (builtins.map loadPlugin) lib.unlines ];
   plugins = with vimPlugins.unstable; [
@@ -29,7 +29,13 @@ let
     fzf-vim
     fzfWrapper
     gitsigns-nvim
-    impatient-nvim
+    {
+      plugin = impatient-nvim;
+      type = "lua";
+      config = ''
+        require('impatient')
+      '';
+    }
     incsearch-vim
     indent-blankline-nvim
     litee-calltree-nvim
@@ -44,7 +50,18 @@ let
     mkdir-nvim
     neoscroll-nvim
     nvim-autopairs
-    nvim-base16
+    {
+      plugin = nvim-base16;
+      type = "lua";
+      config = with config.colorScheme.colors; ''
+        require('base16-colorscheme').setup({
+            base00 = '#${base00}', base01 = '#${base01}', base02 = '#${base02}', base03 = '#${base03}',
+            base04 = '#${base04}', base05 = '#${base05}', base06 = '#${base06}', base07 = '#${base07}',
+            base08 = '#${base08}', base09 = '#${base09}', base0A = '#${base0A}', base0B = '#${base0B}',
+            base0C = '#${base0C}', base0D = '#${base0D}', base0E = '#${base0E}', base0F = '#${base0F}',
+        })
+      '';
+    }
     nvim-cmp
     nvim-dap
     nvim-dap-ui
@@ -79,20 +96,12 @@ in
     vimdiffAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    extraConfig = with config.colorScheme.colors; ''
-      " Workaround for broken handling of packpath by vim8/neovim for ftplugins -- see https://github.com/NixOS/nixpkgs/issues/39364#issuecomment-425536054 for more info
+    inherit plugins;
+    extraConfig = ''
       filetype off | syn off
       ${loadPlugins plugins}
-      filetype indent plugin on | syn on
+      filetype indent plugin on | syn on 
       ${builtins.readFile ./init.vim}
-      lua << EOF
-      require('base16-colorscheme').setup({
-          base00 = '#${base00}', base01 = '#${base01}', base02 = '#${base02}', base03 = '#${base03}',
-          base04 = '#${base04}', base05 = '#${base05}', base06 = '#${base06}', base07 = '#${base07}',
-          base08 = '#${base08}', base09 = '#${base09}', base0A = '#${base0A}', base0B = '#${base0B}',
-          base0C = '#${base0C}', base0D = '#${base0D}', base0E = '#${base0E}', base0F = '#${base0F}',
-      })
-      EOF
     '';
   };
   xdg.configFile = {

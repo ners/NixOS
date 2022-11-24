@@ -52,6 +52,7 @@
       nix-tree
       nixos-option
       nixos-update
+      unstable.nix-output-monitor
       nvd
       parted
       pciutils

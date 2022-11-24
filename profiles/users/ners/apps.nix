@@ -6,12 +6,12 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = lib.mimePkgs (with pkgs; [
-      element-desktop
       unstable.chromium
       unstable.darktable
       unstable.discord
       unstable.drawio
-      unstable.firefox-devedition-wayland
+      unstable.element-desktop
+      unstable.firefox-devedition-bin
       unstable.foliate
       unstable.plexamp
       unstable.signal-desktop

@@ -18,7 +18,6 @@ in
         enable = true;
         defaultApplications = lib.mimePkgs (with pkgs; [
           evince
-          evolution
           firefox-wayland
           gnome-connections
           gnome.eog
@@ -28,6 +27,7 @@ in
           mpv
           neovim-qt
           rhythmbox
+          thunderbird
           transmission-gtk
           virt-manager
           virt-viewer

@@ -13,10 +13,8 @@
     audacity
     bintools
     cabal2nix
-    element-desktop
     ffmpeg
     flatpak
-    fractal
     gimp
     gitg
     graphviz
@@ -30,7 +28,8 @@
     unstable.darktable
     unstable.discord
     unstable.drawio
-    unstable.firefox-devedition-wayland
+    unstable.element-desktop
+    unstable.firefox-devedition-bin
     unstable.foliate
     unstable.ngrok
     unstable.nushell

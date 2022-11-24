@@ -23,11 +23,11 @@ stdenvNoCC.mkDerivation {
     ls ${nix} | while read d; do
       [ -e "$out/$d" ] || ln -s ${nix}/$d $out/$d
     done
-    nom=${nix-output-monitor}/bin/nom
     echo nix | while read b; do
-    command=${nix}/bin/$b
+    command=$b
     cat << EOF > $out/bin/$b
     #!${runtimeShell}
+    export PATH=${nix}/bin:${nix-output-monitor}/bin:\$PATH
     ${builtins.readFile ./monitored.sh}
     EOF
     chmod +x $out/bin/$b

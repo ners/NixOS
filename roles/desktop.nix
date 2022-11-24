@@ -21,6 +21,7 @@
     neovim-qt
     speedtest-cli
     spice-gtk
+    thunderbird
     transmission-gtk
     virt-manager
     virt-viewer
