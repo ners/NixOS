@@ -3,7 +3,7 @@
 
 # This file is responsible for defining default applications by mimetype.
 let
-  enable = nixosConfig.services.xserver.enable;
+  enable = nixosConfig.services.xserver.enable or false;
   debugEnable = with builtins;
     trace
       "xdg: ${if enable then "enable" else "disable"}"

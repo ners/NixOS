@@ -4,7 +4,6 @@
   imports = [
     ./calibre.nix
     ./fonts.nix
-    ./git.nix
     ./sway
     ./vscode.nix
   ];
@@ -42,6 +41,12 @@
     v4l-utils
     winbox
   ];
+
+  programs.git = {
+    package = pkgs.gitAndTools.gitFull;
+    userName = "ners";
+    userEmail = "ners@gmx.ch";
+  };
 
   home.sessionVariables = {
     BROWSER = "firefox";

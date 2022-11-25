@@ -5,10 +5,7 @@
 
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
     difftastic.enable = true;
-    userName = "ners";
-    userEmail = "ners@gmx.ch";
     ignores = [ ".*" "!.envrc" "!.gitignore" "!.gitkeep" ];
     aliases = {
       commend = "commit --amend --no-edit";

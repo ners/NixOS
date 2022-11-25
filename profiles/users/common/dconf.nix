@@ -5,7 +5,7 @@
 }:
 
 let
-  enable = nixosConfig.services.dbus.enable;
+  enable = nixosConfig.services.dbus.enable or false;
   debugEnable = with builtins;
     trace
       "dconf: ${if enable then "enable" else "disable"}"

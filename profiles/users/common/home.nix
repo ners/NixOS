@@ -34,6 +34,7 @@
     ./apps.nix
     ./dconf.nix
     ./direnv.nix
+    ./git.nix
     ./neovim
     ./starship.nix
     ./tmux.nix
@@ -44,5 +45,5 @@
 
   colorScheme = inputs.nix-colors.colorSchemes.default-dark;
 
-  services.udiskie.enable = true;
+  services.udiskie.enable = pkgs.stdenv.isLinux;
 }

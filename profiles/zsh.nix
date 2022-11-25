@@ -1,9 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
-{
-  programs.zsh.enable = true;
-
-  environment.shells = [ pkgs.zsh ];
-
-  users.defaultUserShell = pkgs.zsh;
-}
+lib.mkMerge [
+  {
+    programs.zsh.enable = true;
+  }
+  (lib.optionalAttrs pkgs.stdenv.isLinux {
+    environment.shells = [ pkgs.zsh ];
+    users.defaultUserShell = pkgs.zsh;
+  })
+]

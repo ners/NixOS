@@ -9,7 +9,7 @@
     profiles.pipewire
     profiles.plymouth
     profiles.virtualisation
-    roles.base
+    roles.nixos
   ];
 
   environment.systemPackages = with pkgs; [
