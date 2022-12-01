@@ -21,23 +21,29 @@ in
             org.gnome = {
               desktop = {
                 interface = {
-                  font-antialiasing = "rgba";
+                  font-antialiasing = "grayscale";
                   font-hinting = "full";
                   gtk-im-module = "gtk-im-context-simple";
                   gtk-theme = "Adwaita-dark";
+                  color-scheme = "prefer-dark";
                 };
-                peripherals.touchpad = {
-                  tap-to-click = true;
-                  two-finger-scrolling-enabled = true;
+                peripherals = {
+                  touchpad = {
+                    tap-to-click = true;
+                    two-finger-scrolling-enabled = true;
+                  };
+                  keyboard = {
+                    repeat = true;
+                    delay = 200;
+                    repeat-interval = 10;
+                  };
                 };
               };
-
               shell.favorite-apps = [
                 "firefox.desktop"
                 "org.gnome.Console.desktop"
                 "org.gnome.Nautilus.desktop"
               ];
-
               nautilus = {
                 preferences = {
                   default-folder-viewer = "list-view";
@@ -49,12 +55,11 @@ in
                 };
                 list-view.use-tree-view = true;
               };
-
               gnome-system-monitor = {
                 cpu-smooth-graph = true;
                 cpu-stacked-area-chart = true;
               };
-
+              settings-daemon.plugins.color.night-light.enabled = true;
             };
 
             org.virt-manager = {
