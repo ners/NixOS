@@ -63,13 +63,10 @@ in
             };
 
             org.virt-manager = {
-              connections =
-                let uris = [ "qemu:///system" "qemu:///session" ];
-                in
-                {
-                  inherit uris;
-                  autoconnect = uris;
-                };
+              connections = rec {
+                uris = [ "qemu:///system" "qemu:///session" ];
+                autoconnect = uris;
+              };
               virt-manager.xmleditor-enabled = true;
               console.resize-guest = 1;
             };

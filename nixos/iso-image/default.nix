@@ -7,8 +7,8 @@
 {
   imports = with inputs; [
     "${modulesPath}/installer/cd-dvd/installation-cd-graphical-base.nix"
-    Roles.desktop
-    (import Profiles.users.common (args // {
+    self.roles.desktop
+    (import self.profiles.users.common (args // {
       username = "nixos";
       initialHashedPassword = "";
       sshKeys = [
@@ -17,8 +17,21 @@
     }))
   ];
 
-  boot.initrd.luks.devices = { };
+  boot.initrd = {
+    luks.devices = { };
+    systemd.enable = false;
+  };
+
   environment.systemPackages = with pkgs; [
     nixos-wizard
   ];
+
+  isoImage.edition = "gnome";
+  services.xserver.displayManager = {
+    gdm.autoSuspend = false;
+    autoLogin = {
+      enable = true;
+      user = "nixos";
+    };
+  };
 }

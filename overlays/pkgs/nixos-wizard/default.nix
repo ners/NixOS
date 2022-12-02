@@ -1,4 +1,4 @@
-{ lib
+{ inputs
 , writeShellApplication
 , shell-utils
 , gptfdisk
@@ -10,7 +10,7 @@
 writeShellApplication {
   name = "nixos-wizard";
   text =
-    lib.concatFiles [
+    inputs.lib.concatFiles [
       shell-utils
       ./nixos-wizard.sh
     ];

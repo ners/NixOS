@@ -46,11 +46,15 @@
         inherit inputs lib overlays;
       };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import inputs.nixpkgs-stable { inherit system overlays; }; in
+      let
+        pkgs = import inputs.nixpkgs-stable { inherit system overlays; };
+      in
       {
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs.unstable; [ nix-monitored nixfmt ];
         };
-        packages = pkgs;
+        packages = pkgs // {
+          iso-image = inputs.self.nixosConfigurations.iso-image.config.system.build.isoImage;
+        };
       });
 }
