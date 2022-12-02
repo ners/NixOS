@@ -18,7 +18,7 @@
     libappindicator
     libimobiledevice
     mpv
-    neovim-qt
+    neovide
     speedtest-cli
     spice-gtk
     thunderbird

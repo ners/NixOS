@@ -20,7 +20,7 @@
     shellAliases = {
       open = ''open() { xdg-open "$@" & disown }; open'';
       exa = "exa --tree --icons";
-      gvim = "nvim-qt";
+      gvim = "neovide";
       make = "make -j$(nproc)";
       makevars = "make -pn | grep -A1 '^# makefile' | grep -v '^#\\|^--' | sort | uniq";
       scp = "scp -F $HOME/.ssh/config";

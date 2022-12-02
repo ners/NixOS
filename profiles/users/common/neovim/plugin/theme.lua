@@ -9,6 +9,8 @@ require 'lualine'.setup {
 	}
 }
 
+vim.opt.guifont = { "FiraCode Nerd Font", "Emoji", ":h11" }
+
 -- Show invisible characters
 vim.opt.list = true
 vim.opt.listchars = { tab = '› ', trail = '~', extends = '»', precedes = '«', nbsp = '_', }

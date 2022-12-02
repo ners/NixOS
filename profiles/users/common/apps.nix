@@ -25,10 +25,10 @@ in
           gnome.nautilus
           gparted
           mpv
-          neovim-qt
           rhythmbox
           thunderbird
           transmission-gtk
+          neovide
           virt-manager
           virt-viewer
         ]);

@@ -1,5 +1,3 @@
-GuiRenderLigatures 1
-GuiFont! Monospace:h11:w25
 highlight LineNr guibg=NONE
 highlight NonText guifg=bg
 highlight SignColumn guibg=NONE
