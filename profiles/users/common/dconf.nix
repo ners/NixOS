@@ -29,9 +29,11 @@ in
                 };
                 peripherals = {
                   touchpad = {
+                    speed = 0.5;
                     tap-to-click = true;
                     two-finger-scrolling-enabled = true;
                   };
+                  mouse.speed = 0.5;
                   keyboard = {
                     repeat = true;
                     delay = 200;

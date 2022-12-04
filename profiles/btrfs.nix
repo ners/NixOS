@@ -10,6 +10,7 @@
 
   fileSystems."/home".options = [
     "compress=zstd"
+    "discard"
   ];
 
   fileSystems."/nix".options = [

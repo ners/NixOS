@@ -28,11 +28,11 @@
       options = [ "subvol=home" ];
     };
 
-  fileSystems."/swap" =
+  fileSystems."/nix" =
     {
       device = "/dev/disk/by-uuid/05016c6b-71b1-4b3f-b711-35eb02cca0a9";
       fsType = "btrfs";
-      options = [ "subvol=swap" ];
+      options = [ "subvol=nix" ];
     };
 
   fileSystems."/boot" =

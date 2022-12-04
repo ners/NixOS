@@ -25,10 +25,10 @@
     fsType = "vfat";
   };
 
-  fileSystems."/swap" = {
+  fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/d0803e00-563c-4ad6-9fb1-0b9fb28c6312";
     fsType = "btrfs";
-    options = [ "subvol=swap" ];
+    options = [ "subvol=nix" ];
   };
 
   fileSystems."/home" = {
