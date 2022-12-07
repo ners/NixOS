@@ -63,6 +63,7 @@ in
               };
               settings-daemon.plugins.color.night-light.enabled = true;
             };
+            org.gtk.gtk4.settings.file-chooser.sort-directories-first = true;
 
             org.virt-manager = {
               connections = rec {

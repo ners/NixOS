@@ -37,9 +37,9 @@
     unstable.slack
     unstable.sweethome3d.application
     unstable.tdesktop
+    unstable.winbox
     unstable.zoom-us
     v4l-utils
-    winbox
   ];
 
   programs.git = {
