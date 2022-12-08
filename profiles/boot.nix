@@ -30,7 +30,6 @@ in
     };
 
     initrd = {
-      availableKernelModules = [ "aesni_intel" "cryptd" ];
       # Use systemd for PID 1.
       systemd.enable = mkDefault true;
     };
