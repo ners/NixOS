@@ -36,7 +36,7 @@
     blueman.enable = true;
     flatpak.enable = true;
     fwupd.enable = true;
-    localtime.enable = true;
+    localtimed.enable = true;
     printing.enable = true;
     redshift.enable = true;
     usbmuxd.enable = true;

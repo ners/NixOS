@@ -55,11 +55,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1670280307,
-        "narHash": "sha256-3x+0whP1nCz5adQMIsBA3L9fI/ABOpRUJdbw0AmxBnU=",
+        "lastModified": 1670970889,
+        "narHash": "sha256-TWJo3/X3Q3r+HeX16QN4FE6ddBpGtAboymSEF+4Nnc0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2af0d07678fc15612345e0dd55337550dcf6465f",
+        "rev": "e412025fffdcd6219ddd21c65d9a1b90005ce508",
         "type": "github"
       },
       "original": {
@@ -94,11 +94,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1668784520,
-        "narHash": "sha256-gGgVAMwYPPmrfnvnoRi6OkEB5KRsNTb9uYzEceLdO/g=",
+        "lastModified": 1671020882,
+        "narHash": "sha256-nilsez0cjzvWUZzcWI+ZK3gY/wT3RvkQA9qw8GYJmEU=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "6349b99bc2b96ded34d068a88c7c5ced406b7f7f",
+        "rev": "2795e05cca69bddad989186888175548f4fca33d",
         "type": "github"
       },
       "original": {
@@ -110,11 +110,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1670174919,
-        "narHash": "sha256-XdQr3BUnrvVLRFunLWrZORhwYHDG0+9jUUe0Jv1pths=",
+        "lastModified": 1671183612,
+        "narHash": "sha256-Q6so0tBGEb9Bhx++FP6cJQ+K83hOZ99ffmcdcWtDS14=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "9d87bc030a0bf3f00e953dbf095a7d8e852dab6b",
+        "rev": "488931efb69a50307fa0d71e23e78c8706909416",
         "type": "github"
       },
       "original": {
@@ -140,11 +140,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1670488312,
-        "narHash": "sha256-CMFwLIZ0/KaE3M7Tyu7YsZWIJNjjwpW8U+6YF6UYpTI=",
+        "lastModified": 1671190014,
+        "narHash": "sha256-NW385LW4Nj53Hbv3LXr458s4NL2/wcARC8rzK7vSWkw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0e50858afba8396af18f2a2681208a1e5835a83c",
+        "rev": "fbcb61bd7eb19914cbd88789c3586a63ff46b72b",
         "type": "github"
       },
       "original": {
@@ -155,11 +155,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1670372410,
-        "narHash": "sha256-BDiOUkuqgq5DP+E5xfTzIFYYyMb8DpSLYmeaOBeZ0vg=",
+        "lastModified": 1671122953,
+        "narHash": "sha256-SVWmiyX2wx6BAxo4zMfRqDgFoWf4d3Vx1MgG/Vo4jL4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5528350186a9e826588cee1329640899ca44a0cf",
+        "rev": "0152de25d49dc16883b65f3e29cfea8d32f68956",
         "type": "github"
       },
       "original": {
@@ -171,11 +171,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1670242877,
-        "narHash": "sha256-jBLh7dRHnbfvPPA9znOC6oQfKrCPJ0El8Zoe0BqnCjQ=",
+        "lastModified": 1671108576,
+        "narHash": "sha256-6ggOL6KoaELNA1562tnPjtAnQ9SwsKRTgeuaXvPzCwI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6e51c97f1c849efdfd4f3b78a4870e6aa2da4198",
+        "rev": "0f5996b524c91677891a432cc99c7567c7c402b1",
         "type": "github"
       },
       "original": {
@@ -215,26 +215,15 @@
       }
     },
     "vscodeInsiders": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "unstable": [
-          "nixpkgs-unstable"
-        ]
-      },
+      "flake": false,
       "locked": {
-        "lastModified": 1668249087,
-        "narHash": "sha256-IcorHHnm0FP8cdiYD/lZC9F/bP+Ru9JgBY4VPZVQDcE=",
-        "owner": "cideM",
-        "repo": "visual-studio-code-insiders-nix",
-        "rev": "f3135a0171bc2900753ca31b2cb9efa8345a755a",
-        "type": "github"
+        "narHash": "sha256-G1XiWW60Vr9sK6WVYMO3cuxNJFjnmtl0jJz8SEVS4vk=",
+        "type": "tarball",
+        "url": "https://code.visualstudio.com/sha/download?build=insider&os=linux-x64"
       },
       "original": {
-        "owner": "cideM",
-        "repo": "visual-studio-code-insiders-nix",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://code.visualstudio.com/sha/download?build=insider&os=linux-x64"
       }
     }
   },

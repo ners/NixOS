@@ -15,9 +15,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     vscodeInsiders = {
-      url = "github:cideM/visual-studio-code-insiders-nix";
-      inputs.unstable.follows = "nixpkgs-unstable";
-      inputs.flake-utils.follows = "flake-utils";
+      url = "tarball+https://code.visualstudio.com/sha/download?build=insider&os=linux-x64";
+      flake = false;
     };
     flake-compat = {
       url = "github:edolstra/flake-compat";
