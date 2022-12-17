@@ -1,4 +1,6 @@
 { inputs
+, lib
+, writeShellApplication
 , stdenvNoCC
 , runtimeShell
 , nix
@@ -6,14 +8,45 @@
 , ...
 }:
 
+let
+  nix-monitored-script = (writeShellApplication {
+    name = "nix-monitored";
+    runtimeInputs = [ nix nix-output-monitor ];
+    text = ''
+      command="$(basename "$0")"
+      if ! [ -t 2 ]; then
+      	exec "$command" "$@"
+      fi
+
+      verb="$1"
+      shift
+      case "$verb" in
+      	run)
+      		nom build --no-link "$@"
+      		exec nix "$verb" "$@"
+      		;;
+      	repl|flake)
+      		exec nix "$verb" "$@"
+      		;;
+      	build|shell|develop)
+      		exec nom "$verb" "$@"
+      		;;
+      esac
+      exec "$command" "$verb" "$@" 2> >(nom 1>&2)
+    '';
+  }).overrideAttrs (attrs: rec {
+    inherit (nix) version;
+    pname = attrs.name;
+    name = "${pname}-${version}";
+  });
+in
 stdenvNoCC.mkDerivation {
   inherit (nix)
     meta
-    name
     outputs
-    pname
     version
     ;
+  pname = "nix-monitored";
   src = nix;
   phases = [ "installPhase" ];
   installPhase = ''
@@ -21,14 +54,8 @@ stdenvNoCC.mkDerivation {
     ls ${nix} | while read d; do
       [ -e "$out/$d" ] || ln -s ${nix}/$d $out/$d
     done
-    echo nix | while read b; do
-    command=$b
-    cat << EOF > $out/bin/$b
-    #!${runtimeShell}
-    export PATH=${nix}/bin:${nix-output-monitor}/bin:\$PATH
-    ${builtins.readFile ./monitored.sh}
-    EOF
-    chmod +x $out/bin/$b
+    for b in nix nix-build nix-shell; do
+      ln -s ${nix-monitored-script}/bin/nix-monitored $out/bin/$b
     done
     ls ${nix}/bin | while read b; do
       [ -e $out/bin/$b ] || ln -s ${nix}/bin/$b $out/bin/$b

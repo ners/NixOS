@@ -17,6 +17,7 @@
     gparted
     libappindicator
     libimobiledevice
+    libnotify
     mpv
     neovide
     speedtest-cli

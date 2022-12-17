@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   session = "sway-session.target";
@@ -17,9 +17,25 @@ in
     };
   };
 
-  programs.mako = {
+  programs.mako = with config.colorScheme.colors; {
     enable = true;
     defaultTimeout = 3000;
-    font = "Monospace 11";
+    font = "Inter Nerd Font 11";
+
+    backgroundColor = "#${base00}";
+    textColor = "#${base05}";
+    borderColor = "#${base0D}";
+
+    extraConfig = ''
+      [urgency=low]
+      background-color=#${base00}
+      text-color=#${base0A}
+      border-color=#${base0D}
+
+      [urgency=high]
+      background-color=#${base00}
+      text-color=#${base08}
+      border-color=#${base0D}
+    '';
   };
 }
