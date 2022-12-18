@@ -1,5 +1,6 @@
 { inputs, pkgs, ... }:
 
+let lan = "eno2"; in
 {
   imports = with inputs; [
     ./hardware-configuration.nix
@@ -11,9 +12,22 @@
     self.profiles.users.ners
   ];
 
-  systemd.network.wait-online.extraArgs = [
-    "--interface=eno2"
-  ];
+  systemd.network = {
+    wait-online.extraArgs = [
+      "--interface=${lan}"
+    ];
+    links."40-wake-on-lan" = {
+      matchConfig.OriginalName = lan;
+      linkConfig = {
+        NamePolicy = "keep kernel database onboard slot path";
+        AlternativeNamesPolicy = "database onboard slot path";
+        MACAddressPolicy = "persistent";
+        WakeOnLan = "magic";
+      };
+    };
+  };
+
+  networking.interfaces.${lan}.wakeOnLan.enable = true;
 
   hardware.keyboard.zsa.enable = true;
 

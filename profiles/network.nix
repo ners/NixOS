@@ -9,6 +9,7 @@
     dhcpcd.extraConfig = "noarp";
   };
 
+  systemd.network.enable = true;
   systemd.services = {
     NetworkManager-wait-online.enable = false;
     systemd-udev-settle.enable = false;
