@@ -1,3 +1,4 @@
+set -e
 ensure_tmux nixos-update "$@"
 peval cd /etc/nixos
 peval nix flake update

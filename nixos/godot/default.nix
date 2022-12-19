@@ -4,8 +4,9 @@
   imports = with inputs; [
     ./hardware-configuration.nix
     nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen
-    self.roles.desktop
     self.profiles.users.ners
+    self.roles.desktop
+    self.roles.laptop
   ];
 
   systemd.network.wait-online.extraArgs = [

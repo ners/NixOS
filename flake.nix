@@ -50,7 +50,7 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs.unstable; [ nix-monitored nixfmt ];
+          nativeBuildInputs = with pkgs.unstable; [ nixfmt ];
         };
         packages = pkgs // {
           iso-image = inputs.self.nixosConfigurations.iso-image.config.system.build.isoImage;

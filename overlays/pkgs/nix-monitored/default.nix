@@ -1,52 +1,43 @@
 { inputs
 , lib
+, stdenv
 , writeShellApplication
+, python3
 , stdenvNoCC
-, runtimeShell
 , nix
 , nix-output-monitor
+, withNotify ? true
+, libnotify
+, nixos-icons
 , ...
 }:
 
 let
-  nix-monitored-script = (writeShellApplication {
-    name = "nix-monitored";
-    runtimeInputs = [ nix nix-output-monitor ];
-    text = ''
-      command="$(basename "$0")"
-      if ! [ -t 2 ]; then
-      	exec "$command" "$@"
-      fi
-
-      verb="$1"
-      shift
-      case "$verb" in
-      	run)
-      		nom build --no-link "$@"
-      		exec nix "$verb" "$@"
-      		;;
-      	repl|flake)
-      		exec nix "$verb" "$@"
-      		;;
-      	build|shell|develop)
-      		exec nom "$verb" "$@"
-      		;;
-      esac
-      exec "$command" "$verb" "$@" 2> >(nom 1>&2)
+  pname = "nix-monitored";
+  nix-monitored-cpp = stdenv.mkDerivation {
+    pname = "nix-monitored";
+    version = nix.version;
+    src = ./.;
+    buildPhase = ''
+      mkdir -p $out/bin
+      ''${CXX} \
+        ''${CXXFLAGS} \
+        -std=c++11 \
+        -O2 \
+        -DPATH='"${nix}/bin:${nix-output-monitor}/bin"' \
+        -o $out/bin/nix \
+        $src/monitored.cc
     '';
-  }).overrideAttrs (attrs: rec {
-    inherit (nix) version;
-    pname = attrs.name;
-    name = "${pname}-${version}";
-  });
+    dontInstall = true;
+  };
 in
 stdenvNoCC.mkDerivation {
   inherit (nix)
-    meta
     outputs
     version
     ;
-  pname = "nix-monitored";
+  inherit pname;
+  meta = nix.meta // { mainProgram = "nix"; };
   src = nix;
   phases = [ "installPhase" ];
   installPhase = ''
@@ -55,7 +46,7 @@ stdenvNoCC.mkDerivation {
       [ -e "$out/$d" ] || ln -s ${nix}/$d $out/$d
     done
     for b in nix nix-build nix-shell; do
-      ln -s ${nix-monitored-script}/bin/nix-monitored $out/bin/$b
+      ln -s ${nix-monitored-cpp}/bin/nix $out/bin/$b
     done
     ls ${nix}/bin | while read b; do
       [ -e $out/bin/$b ] || ln -s ${nix}/bin/$b $out/bin/$b
