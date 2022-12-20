@@ -4,6 +4,7 @@
 , nix-output-monitor
 , nvd
 , tmux
+, systemd
 , ...
 }:
 
@@ -14,5 +15,10 @@ writeShellApplication {
       shell-utils
       ./nixos-update.sh
     ];
-  runtimeInputs = [ nix-output-monitor nvd tmux ];
+  runtimeInputs = [
+    nix-output-monitor
+    nvd
+    tmux
+    systemd
+  ];
 }
