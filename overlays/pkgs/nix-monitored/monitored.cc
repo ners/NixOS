@@ -22,6 +22,7 @@ void execvp_vector(std::vector<char*>&& args) {
 }
 
 int main(int argc, char* argv[]) {
+	std::cout << "HELLO WORLD" << std::endl;
 	std::string const path(std::string(PATH) + ":" + getenv("PATH"));
 	setenv("PATH", path.c_str(), 1);
 	if (!isatty(fileno(stderr)) || argc < 2) {
@@ -35,9 +36,15 @@ int main(int argc, char* argv[]) {
 			exit(127);
 		}
 		if (childPid == 0) {
-			argv[0] = (char*) "nom";
-			argv[1] = (char*) "build";
-			execvp_array(argv);
+			std::vector<char*> args{
+				(char*)"nom",
+				(char*)"build",
+				(char*)"--no-link"
+			};
+			for (int i = 2; i < argc && argv[i] != nullptr && std::string(argv[i]) != "--"; ++i) {
+				args.push_back(argv[i]);
+			}
+			execvp_vector(std::move(args));
 		}
 		int childStatus;
 		waitpid(childPid, &childStatus, 0);
