@@ -2,7 +2,8 @@
 
 {
   imports = with inputs; [
-    self.roles.base
+    self.roles.darwin
     self.profiles.users.rekk
+    ./homebrew.nix
   ];
 }

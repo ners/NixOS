@@ -17,7 +17,7 @@ function ask()
 			then echo -n " [Y/n] "
 			else echo -n " [y/N] "
 		fi
-		tput dim
+		tput dim || true
 		read -r answer
 		is_interactive || echo "$answer"
 		tput sgr 0
@@ -45,7 +45,7 @@ function warn()
 
 function info()
 {
-	tput dim
+	tput dim || true
 	echo "${@}"
 	tput sgr 0
 }

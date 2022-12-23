@@ -31,7 +31,8 @@
   outputs = inputs:
     let
       lib = import ./profiles/lib { inherit inputs; };
-      overlaySrcs = builtins.attrValues (lib.findModules ./overlays);
+      overlayModules = lib.findModules ./overlays;
+      overlaySrcs = [ overlayModules.pkgs ] ++ (with builtins; attrValues (removeAttrs overlayModules [ "pkgs" ]));
       mkOverlay = o: import o {
         inherit lib inputs;
         overlays = overlaySrcs;
