@@ -33,6 +33,7 @@
     unstable.ngrok
     unstable.nushell
     unstable.plexamp
+    unstable.prusa-slicer
     unstable.signal-desktop
     unstable.slack
     unstable.sweethome3d.application

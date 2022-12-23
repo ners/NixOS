@@ -1,5 +1,3 @@
---require'bufferline'.setup{}
---require 'crates'.setup {}
 require 'indent_blankline'.setup {}
 require 'litee.calltree'.setup {}
 require 'litee.filetree'.setup {}

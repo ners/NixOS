@@ -22,7 +22,6 @@ let
     cmp-path
     cmp-treesitter
     cmp_luasnip
-    crates-nvim
     direnv-vim
     fidget-nvim
     fzf-lsp-nvim
