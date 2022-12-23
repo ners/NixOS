@@ -12,7 +12,7 @@
     "/Users/${username}"
   else
     abort "Cannot infer homeDirectory"
-, initialHashedPassword
+, initialHashedPassword ? ""
 , extraGroups ? [
     "audio"
     "dialout"
