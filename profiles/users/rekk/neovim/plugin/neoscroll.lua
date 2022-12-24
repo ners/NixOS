@@ -1,0 +1,3 @@
+-- Smooth scrolling (neoscroll)
+-- require('neoscroll').setup({ happings = {'<C-u>', '<C-d>'}, easing_function = 'cubic', hide_cursor = 'false' })
+-- require('neoscroll.config').set_mappings({ ['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '125'}}, ['<C-d>'] = {'scroll', {'vim.wo.scroll', 'true', '125'}} })

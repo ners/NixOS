@@ -1,8 +1,8 @@
 { ... }:
 
 {
-  programs.git = {
-    userName = "rekk";
-    userEmail = "rekk@gmx.de";
-  };
+  imports = [
+    ./git.nix
+    ./neovim
+  ];
 }
