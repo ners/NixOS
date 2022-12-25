@@ -44,5 +44,6 @@
     gnome.gnome-tweaks
     gnome.nautilus
     gnomeExtensions.appindicator
+    nufraw-thumbnailer
   ];
 }

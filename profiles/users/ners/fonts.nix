@@ -31,6 +31,12 @@ let
     sha256 = "sha256-I0qJXb7dW6Hz77YwgUVxwy6c5ry4cnkj6Sqmb1Wcu1w=";
     sourceRoot = "OswaldFont-main/fonts";
   };
+  radley = mkFont {
+    name = "radley";
+    url = "https://github.com/googlefonts/RadleyFont/archive/refs/heads/main.zip";
+    sha256 = "sha256-HLxKHfpwPU9WH0ir/Hm3eURZTBB9nn/MfDSwvqYwRDY=";
+    sourceRoot = "RadleyFont-main/fonts";
+  };
   gula = mkFont {
     name = "gula";
     url = "https://dl.dafont.com/dl/?f=gula";
@@ -59,5 +65,6 @@ in
     paratype-pt-sans
     paratype-pt-serif
     playfair
+    radley
   ];
 }
