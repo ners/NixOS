@@ -3,25 +3,26 @@
 {
   homebrew = {
     enable = true;
-    onActivation = { autoUpdate = false; };
+    onActivation = {
+      autoUpdate = false;
+      cleanup = "uninstall";
+    };
     brews = [
       {
         name = "yabai";
         start_service = true;
-        restart_service = "changed";
+        restart_service = true;
       }
       {
         name = "skhd";
         start_service = true;
-        restart_service = "changed";
+        restart_service = true;
       }
     ];
     casks = [
       "iterm2"
       "firefox"
-    ];
-    taps = [
-      "koekeishiya/formulae"
+      "telegram-desktop"
     ];
   };
 }

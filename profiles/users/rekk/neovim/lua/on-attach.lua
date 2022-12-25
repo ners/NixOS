@@ -31,7 +31,7 @@ local function on_attach(client, buffer)
 	-- vim.api.nvim_buf_set_keymap(buffer, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 	-- vim.api.nvim_buf_set_keymap(buffer, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec([[
 			augroup lsp_document_highlight
 				autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()

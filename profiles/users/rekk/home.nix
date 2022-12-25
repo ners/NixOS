@@ -2,7 +2,9 @@
 
 {
   imports = [
-    ./git.nix
+    ./git
     ./neovim
+    ./yabai
+    ./skhd
   ];
 }
