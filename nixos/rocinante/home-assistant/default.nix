@@ -32,6 +32,8 @@ with builtins;
         pyheos
         pykodi
         pylitterbot
+        pyprusalink
+        pyqrcode
         speedtest-cli
         spotipy
         transmissionrpc
