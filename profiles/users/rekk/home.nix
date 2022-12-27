@@ -4,7 +4,8 @@
   imports = [
     ./git
     ./neovim
-    ./yabai
     ./skhd
+    ./yabai
+    ./zsh
   ];
 }

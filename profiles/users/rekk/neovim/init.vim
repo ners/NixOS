@@ -80,7 +80,7 @@ set tabstop=2
 map f <Plug>(easymotion-sn)
 
 " Theme
-colorscheme onedark
+colorscheme edge
 let g:airline_theme = 'onedark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_y = ''

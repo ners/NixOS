@@ -25,6 +25,7 @@ let
       completion-nvim
       conflict-marker-vim
       conjure
+      edge
       fzf-checkout-vim
       fzf-vim
       fzfWrapper
@@ -45,14 +46,10 @@ let
       nvim-treesitter
       nvim-treesitter-refactor
       nvim-ts-rainbow
-      onedark-nvim
-      onedarkpro-nvim
-      onehalf
       pgsql-vim
       psc-ide-vim
       vim-airline
       vim-airline-themes
-      vim-code-dark
       vim-commentary
       vim-devicons
       vim-easymotion

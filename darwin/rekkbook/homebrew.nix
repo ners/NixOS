@@ -20,9 +20,19 @@
       }
     ];
     casks = [
-      "iterm2"
+      "discord"
+      "displaylink"
+      "displaylink-login-extension"
       "firefox"
+      "google-chrome"
+      "iterm2"
+      "slack"
       "telegram-desktop"
+      "vimr"
+    ];
+    taps = [
+      "homebrew/cask-drivers"
+      "koekeishiya/formulae"
     ];
   };
 }
