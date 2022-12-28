@@ -8,7 +8,9 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nix-monitored = {
       url = "github:ners/nix-monitored";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-compat.follows = "flake-compat";
     };
     home-manager = {
       url = "github:nix-community/home-manager";

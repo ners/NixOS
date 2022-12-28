@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 self: super: {
-  nix-monitored = self.callPackage inputs.nix-monitored { };
+  nix-monitored = inputs.nix-monitored.packages.${self.system}.default.override self;
 
   nixos-rebuild = super.nixos-rebuild.override {
     nix = self.nix-monitored;

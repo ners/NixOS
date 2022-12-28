@@ -39,8 +39,13 @@ let
   };
   gula = mkFont {
     name = "gula";
-    url = "https://dl.dafont.com/dl/?f=gula";
+    url = "https://www.fontriver.com/f/gula.zip";
     sha256 = "sha256-kMop+cS9gKawaiyHmsD12WGPQkOJysUCQWYwtIlNE14=";
+  };
+  bluetea = mkFont {
+    name = "bluetea";
+    url = "https://www.fontriver.com/f/bluetea.zip";
+    sha256 = "sha256-jl5JKfJrUyYxGLEgyQccd2xB0wSVy15aMGZVXkwMClc=";
   };
   playfair = mkFont {
     name = "playfair";
@@ -48,11 +53,18 @@ let
     sha256 = "sha256-j+xciORyOuV993D5d7DnFnaI7oX3S4noVn8NQda39kA=";
     sourceRoot = "Playfair-master/fonts/VF-TTF";
   };
+  along-sans = mkFont {
+    name = "along-sans";
+    url = "https://dl.dafont.com/dl/?f=along_sans";
+    sha256 = "sha256-3rixZaoWlQaNBIjDUEdGMkrx8Z1rln7ueno60hA1mYw=";
+  };
 in
 {
   fonts.fontconfig.enable = lib.mkForce true;
   home.packages = with pkgs; [
+    along-sans
     agave
+    bluetea
     charis-sil
     crimson
     eb-garamond
