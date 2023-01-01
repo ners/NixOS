@@ -105,6 +105,7 @@ endif
 " Conjure - backslash as local leader
 let maplocalleader="\\"
 let g:conjure#mapping#eval_current_form = "<localleader><localleader>"
+let g:conjure#mapping#eval_root_form = "<localleader>r"
 " /////////
 " Global
 " /////////

@@ -33,8 +33,11 @@ hash -d be=$HOME/projects/meatico/backend
 hash -d bd=$HOME/projects/meatico/base_data
 hash -d nix=$HOME/projects/macos/nixpkgs
 
-alias vimr="/Applications/VimR.app/Contents/MacOS/VimR --cur-env"
+# aliases
+alias vimr="/Applications/VimR.app/Contents/MacOS/VimR --cur-env . &"
 alias remove_gql_codegen='find -X . -name "*.generated.ts" | xargs rm'
+alias darwin_rebuild="pushd ~/Projects/NixOS && darwin-rebuild build --flake . && result/sw/bin/darwin-rebuild switch --flake . && popd"
+alias git_list_assume_unchanged="git ls-files -v | grep '^[[:lower:]]'"
 
 # export PATH="$PATH:/opt/homebrew/opt/llvm/bin"
 # export PATH="$PATH:/Users/rekk/.local/bin"

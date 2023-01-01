@@ -1,7 +1,8 @@
 { ... }:
 
 {
-  system.defaults.NSGlobalDomain.KeyRepeat = 3;
+  system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
+  system.defaults.NSGlobalDomain.KeyRepeat = 1;
 
   system.defaults.dock.autohide = true;
 
