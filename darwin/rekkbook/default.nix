@@ -5,5 +5,6 @@
     self.roles.darwin
     self.profiles.users.rekk
     ./homebrew.nix
+    ./networking.nix
   ];
 }
