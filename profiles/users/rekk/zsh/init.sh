@@ -38,6 +38,8 @@ alias vimr="/Applications/VimR.app/Contents/MacOS/VimR --cur-env . &"
 alias remove_gql_codegen='find -X . -name "*.generated.ts" | xargs rm'
 alias darwin_rebuild="pushd ~/Projects/NixOS && darwin-rebuild build --flake . && result/sw/bin/darwin-rebuild switch --flake . && popd"
 alias git_list_assume_unchanged="git ls-files -v | grep '^[[:lower:]]'"
+alias kill_docker="docker rm -f $(docker ps -a -q) > /dev/null 2>/dev/null"
+alias ports_listening="sudo lsof -i- P | grep LISTEN"
 
 # export PATH="$PATH:/opt/homebrew/opt/llvm/bin"
 # export PATH="$PATH:/Users/rekk/.local/bin"

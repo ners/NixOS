@@ -172,6 +172,7 @@ set shiftwidth=4
 " autocmd Filetype nix set noexpandtab tabstop=2 sts=2 sw=2
 
 let g:sql_type_default = 'pgsql'
+let g:omni_sql_default_compl_type = 'syntax'
 
 " folding
 " set foldmethod=indent   

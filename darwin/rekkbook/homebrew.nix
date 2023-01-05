@@ -21,18 +21,19 @@
       }
     ];
     casks = [
-      "discord"
       "darktable"
+      "discord"
       "displaylink"
       "displaylink-login-extension"
       "firefox"
       "google-chrome"
       "iterm2"
+      "lycheeslicer"
+      "plexamp"
       "prusaslicer"
       "slack"
       "telegram-desktop"
       "vimr"
-      "lycheeslicer"
     ];
     taps = [
       "homebrew/cask-drivers"

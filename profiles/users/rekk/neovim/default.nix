@@ -46,7 +46,6 @@ let
       nvim-treesitter
       nvim-treesitter-refactor
       nvim-ts-rainbow
-      pgsql-vim
       psc-ide-vim
       vim-airline
       vim-airline-themes
@@ -75,7 +74,6 @@ in {
     nodejs
     python3
     rnix-lsp
-    sqls
     sumneko-lua-language-server
     yarn
   ];
