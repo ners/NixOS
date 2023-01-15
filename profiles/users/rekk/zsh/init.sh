@@ -3,6 +3,20 @@ odiff () {
     git diff origin/master...origin/$1
 }
 
+makeshell() {
+    basicshell="
+{ pkgs ? import <nixpkgs> {} }:
+
+pkgs.mkShell {
+  packages = [
+    texlive.combined.scheme-basic
+  ];
+}
+"
+    touch shell.nix
+    echo $basicshell >> shell.nix
+}
+
 makeflake() {
     basicflake="
 {

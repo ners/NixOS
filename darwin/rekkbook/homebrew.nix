@@ -21,6 +21,7 @@
       }
     ];
     casks = [
+      "calibre"
       "darktable"
       "discord"
       "displaylink"
@@ -29,6 +30,7 @@
       "google-chrome"
       "iterm2"
       "lycheeslicer"
+      "obsidian"
       "plexamp"
       "prusaslicer"
       "slack"

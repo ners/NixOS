@@ -22,7 +22,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     vscodeInsiders = {
-      url = "tarball+https://code.visualstudio.com/sha/download?build=insider&os=linux-x64";
+      url =
+        "tarball+https://code.visualstudio.com/sha/download?build=insider&os=linux-x64";
       flake = false;
     };
     flake-compat = {
@@ -35,33 +36,28 @@
     let
       lib = import ./profiles/lib { inherit inputs; };
       overlayModules = lib.findModules ./overlays;
-      overlaySrcs = [ overlayModules.pkgs ] ++ (with builtins; attrValues (removeAttrs overlayModules [ "pkgs" ]));
-      mkOverlay = o: import o {
-        inherit lib inputs;
-        overlays = overlaySrcs;
-      };
+      overlaySrcs = [ overlayModules.pkgs ]
+        ++ (with builtins; attrValues (removeAttrs overlayModules [ "pkgs" ]));
+      mkOverlay = o:
+        import o {
+          inherit lib inputs;
+          overlays = overlaySrcs;
+        };
       overlays = map mkOverlay overlaySrcs;
-    in
-    {
+    in {
       version = inputs.nixpkgs-stable.lib.trivial.release;
       profiles = lib.findModules ./profiles;
       roles = lib.findModules ./roles;
-      nixosConfigurations = import ./nixos {
-        inherit inputs lib overlays;
-      };
-      darwinConfigurations = import ./darwin {
-        inherit inputs lib overlays;
-      };
+      nixosConfigurations = import ./nixos { inherit inputs lib overlays; };
+      darwinConfigurations = import ./darwin { inherit inputs lib overlays; };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import inputs.nixpkgs-stable { inherit system overlays; };
-      in
-      {
-        devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs.unstable; [ nixfmt ];
-        };
+      let pkgs = import inputs.nixpkgs-stable { inherit system overlays; };
+      in {
+        devShells.default =
+          pkgs.mkShell { nativeBuildInputs = with pkgs.unstable; [ nixfmt ]; };
         packages = pkgs // {
-          iso-image = inputs.self.nixosConfigurations.iso-image.config.system.build.isoImage;
+          iso-image =
+            inputs.self.nixosConfigurations.iso-image.config.system.build.isoImage;
         };
       });
 }
