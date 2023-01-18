@@ -35,6 +35,7 @@
     ./dconf.nix
     ./direnv.nix
     ./git.nix
+    ./graphical.nix
     ./neovim
     ./starship.nix
     ./tmux.nix

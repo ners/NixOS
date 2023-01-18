@@ -8,39 +8,38 @@
     ./vscode.nix
   ];
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs.unstable; [
     audacity
     bintools
     cabal2nix
+    chromium
+    darktable
+    discord
+    drawio
+    element-desktop
     ffmpeg
+    firefox-devedition-bin
     flatpak
+    foliate
     gimp
     gitg
     graphviz
     inkscape
     libguestfs-with-appliance
     libreoffice-fresh
-    pavucontrol
+    ngrok
+    nushell
+    plexamp
+    prusa-slicer
+    signal-desktop
+    slack
+    sweethome3d.application
+    tdesktop
     tmate
     transmission-remote-gtk
-    unstable.chromium
-    unstable.darktable
-    unstable.discord
-    unstable.drawio
-    unstable.element-desktop
-    unstable.firefox-devedition-bin
-    unstable.foliate
-    unstable.ngrok
-    unstable.nushell
-    unstable.plexamp
-    unstable.prusa-slicer
-    unstable.signal-desktop
-    unstable.slack
-    unstable.sweethome3d.application
-    unstable.tdesktop
-    unstable.winbox
-    unstable.zoom-us
     v4l-utils
+    winbox
+    zoom-us
   ];
 
   programs.git = {
