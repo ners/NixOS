@@ -11,7 +11,7 @@ lib.mkMerge [
         automatic = true;
         options = "--delete-older-than 30d";
       };
-      package = pkgs.unstable.nix-monitored;
+      monitored.enable = true;
       registry.nixpkgs.flake = inputs.nixpkgs-unstable;
       nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
       extraOptions = ''
@@ -23,10 +23,10 @@ lib.mkMerge [
     };
     environment.etc."channels/nixpkgs".source = inputs.nixpkgs-unstable.outPath;
   }
-  (lib.optionalAttrs pkgs.stdenv.isLinux {
+  (lib.optionalAttrs pkgs.parsedSystem.isLinux {
     nix.gc.dates = "monthly";
   })
-  (lib.optionalAttrs pkgs.stdenv.isDarwin {
+  (lib.optionalAttrs pkgs.parsedSystem.isDarwin {
     nix.gc.interval.Day = 1;
     services.nix-daemon.enable = true;
   })

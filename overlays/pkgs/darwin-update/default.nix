@@ -1,7 +1,6 @@
 { inputs
 , writeShellApplication
 , shell-utils
-, nix
 , darwin-rebuild
 , nvd
 , tmux
@@ -17,7 +16,6 @@ writeShellApplication {
       ./darwin-update.sh
     ];
   runtimeInputs = [
-    nix
     darwin-rebuild
     nvd
     tmux

@@ -74,14 +74,16 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
-        "utils": "utils"
+        "utils": [
+          "flake-utils"
+        ]
       },
       "locked": {
-        "lastModified": 1674041176,
-        "narHash": "sha256-cMf1BQzI39nHQ0H/mOatthbbI3392qLmJ9gU0u520P4=",
+        "lastModified": 1674556204,
+        "narHash": "sha256-HCRmkZsq01h2Evch08zpgE9jeHdMtGdT1okWotyvuhY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2c29ae48f9a149151bdd82f429ac61d4412c312a",
+        "rev": "c59f0eac51da91c6989fd13a68e156f63c0e60b6",
         "type": "github"
       },
       "original": {
@@ -130,6 +132,21 @@
         "type": "github"
       }
     },
+    "nix-filter": {
+      "locked": {
+        "lastModified": 1666547822,
+        "narHash": "sha256-razwnAybPHyoAyhkKCwXdxihIqJi1G6e1XP4FQOJTEs=",
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "rev": "1a3b735e13e90a8d2fd5629f2f8363bd7ffbbec7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "type": "github"
+      }
+    },
     "nix-monitored": {
       "inputs": {
         "flake-compat": [
@@ -138,17 +155,18 @@
         "flake-utils": [
           "flake-utils"
         ],
+        "nix-filter": "nix-filter",
         "nixpkgs": [
           "nixpkgs-stable"
         ],
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1672687392,
-        "narHash": "sha256-w+MKdEiPp5BMKxmWKp30W0XSwH5+Ztw8IvRGvZgM7Pg=",
+        "lastModified": 1674573709,
+        "narHash": "sha256-e7lTw1dyyuF1xXO+agCPW1XacgyVNKl3z3fb7O7jYs8=",
         "owner": "ners",
         "repo": "nix-monitored",
-        "rev": "c76769ebf25b657fb42ddc9f2e866a6a2e76d85e",
+        "rev": "610e3451e1156e7ea3eec2d928c2720b1980a81e",
         "type": "github"
       },
       "original": {
@@ -159,11 +177,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1673803274,
-        "narHash": "sha256-zaJDlHFXewT4KUsidMpRcPE+REymGH1Y3Eoc3Pjv4Xs=",
+        "lastModified": 1674550793,
+        "narHash": "sha256-ljJlIFQZwtBbzWqWTmmw2O5BFmQf1A/DspwMOQtGXHk=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "7bd6b87b3712e68007823e8dd5c37ee9b114fee3",
+        "rev": "b7ac0a56029e4f9e6743b9993037a5aaafd57103",
         "type": "github"
       },
       "original": {
@@ -189,11 +207,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1674059475,
-        "narHash": "sha256-2mgO752e+ltk5ljYJNRN6VaEEWhx3znPtYjTfgqwKuQ=",
+        "lastModified": 1674575110,
+        "narHash": "sha256-vCGtNPLqT7exDyJALmzYpFPsuhcA0CVFH6vOUdZ9b9E=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8eabb500ebf5dcb9a40024c1150ef348cefa8320",
+        "rev": "b296ddd4940973cfc2207e436ce257ee4781b9d6",
         "type": "github"
       },
       "original": {
@@ -204,27 +222,27 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1671271954,
-        "narHash": "sha256-cSvu+bnvN08sOlTBWbBrKaBHQZq8mvk8bgpt0ZJ2Snc=",
+        "lastModified": 1673800717,
+        "narHash": "sha256-SFHraUqLSu5cC6IxTprex/nTsI81ZQAtDvlBvGDWfnA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d513b448cc2a6da2c8803e3c197c9fc7e67b19e3",
+        "rev": "2f9fd351ec37f5d479556cd48be4ca340da59b8f",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-22.05",
+        "ref": "nixos-22.11",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1673800717,
-        "narHash": "sha256-SFHraUqLSu5cC6IxTprex/nTsI81ZQAtDvlBvGDWfnA=",
+        "lastModified": 1674407282,
+        "narHash": "sha256-2qwc8mrPINSFdWffPK+ji6nQ9aGnnZyHSItVcYDZDlk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2f9fd351ec37f5d479556cd48be4ca340da59b8f",
+        "rev": "ab1254087f4cdf4af74b552d7fc95175d9bdbb49",
         "type": "github"
       },
       "original": {
@@ -236,11 +254,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1673796341,
-        "narHash": "sha256-1kZi9OkukpNmOaPY7S5/+SlCDOuYnP3HkXHvNDyLQcc=",
+        "lastModified": 1674459583,
+        "narHash": "sha256-L0UZl/u2H3HGsrhN+by42c5kNYeKtdmJiPzIRvEVeiM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6dccdc458512abce8d19f74195bb20fdb067df50",
+        "rev": "1b1f50645af2a70dc93eae18bfd88d330bfbcf7f",
         "type": "github"
       },
       "original": {
@@ -268,11 +286,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1672659856,
-        "narHash": "sha256-9vJvy5O87WyIYZGzFaHMeRTishV0SNDeSewvnyRCrMI=",
+        "lastModified": 1674550893,
+        "narHash": "sha256-HXI8AB96PP7UZ7iPANACXM8qc9eMz0ljxBEDM8JJKhY=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "2d947ef03b7cba461aab65a5df1ede03be567068",
+        "rev": "7bdf85f6bbef581eb687838d19f2b35a4c9d77f0",
         "type": "github"
       },
       "original": {
@@ -296,25 +314,10 @@
         "vscodeInsiders": "vscodeInsiders"
       }
     },
-    "utils": {
-      "locked": {
-        "lastModified": 1667395993,
-        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "vscodeInsiders": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-Buol35882z+DeCc4DQVCVMCKAOQcboFQ92/4EDxfM1s=",
+        "narHash": "sha256-Fz/rwU4sHPVW7HzvHddiEOPLg+J2ddJTzV+uuImxJDw=",
         "type": "tarball",
         "url": "https://code.visualstudio.com/sha/download?build=insider&os=linux-x64"
       },

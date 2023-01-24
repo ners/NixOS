@@ -9,26 +9,15 @@
   ];
 
   home.packages = with pkgs.unstable; [
-    audacity
-    bintools
-    cabal2nix
-    chromium
-    darktable
     discord
-    drawio
     element-desktop
     ffmpeg
-    firefox-devedition-bin
-    flatpak
     foliate
     gimp
     gitg
-    graphviz
     inkscape
     libguestfs-with-appliance
     libreoffice-fresh
-    ngrok
-    nushell
     plexamp
     prusa-slicer
     signal-desktop

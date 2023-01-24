@@ -6,9 +6,9 @@
 , gid ? uid
 , username
 , group ? username
-, homeDirectory ? if pkgs.stdenv.isLinux then
+, homeDirectory ? if pkgs.parsedSystem.isLinux then
     "/home/${username}"
-  else if pkgs.stdenv.isDarwin then
+  else if pkgs.parsedSystem.isDarwin then
     "/Users/${username}"
   else
     abort "Cannot infer homeDirectory"
@@ -45,7 +45,7 @@ lib.mkMerge [
       users.${username} = import ./home.nix;
     };
   }
-  (lib.mkIf pkgs.stdenv.isLinux {
+  (lib.mkIf pkgs.parsedSystem.isLinux {
     users.users.${username} = {
       inherit uid group initialHashedPassword extraGroups;
       isNormalUser = true;

@@ -50,7 +50,7 @@ let
   playfair = mkFont {
     name = "playfair";
     url = "https://github.com/clauseggers/Playfair/archive/refs/heads/master.zip";
-    sha256 = "sha256-j+xciORyOuV993D5d7DnFnaI7oX3S4noVn8NQda39kA=";
+    sha256 = "sha256-61uqPXoA8sgOJx/dW55ClshCwwPT4DQXSfDBmYoSqEw";
     sourceRoot = "Playfair-master/fonts/VF-TTF";
   };
   along-sans = mkFont {

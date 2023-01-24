@@ -18,7 +18,8 @@ lib.pipe ./. [
           networking.hostName = lib.mkDefault name;
           nixpkgs = { inherit pkgs; };
         }
-        inputs.home-manager.nixosModule
+        inputs.home-manager.nixosModules.default
+        inputs.nix-monitored.nixosModules.${system}.default
         path
       ];
       specialArgs = {

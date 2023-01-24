@@ -12,7 +12,8 @@ lib.pipe ./. [
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
-        inputs.home-manager.darwinModule
+        inputs.home-manager.darwinModules.default
+        inputs.nix-monitored.darwinModules.${system}.default
         path
       ];
       specialArgs = {

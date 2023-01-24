@@ -2,7 +2,6 @@
 , lib
 , substituteAll
 , runtimeShell
-, nix
 }:
 
 let
@@ -20,5 +19,4 @@ substituteAll {
   isExecutable = true;
   shell = runtimeShell;
   profile = "";
-  path = lib.makeBinPath [ nix ];
 }

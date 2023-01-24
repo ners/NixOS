@@ -1,7 +1,6 @@
 { inputs
 , writeShellApplication
 , shell-utils
-, nix
 , nixos-rebuild
 , nvd
 , tmux
@@ -17,7 +16,6 @@ writeShellApplication {
       ./nixos-update.sh
     ];
   runtimeInputs = [
-    nix
     nixos-rebuild
     nvd
     tmux

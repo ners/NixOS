@@ -11,7 +11,7 @@ lib.mkMerge [
       ];
     };
   }
-  (lib.optionalAttrs pkgs.stdenv.isLinux {
+  (lib.optionalAttrs pkgs.parsedSystem.isLinux {
     fonts = {
       fontconfig.enable = true;
       enableGhostscriptFonts = true;
