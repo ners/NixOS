@@ -33,17 +33,39 @@
 
   security.pam.services.login.enableGnomeKeyring = true;
 
-  environment.systemPackages = with pkgs; [
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-photos
+    gnome-tour
+  ]) ++ (with pkgs.gnome; [
+    cheese # webcam tool
+    gnome-music
+    gedit # text editor
+    epiphany # web browser
+    geary # email reader
+    gnome-characters
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    atomix # puzzle game
+    yelp # Help view
+    gnome-contacts
+    gnome-initial-setup
+  ]);
+
+  environment.systemPackages = with pkgs; with gnome; with gnomeExtensions; [
+    adwaita-icon-theme
+    appindicator
+    eog
     evince
     evolution
+    file-roller
+    geary
     gnome-connections
+    gnome-tweaks
     gnome-usage
-    gnome.eog
-    gnome.file-roller
-    gnome.geary
-    gnome.gnome-tweaks
-    gnome.nautilus
-    gnomeExtensions.appindicator
+    nautilus
     nufraw-thumbnailer
   ];
 }

@@ -8,7 +8,10 @@
     ./vscode.nix
   ];
 
-  home.packages = with pkgs.unstable; [
+  home.packages = (with pkgs; [
+    libreoffice-fresh
+    libguestfs-with-appliance
+  ]) ++ (with pkgs.unstable; [
     discord
     element-desktop
     ffmpeg
@@ -16,8 +19,6 @@
     gimp
     gitg
     inkscape
-    libguestfs-with-appliance
-    libreoffice-fresh
     plexamp
     prusa-slicer
     signal-desktop
@@ -29,7 +30,7 @@
     v4l-utils
     winbox
     zoom-us
-  ];
+  ]);
 
   programs.git = {
     package = pkgs.gitAndTools.gitFull;

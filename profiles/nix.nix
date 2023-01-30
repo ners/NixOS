@@ -5,6 +5,8 @@ lib.mkMerge [
     nix = {
       settings = {
         auto-optimise-store = true;
+        preallocate-contents = false;
+        experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
         trusted-users = [ "root" "@wheel" "@admin" ];
       };
       gc = {
@@ -14,12 +16,6 @@ lib.mkMerge [
       monitored.enable = true;
       registry.nixpkgs.flake = inputs.nixpkgs-unstable;
       nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
-      extraOptions = ''
-        experimental-features = nix-command flakes ca-derivations
-        preallocate-contents = false
-        #keep-outputs = true
-        #keep-derivations = true
-      '';
     };
     environment.etc."channels/nixpkgs".source = inputs.nixpkgs-unstable.outPath;
   }
