@@ -8,7 +8,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nix-monitored = {
       url = "github:ners/nix-monitored";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat";
     };

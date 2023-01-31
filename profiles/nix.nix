@@ -13,7 +13,10 @@ lib.mkMerge [
         automatic = true;
         options = "--delete-older-than 30d";
       };
-      monitored.enable = true;
+      monitored = {
+        enable = true;
+        package = pkgs.unstable.nix-monitored;
+      };
       registry.nixpkgs.flake = inputs.nixpkgs-unstable;
       nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
     };

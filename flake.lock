@@ -157,7 +157,7 @@
         ],
         "nix-filter": "nix-filter",
         "nixpkgs": [
-          "nixpkgs-stable"
+          "nixpkgs-unstable"
         ],
         "pre-commit-hooks": "pre-commit-hooks"
       },
@@ -207,11 +207,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1675098349,
-        "narHash": "sha256-WvtuCGBWsNqWZIG72fXjXE4QHuf3QD74/u7/EOuMVZQ=",
+        "lastModified": 1675155991,
+        "narHash": "sha256-AZgThLF7JiizydKEkXO7QAv2AIpU0JvCS7V3dQp5lp0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2c257a212e26cb9d81d70640aed733afc716aee6",
+        "rev": "66919882ad92edb59d3a3ded749568a53ddd2e20",
         "type": "github"
       },
       "original": {
@@ -317,7 +317,7 @@
     "vscodeInsiders": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-mY8yrqINRBi/2ygV05HoGP2p0PcN3dRenPUAPWMSzD4=",
+        "narHash": "sha256-GFC2ghyHrn8bbi7pTIunTKW6+8+N24HIvag3LgtVuvE=",
         "type": "tarball",
         "url": "https://code.visualstudio.com/sha/download?build=insider&os=linux-x64"
       },
