@@ -3,6 +3,8 @@
 {
   programs.git = {
     enable = true;
+    userName = "rekk";
+    userEmail = "rekk@gmx.de";
     ignores = [ "*.swp" ".DS_STORE" ".projections.json" ".direnv" ];
     extraConfig = {
       init.defaultBranch = "master";
@@ -19,8 +21,6 @@
         st = "status";
         sw = "switch -";
       };
-
-      difftastic.enable = true;
     };
   };
 }
