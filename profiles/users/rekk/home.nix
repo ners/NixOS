@@ -5,6 +5,7 @@
     cmake
     dotnet-runtime
     ffmpeg
+    tailscale
 #    (difftastic.overrideAttrs (_: { version = "0.42.0"; }))
   ];
 

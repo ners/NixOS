@@ -19,11 +19,6 @@
         start_service = true;
         restart_service = true;
       }
-      {
-        name = "tailscale";
-        start_service = true;
-        restart_service = true;
-      }
     ];
     casks = [
       "blender"
@@ -41,7 +36,6 @@
       "preform"
       "prusaslicer"
       "slack"
-      "tailscale"
       "telegram-desktop"
       "ultimaker-cura"
       "uvtools"
