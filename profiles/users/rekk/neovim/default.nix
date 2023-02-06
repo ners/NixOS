@@ -6,11 +6,6 @@ let
     set rtp+=${plugin}/after
   '';
   plugins = with pkgs.vimPlugins; [
-      # coc-conjure
-      # coc-css
-      # coc-fzf
-      # coc-json
-      # matchit-vim
       # which-key-nvim
       vim-abolish
       barbar-nvim
@@ -21,7 +16,7 @@ let
       coc-nvim
       coc-prettier
       coc-tsserver
-      colorizer
+      # colorizer - extremely slow performance on large files
       completion-nvim
       conflict-marker-vim
       conjure
@@ -36,7 +31,7 @@ let
       luasnip
       neoscroll-nvim
       null-ls-nvim
-      nvim-base16
+      # nvim-base16
       sonokai
       nvim-bqf
       nvim-cmp

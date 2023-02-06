@@ -312,3 +312,6 @@ let g:ascii = [
 
 let g:startify_custom_header =
       \ 'startify#pad(startify#fortune#boxed() + g:ascii)'
+
+" Run this to start profiling
+" :profile start profile.log | profile func * | profile file *
