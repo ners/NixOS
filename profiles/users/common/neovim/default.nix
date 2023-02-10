@@ -82,9 +82,9 @@ let
   ];
 in
 {
-  home.packages = with pkgs; [
+  home.packages = with pkgs.unstable; [
     nixpkgs-fmt
-    rnix-lsp
+    nil
     sumneko-lua-language-server
   ];
 

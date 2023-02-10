@@ -58,12 +58,17 @@ let
     url = "https://dl.dafont.com/dl/?f=along_sans";
     sha256 = "sha256-3rixZaoWlQaNBIjDUEdGMkrx8Z1rln7ueno60hA1mYw=";
   };
+  new-heterodox-mono = mkFont {
+    name = "new-heterodox-mono";
+    url = "https://github.com/hckiang/font-new-heterodox-mono/archive/refs/heads/master.zip";
+    sha256 = "sha256-oXEGF77bEBkmsz0tzMvTk+V9RHw1hVhL9zHqh8BPdhE=";
+  };
 in
 {
   fonts.fontconfig.enable = lib.mkForce true;
   home.packages = with pkgs; [
-    along-sans
     agave
+    along-sans
     bluetea
     charis-sil
     crimson
@@ -72,6 +77,7 @@ in
     hasklig
     material-design-icons
     monoid
+    new-heterodox-mono
     oswald
     paratype-pt-mono
     paratype-pt-sans
