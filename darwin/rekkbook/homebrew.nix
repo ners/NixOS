@@ -21,6 +21,7 @@
       }
     ];
     casks = [
+      "1password"
       "blender"
       "calibre"
       "darktable"

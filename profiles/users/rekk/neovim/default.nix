@@ -31,7 +31,7 @@ let
       luasnip
       neoscroll-nvim
       null-ls-nvim
-      # nvim-base16
+      nvim-base16
       sonokai
       nvim-bqf
       nvim-cmp
