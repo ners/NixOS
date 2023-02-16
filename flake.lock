@@ -34,11 +34,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1667395993,
-        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "lastModified": 1676283394,
+        "narHash": "sha256-XX2f9c3iySLCw54rJ/CZs+ZK6IQy7GXNY4nSOyu2QG4=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "rev": "3db36a8b464d0c4532ba1c7dda728f4576d6d073",
         "type": "github"
       },
       "original": {
@@ -79,11 +79,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1675935446,
-        "narHash": "sha256-WajulTn7QdwC7QuXRBavrANuIXE5z+08EdxdRw1qsNs=",
+        "lastModified": 1676367705,
+        "narHash": "sha256-un5UbRat9TwruyImtwUGcKF823rCEp4fQxnsaLFL7CM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2dce7f1a55e785a22d61668516df62899278c9e4",
+        "rev": "da72e6fc6b7dc0c3f94edbd310aae7cd95c678b5",
         "type": "github"
       },
       "original": {
@@ -134,11 +134,11 @@
     },
     "nix-filter": {
       "locked": {
-        "lastModified": 1666547822,
-        "narHash": "sha256-razwnAybPHyoAyhkKCwXdxihIqJi1G6e1XP4FQOJTEs=",
+        "lastModified": 1676294984,
+        "narHash": "sha256-hdLUa/3RH1VJ+gMUysQE0JGM4F2Q/tIIFbtoxAOurJQ=",
         "owner": "numtide",
         "repo": "nix-filter",
-        "rev": "1a3b735e13e90a8d2fd5629f2f8363bd7ffbbec7",
+        "rev": "fc282c5478e4141842f9644c239a41cfe9586732",
         "type": "github"
       },
       "original": {
@@ -162,11 +162,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1674589096,
-        "narHash": "sha256-XNFkUd+rEZpfk1dirBS1hRmQ0rj+4uQZYO5q4V7jymw=",
+        "lastModified": 1676585292,
+        "narHash": "sha256-Mzsh4v/81zkx31gp8v0XxYZplR/pSdorACKaJz4Jcx8=",
         "owner": "ners",
         "repo": "nix-monitored",
-        "rev": "c0b3184918b36bb196c7c6555e250baf7be78d7f",
+        "rev": "3a95439400557f1705552238a2effd8c7fae92af",
         "type": "github"
       },
       "original": {
@@ -207,11 +207,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1676012968,
-        "narHash": "sha256-verfttLGpyPcOCzP/qTQbrpYmGY0RQRqwnqNDWv1wdQ=",
+        "lastModified": 1676585767,
+        "narHash": "sha256-xQDst96viMN6UNZHYU3hjknT2yATA/aIZu40J5w1kck=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c3b54dfa96108c85f967fa4fa6e8181debf13d6c",
+        "rev": "0debd5333ff4997ae3e61e54d3f0846edaa9fe0c",
         "type": "github"
       },
       "original": {
@@ -238,11 +238,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1675757258,
-        "narHash": "sha256-pIRer8vdsoherlRKpzfnHbMZ5TsAcvRlXHCIaHkIUbg=",
+        "lastModified": 1676375384,
+        "narHash": "sha256-6HI3jZiuJX+KLz05cocYy2mBAWlISEKHU84ftYfxHZ8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "af96094e9b8eb162d70a84fa3b39f4b7a8b264d2",
+        "rev": "c43f676c938662072772339be6269226c77b51b8",
         "type": "github"
       },
       "original": {
@@ -254,11 +254,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1675763311,
-        "narHash": "sha256-bz0Q2H3mxsF1CUfk26Sl9Uzi8/HFjGFD/moZHz1HebU=",
+        "lastModified": 1676481215,
+        "narHash": "sha256-afma/1RU0EePRyrBPcjBdOt+dV8z1bJH9dtpTN/WXmY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fab09085df1b60d6a0870c8a89ce26d5a4a708c2",
+        "rev": "28319deb5ab05458d9cd5c7d99e1a24ec2e8fc4b",
         "type": "github"
       },
       "original": {
@@ -286,11 +286,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1674550893,
-        "narHash": "sha256-HXI8AB96PP7UZ7iPANACXM8qc9eMz0ljxBEDM8JJKhY=",
+        "lastModified": 1676513100,
+        "narHash": "sha256-MK39nQV86L2ag4TmcK5/+r1ULpzRLPbbfvWbPvIoYJE=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "7bdf85f6bbef581eb687838d19f2b35a4c9d77f0",
+        "rev": "5f0cba88ac4d6dd8cad5c6f6f1540b3d6a21a798",
         "type": "github"
       },
       "original": {
@@ -317,7 +317,7 @@
     "vscodeInsiders": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-wU29PISam+Dy6ms4Pi4d7MgBAaoY1ekUiqZv2vcMVTQ=",
+        "narHash": "sha256-HnFJUs3CndNHDRPbBqHUEEl/AUlx5XMfusPr8GTeQb4=",
         "type": "tarball",
         "url": "https://code.visualstudio.com/sha/download?build=insider&os=linux-x64"
       },

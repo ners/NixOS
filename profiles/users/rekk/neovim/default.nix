@@ -64,12 +64,10 @@ in {
     (nerdfonts.override { fonts = [ "Cousine" "RobotoMono" "FiraCode" ]; })
     clojure-lsp
     lua
-    nixpkgs-fmt
     nodePackages.typescript-language-server
     nodejs
     python3
     rnix-lsp
-    sumneko-lua-language-server
     yarn
   ];
 
