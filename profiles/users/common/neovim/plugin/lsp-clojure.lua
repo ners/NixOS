@@ -1,3 +1,1 @@
-require'lspconfig'.clojure_lsp.setup{
-	on_attach = require'on-attach',
-}
+require 'lspconfig'.clojure_lsp.setup {}

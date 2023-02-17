@@ -1,10 +1,9 @@
-require'lspconfig'.sumneko_lua.setup{
-	on_attach = require'on-attach',
+require 'lspconfig'.lua_ls.setup {
 	cmd = { 'lua-language-server' },
 	settings = {
 		Lua = {
 			diagnostics = {
-				globals = {'vim'},
+				globals = { 'vim' },
 			}
 		}
 	}

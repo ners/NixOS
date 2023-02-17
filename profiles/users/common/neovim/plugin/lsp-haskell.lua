@@ -1,7 +1,8 @@
-require'lspconfig'.hls.setup{
-	on_attach = require'on-attach',
+require 'lspconfig'.hls.setup {
+	filetypes = { 'haskell', 'lhaskell', 'cabal' },
 	settings = {
 		haskell = {
+			cabalFormattingProvider = "cabalfmt",
 			formattingProvider = 'fourmolu'
 		},
 	},

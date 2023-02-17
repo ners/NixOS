@@ -50,7 +50,6 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
-          "nix-monitored",
           "pre-commit-hooks",
           "nixpkgs"
         ]
@@ -159,7 +158,9 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
-        "pre-commit-hooks": "pre-commit-hooks"
+        "pre-commit-hooks": [
+          "pre-commit-hooks"
+        ]
       },
       "locked": {
         "lastModified": 1676585292,
@@ -207,11 +208,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1676585767,
-        "narHash": "sha256-xQDst96viMN6UNZHYU3hjknT2yATA/aIZu40J5w1kck=",
+        "lastModified": 1676633771,
+        "narHash": "sha256-5Wxi4STSXrP2Vj7EiLBv7DaLjoefJd4h/ftuzRbttnI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0debd5333ff4997ae3e61e54d3f0846edaa9fe0c",
+        "rev": "b3474d78ff4b760be751a83aef7d58c503e3e66d",
         "type": "github"
       },
       "original": {
@@ -222,27 +223,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1673800717,
-        "narHash": "sha256-SFHraUqLSu5cC6IxTprex/nTsI81ZQAtDvlBvGDWfnA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "2f9fd351ec37f5d479556cd48be4ca340da59b8f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-22.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-stable_2": {
-      "locked": {
-        "lastModified": 1676375384,
-        "narHash": "sha256-6HI3jZiuJX+KLz05cocYy2mBAWlISEKHU84ftYfxHZ8=",
+        "lastModified": 1676546582,
+        "narHash": "sha256-MJ+PXNmUyxnMTFoss7G2lEcUY2cfYZM6RudBAL5aX1k=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c43f676c938662072772339be6269226c77b51b8",
+        "rev": "2fb7d749c084890192b2cd08ba264e5e4a14df1b",
         "type": "github"
       },
       "original": {
@@ -271,19 +256,18 @@
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": [
-          "nix-monitored",
           "flake-compat"
         ],
         "flake-utils": [
-          "nix-monitored",
           "flake-utils"
         ],
         "gitignore": "gitignore",
         "nixpkgs": [
-          "nix-monitored",
-          "nixpkgs"
+          "nixpkgs-unstable"
         ],
-        "nixpkgs-stable": "nixpkgs-stable"
+        "nixpkgs-stable": [
+          "nixpkgs-stable"
+        ]
       },
       "locked": {
         "lastModified": 1676513100,
@@ -309,8 +293,9 @@
         "nix-monitored": "nix-monitored",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs-master": "nixpkgs-master",
-        "nixpkgs-stable": "nixpkgs-stable_2",
+        "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "pre-commit-hooks": "pre-commit-hooks",
         "vscodeInsiders": "vscodeInsiders"
       }
     },

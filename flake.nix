@@ -11,6 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat";
+      inputs.pre-commit-hooks.follows = "pre-commit-hooks";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -29,6 +30,13 @@
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
+    };
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-compat.follows = "flake-compat";
     };
   };
 

@@ -50,6 +50,10 @@ opt.incsearch = true -- set incremental search, like modern browsers
 opt.lazyredraw = false -- don't redraw while executing macros
 opt.magic = true -- set magic on, for regular expressions
 
+-- Don't redraw while executing macros
+opt.ttyfast = true
+opt.lazyredraw = true
+
 -- If ripgrep installed, use that as a grepper
 if fn.executable("rg") then
 	opt.grepprg = "rg --vimgrep --no-heading"

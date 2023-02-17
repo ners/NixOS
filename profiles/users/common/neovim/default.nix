@@ -44,6 +44,8 @@ let
     lsp_extensions-nvim
     lsp_signature-nvim
     lspkind-nvim
+    lsp_lines-nvim
+    lsp-inlayhints-nvim
     lualine-nvim
     luasnip
     mkdir-nvim
@@ -67,7 +69,7 @@ let
     nvim-hlslens
     nvim-lspconfig
     nvim-scrollbar
-    nvim-tree-lua
+    neo-tree-nvim
     nvim-web-devicons
     plenary-nvim
     popup-nvim
@@ -85,7 +87,7 @@ in
   home.packages = with pkgs.unstable; [
     nixpkgs-fmt
     nil
-    sumneko-lua-language-server
+    lua-language-server
   ];
 
   programs.neovim = {
@@ -104,7 +106,6 @@ in
     '';
   };
   xdg.configFile = {
-    "nvim/lua".source = ./lua;
     "nvim/plugin".source = ./plugin;
     "nvim/ftplugin".source = ./ftplugin;
     "nvim/ginit.vim".source = ./ginit.vim;

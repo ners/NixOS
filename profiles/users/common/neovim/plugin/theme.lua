@@ -17,9 +17,9 @@ vim.opt.listchars = { tab = '› ', trail = '~', extends = '»', precedes = '«'
 
 local signs = {
 	{ name = 'DiagnosticSignError', text = '🔥' },
-	{ name = 'DiagnosticSignWarn', text = '⚠️' },
-	{ name = 'DiagnosticSignHint', text = '💡' },
-	{ name = 'DiagnosticSignInfo', text = '🔸' },
+	{ name = 'DiagnosticSignWarn',  text = '⚠️' },
+	{ name = 'DiagnosticSignHint',  text = '💡' },
+	{ name = 'DiagnosticSignInfo',  text = '🔸' },
 }
 
 for _, sign in ipairs(signs) do
@@ -27,7 +27,6 @@ for _, sign in ipairs(signs) do
 end
 
 vim.diagnostic.config {
-	virtual_text = true,
 	-- show signs
 	signs = {
 		active = signs,

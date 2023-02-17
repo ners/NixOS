@@ -1,3 +1,1 @@
-require 'lspconfig'.tsserver.setup {
-	on_attach = require 'on-attach',
-}
+require 'lspconfig'.tsserver.setup {}
