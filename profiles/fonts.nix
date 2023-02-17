@@ -8,6 +8,7 @@ lib.mkMerge [
         (nerdfonts.override {
           fonts = [ "Cousine" "FiraCode" "RobotoMono" "SourceCodePro" ];
         })
+        (google-fonts.override { fonts = [ "Pirata One" ]; })
       ];
     };
   }
