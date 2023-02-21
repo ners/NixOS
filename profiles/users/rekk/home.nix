@@ -11,6 +11,7 @@
 
   imports = [
     ./git
+    ./fonts.nix
     ./neovim
     ./skhd
     ./yabai
