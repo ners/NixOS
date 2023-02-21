@@ -22,7 +22,6 @@
     vanilla-dmz
     wdisplays
     wl-clipboard
-    inter-nerd
   ];
 
   services.wlsunset = {

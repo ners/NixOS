@@ -1,8 +1,8 @@
 require 'lspconfig'.hls.setup {
-	filetypes = { 'haskell', 'lhaskell', 'cabal' },
+	--filetypes = { 'haskell', 'lhaskell', 'cabal' },
 	settings = {
 		haskell = {
-			cabalFormattingProvider = "cabalfmt",
+			--cabalFormattingProvider = "cabal-fmt",
 			formattingProvider = 'fourmolu'
 		},
 	},

@@ -16,12 +16,47 @@ let
       setSourceRoot = "sourceRoot=`pwd`";
       installPhase = ''
         find ${sourceRoot} -type f -name '*.ttf' | while read f; do
-          echo installing "$f" to "/share/fonts/truetype/${name}/$(basename $f)"
-          install -Dm644 -D "$f" "$out/share/fonts/truetype/${name}/$(basename $f)"
+          d="$out/share/fonts/truetype/${name}/$(basename "$f")"
+          echo "installing $f to $d"
+          install -Dm644 -D "$f" "$d"
         done
         find ${sourceRoot} -type f -name '*.otf' | while read f; do
-          echo installing "$f" to "/share/fonts/opentype/${name}/$(basename $f)"
-          install -Dm644 -D "$f" "$out/share/fonts/opentype/${name}/$(basename $f)"
+          d="$out/share/fonts/opentype/${name}/$(basename "$f")"
+          echo "installing $f to $d"
+          install -Dm644 -D "$f" "$d"
+        done
+      '';
+    };
+  nerdify = {font, file ? "", mono ? false}:
+    pkgs.stdenvNoCC.mkDerivation rec {
+        name = "${font.name}-nerd";
+        src = pkgs.fetchFromGitHub {
+          owner = "ryanoasis";
+          repo = "nerd-fonts";
+          rev = "v2.3.3";
+          hash = "sha256-42gG0jV7TunD/MoTxSSkXniLW5/X1pHwQwzK05TCMBE=";
+        };
+        buildInputs = with pkgs; [
+          argparse
+          fontforge
+          (python3.withPackages (ps: with ps; [ setuptools fontforge ]))
+        ];
+      buildPhase = ''
+        find ${font}/${file} -type f -name '*.ttf' -or -name '*.otf' | while read f; do
+          echo "nerdifying $f"
+          python3 "$src/font-patcher" --complete ${if mono then "--mono" else ""} "$f"
+        done
+      '';
+      installPhase = ''
+        for f in *.ttf; do
+          d="$out/share/fonts/truetype/${name}/$f"
+          echo "installing $f to $d"
+          install -Dm644 -D "$f" "$d"
+        done
+        for f in *.otf; do
+          d="$out/share/fonts/opentype/${name}/$f"
+          echo "installing $f to $d"
+          install -Dm644 -D "$f" "$d"
         done
       '';
     };
@@ -67,6 +102,8 @@ in
 {
   fonts.fontconfig.enable = lib.mkForce true;
   home.packages = with pkgs; [
+    (nerdify { font = inter; file = "share/fonts/opentype/Inter-Regular.otf"; })
+    (nerdify { font = new-heterodox-mono; file = "share/fonts/opentype/new-heterodox-mono/NewHeterodoxMono-Book.otf"; mono = true; })
     agave
     along-sans
     bluetea

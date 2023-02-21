@@ -78,11 +78,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1676367705,
-        "narHash": "sha256-un5UbRat9TwruyImtwUGcKF823rCEp4fQxnsaLFL7CM=",
+        "lastModified": 1676933022,
+        "narHash": "sha256-gLghsEHOy2W2ZmSwqNOyj2mSHe9SMpdcbqnoySlZnmY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "da72e6fc6b7dc0c3f94edbd310aae7cd95c678b5",
+        "rev": "5e889b385c43a8a72ada5ebc4888bbebb129b438",
         "type": "github"
       },
       "original": {
@@ -178,11 +178,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1675933606,
-        "narHash": "sha256-y427VhPQHOKkYvkc9MMsL/2R7M11rQxzsRdRLM3htx8=",
+        "lastModified": 1676924492,
+        "narHash": "sha256-78278eyP55JRFe7UCpmFwdkrTY6H2arzTpVeteWo8kM=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "44ae00e02e8036a66c08f4decdece7e3bbbefee2",
+        "rev": "d24ea777c57b69c6b143cf11d83184ef71b0dbbf",
         "type": "github"
       },
       "original": {
@@ -208,11 +208,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1676634984,
-        "narHash": "sha256-VlcjVkzFEYGOVMXvlpS9hREF40Zs3n3Gpw53nlo22CI=",
+        "lastModified": 1677000517,
+        "narHash": "sha256-MuXkSRYw/sa46V6mSKp/2lRY0AkhZawGUSxB2WImx7c=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "98042fc6d36ebb11a4defe4f2cee76aa6192257d",
+        "rev": "ffdae3d38630564a8578143a2e66353f3b44f291",
         "type": "github"
       },
       "original": {
@@ -223,11 +223,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1676546582,
-        "narHash": "sha256-MJ+PXNmUyxnMTFoss7G2lEcUY2cfYZM6RudBAL5aX1k=",
+        "lastModified": 1676895851,
+        "narHash": "sha256-xdhBKw2el790G+88tZYpRWlP9VjQC9OLR5Jx84VPe08=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2fb7d749c084890192b2cd08ba264e5e4a14df1b",
+        "rev": "e19f25b587f15871d26442cfa1abe4418a815d7d",
         "type": "github"
       },
       "original": {
@@ -239,11 +239,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1676481215,
-        "narHash": "sha256-afma/1RU0EePRyrBPcjBdOt+dV8z1bJH9dtpTN/WXmY=",
+        "lastModified": 1676885936,
+        "narHash": "sha256-ZRKb6zBfTvdCOXI7nGC1L9UWSU5ay2ltxg+f5UIzBOU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "28319deb5ab05458d9cd5c7d99e1a24ec2e8fc4b",
+        "rev": "b69883faca9542d135fa6bab7928ff1b233c167f",
         "type": "github"
       },
       "original": {
@@ -270,11 +270,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1676513100,
-        "narHash": "sha256-MK39nQV86L2ag4TmcK5/+r1ULpzRLPbbfvWbPvIoYJE=",
+        "lastModified": 1676879534,
+        "narHash": "sha256-HU4RXcwsAX1u7AUbGOBDxkYQkeODcn+HZjXqKa1y/hk=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "5f0cba88ac4d6dd8cad5c6f6f1540b3d6a21a798",
+        "rev": "c9495f017f67a11e9c9909b032dc7762dfc853cf",
         "type": "github"
       },
       "original": {
@@ -302,7 +302,7 @@
     "vscodeInsiders": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-HnFJUs3CndNHDRPbBqHUEEl/AUlx5XMfusPr8GTeQb4=",
+        "narHash": "sha256-72q+iPcFhrYy2ZmSZjtUdhT29l6EicjSYruzCscRUYg=",
         "type": "tarball",
         "url": "https://code.visualstudio.com/sha/download?build=insider&os=linux-x64"
       },
