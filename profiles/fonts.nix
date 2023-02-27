@@ -6,9 +6,14 @@ lib.mkMerge [
       fontDir.enable = true;
       fonts = with pkgs; [
         (nerdfonts.override {
-          fonts = [ "Cousine" "FiraCode" "RobotoMono" "SourceCodePro" ];
+          fonts = [
+            "Cousine"
+            "FiraCode"
+            "Iosevka"
+            "RobotoMono"
+            "SourceCodePro"
+          ];
         })
-        (google-fonts.override { fonts = [ "Pirata One" ]; })
       ];
     };
   }

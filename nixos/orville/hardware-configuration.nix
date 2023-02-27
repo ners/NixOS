@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [
+      (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_pci" "usbhid" ];
@@ -14,25 +15,29 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/cd16201e-eaa9-45b4-8bbf-b2861c326407";
+    {
+      device = "/dev/disk/by-uuid/cd16201e-eaa9-45b4-8bbf-b2861c326407";
       fsType = "btrfs";
       options = [ "subvol=root" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/cd16201e-eaa9-45b4-8bbf-b2861c326407";
+    {
+      device = "/dev/disk/by-uuid/cd16201e-eaa9-45b4-8bbf-b2861c326407";
       fsType = "btrfs";
       options = [ "subvol=home" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/cd16201e-eaa9-45b4-8bbf-b2861c326407";
+    {
+      device = "/dev/disk/by-uuid/cd16201e-eaa9-45b4-8bbf-b2861c326407";
       fsType = "btrfs";
       options = [ "subvol=nix" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A30A-87C2";
+    {
+      device = "/dev/disk/by-uuid/A30A-87C2";
       fsType = "vfat";
     };
 

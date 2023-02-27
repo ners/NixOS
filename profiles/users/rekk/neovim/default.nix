@@ -58,12 +58,13 @@ let
     # vim-ormolu # Automatically run ormolu
     vim-projectionist # Jump between files with the same prefix
     vim-startify # Startup splash screen
-    vim-surround  # Add shortcuts to surround text with characters (parens, quotes...)
+    vim-surround # Add shortcuts to surround text with characters (parens, quotes...)
     vim-swap # Add shortcuts to swap delimited items (function args...)
     # vim-terraform # Terraform syntax highlighting
     # yats-vim # Typescript syntax highlighting
-    ];
-in {
+  ];
+in
+{
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Cousine" "RobotoMono" "FiraCode" ]; })
     clojure-lsp

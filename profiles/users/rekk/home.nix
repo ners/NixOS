@@ -6,7 +6,7 @@
     dotnet-runtime
     ffmpeg
     tailscale
-#    (difftastic.overrideAttrs (_: { version = "0.42.0"; }))
+    #    (difftastic.overrideAttrs (_: { version = "0.42.0"; }))
   ];
 
   imports = [

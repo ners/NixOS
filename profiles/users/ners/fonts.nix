@@ -27,20 +27,20 @@ let
         done
       '';
     };
-  nerdify = {font, file ? "", mono ? false}:
+  nerdify = { font, file ? "", mono ? false }:
     pkgs.stdenvNoCC.mkDerivation rec {
-        name = "${font.name}-nerd";
-        src = pkgs.fetchFromGitHub {
-          owner = "ryanoasis";
-          repo = "nerd-fonts";
-          rev = "v2.3.3";
-          hash = "sha256-42gG0jV7TunD/MoTxSSkXniLW5/X1pHwQwzK05TCMBE=";
-        };
-        buildInputs = with pkgs; [
-          argparse
-          fontforge
-          (python3.withPackages (ps: with ps; [ setuptools fontforge ]))
-        ];
+      name = "${font.name}-nerd";
+      src = pkgs.fetchFromGitHub {
+        owner = "ryanoasis";
+        repo = "nerd-fonts";
+        rev = "v2.3.3";
+        hash = "sha256-42gG0jV7TunD/MoTxSSkXniLW5/X1pHwQwzK05TCMBE=";
+      };
+      buildInputs = with pkgs; [
+        argparse
+        fontforge
+        (python3.withPackages (ps: with ps; [ setuptools fontforge ]))
+      ];
       buildPhase = ''
         find ${font}/${file} -type f -name '*.ttf' -or -name '*.otf' | while read f; do
           echo "nerdifying $f"

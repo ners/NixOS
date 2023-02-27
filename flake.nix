@@ -52,7 +52,8 @@
           overlays = overlaySrcs;
         };
       overlays = map mkOverlay overlaySrcs;
-    in {
+    in
+    {
       version = inputs.nixpkgs-stable.lib.trivial.release;
       profiles = lib.findModules ./profiles;
       roles = lib.findModules ./roles;
@@ -61,11 +62,15 @@
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
       let pkgs = import inputs.nixpkgs-stable { inherit system overlays; };
       in {
-        devShells.default =
-          pkgs.mkShell { nativeBuildInputs = with pkgs.unstable; [ nixfmt ]; };
+        devShells.default = pkgs.mkShell {
+          nativeBuildInputs = with pkgs.unstable; [
+            nixpkgs-fmt
+          ];
+        };
         packages = pkgs // {
           iso-image =
             inputs.self.nixosConfigurations.iso-image.config.system.build.isoImage;
         };
+        formatter = pkgs.unstable.nixpkgs-fmt;
       });
 }
