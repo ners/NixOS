@@ -10,7 +10,7 @@ lib.mkIf pkgs.parsedSystem.isLinux {
   };
 
   gtk.enable = true;
-  gtk.theme.name = "Adwaita-dark";
+  gtk.theme.name = "Adwaita";
   gtk.iconTheme.name = "Adwaita";
 
   qt.enable = true;

@@ -8,7 +8,6 @@
 
 window#waybar {
     background: transparent;
-    color: white;
 }
 
 #window {
@@ -18,7 +17,6 @@ window#waybar {
 #workspaces button {
     padding: 0 5px;
     background: transparent;
-    color: white;
     font-weight: 400;
 }
 
@@ -57,7 +55,7 @@ window#waybar {
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
+        background-color: white;
         color: black;
     }
 }

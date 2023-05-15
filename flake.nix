@@ -16,7 +16,6 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.utils.follows = "flake-utils";
     };
     nix-darwin = {
       url = "github:lnl7/nix-darwin/master";

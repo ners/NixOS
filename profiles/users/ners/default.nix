@@ -5,8 +5,8 @@
 }@args:
 
 {
-  imports = with inputs; [
-    (import self.profiles.users.common (args // {
+  imports = [
+    (import inputs.self.profiles.users.common (args // {
       username = "ners";
       initialHashedPassword = "$6$P8pZJbrdjFXP7Bkf$CSxDmrTTO6o5pWUVXW0hy/c.Zdf7WtzNOPk1KiEDrDtyDf8x6V.ZvSzhh8kJWx0DKpObq4077SH1BRZZ0wgU/0";
       sshKeys = [

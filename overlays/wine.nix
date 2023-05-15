@@ -4,5 +4,6 @@
 self: super: {
   wine = super.wine.override {
     wineBuild = "wineWow";
+    wineRelease = "unstable";
   };
 }

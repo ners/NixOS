@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   wayland.windowManager.sway.config.bars = [
@@ -8,7 +8,11 @@
   programs.waybar = {
     enable = true;
     systemd.enable = false;
-    style = builtins.readFile ./waybar.css;
+    style = with config.colorScheme.colors; ''
+      ${builtins.readFile ./waybar.css}
+      window#waybar { color: #${base05}; }
+      #workspaces button { color: #${base05}; }
+    '';
     settings = [{
       layer = "top";
       position = "bottom";

@@ -9,7 +9,7 @@ require 'lualine'.setup {
 	}
 }
 
-vim.opt.guifont = { "FiraCode Nerd Font", "Emoji", ":h11" }
+vim.opt.guifont = { "Iosevka Nerd Font", "Emoji", ":h12" }
 
 -- Show invisible characters
 vim.opt.list = true

@@ -45,7 +45,7 @@
     inputs.nix-colors.homeManagerModule
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.default-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.classic-light;
 
   services.udiskie.enable = pkgs.parsedSystem.isLinux;
 }

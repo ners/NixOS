@@ -5,6 +5,7 @@
 , nvd
 , tmux
 , systemd
+, dbus
 , ...
 }:
 
@@ -20,5 +21,6 @@ writeShellApplication {
     nvd
     tmux
     systemd
+    dbus
   ];
 }

@@ -12,7 +12,7 @@ in
     settings = {
       main = {
         term = "xterm-256color";
-        font = "Monospace:size=11";
+        font = "Iosevka Nerd Font:size=11";
         dpi-aware = "auto";
         pad = "10x5 center";
       };

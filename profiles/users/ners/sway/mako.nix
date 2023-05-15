@@ -17,7 +17,7 @@ in
     };
   };
 
-  programs.mako = with config.colorScheme.colors; {
+  services.mako = with config.colorScheme.colors; {
     enable = true;
     defaultTimeout = 3000;
     font = "Inter Nerd Font 11";

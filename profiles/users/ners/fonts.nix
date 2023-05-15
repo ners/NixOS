@@ -4,13 +4,13 @@ let
   mkFont =
     { name
     , url
-    , sha256
+    , hash
     , sourceRoot ? "."
     }: pkgs.stdenv.mkDerivation rec {
       inherit name;
       nativeBuildInputs = [ pkgs.unzip ];
       src = pkgs.fetchurl {
-        inherit url sha256;
+        inherit url hash;
         name = "${name}.zip";
       };
       setSourceRoot = "sourceRoot=`pwd`";
@@ -63,46 +63,59 @@ let
   oswald = mkFont {
     name = "oswald";
     url = "https://github.com/googlefonts/OswaldFont/archive/refs/heads/main.zip";
-    sha256 = "sha256-I0qJXb7dW6Hz77YwgUVxwy6c5ry4cnkj6Sqmb1Wcu1w=";
+    hash = "sha256-zd7eW7+ni6swa3qhh3R4ADPapxH+9sLAJOKnyviSZEM=";
     sourceRoot = "OswaldFont-main/fonts";
   };
   radley = mkFont {
     name = "radley";
     url = "https://github.com/googlefonts/RadleyFont/archive/refs/heads/main.zip";
-    sha256 = "sha256-HLxKHfpwPU9WH0ir/Hm3eURZTBB9nn/MfDSwvqYwRDY=";
+    hash = "sha256-HLxKHfpwPU9WH0ir/Hm3eURZTBB9nn/MfDSwvqYwRDY=";
     sourceRoot = "RadleyFont-main/fonts";
   };
   gula = mkFont {
     name = "gula";
     url = "https://www.fontriver.com/f/gula.zip";
-    sha256 = "sha256-kMop+cS9gKawaiyHmsD12WGPQkOJysUCQWYwtIlNE14=";
+    hash = "sha256-kMop+cS9gKawaiyHmsD12WGPQkOJysUCQWYwtIlNE14=";
   };
   bluetea = mkFont {
     name = "bluetea";
     url = "https://www.fontriver.com/f/bluetea.zip";
-    sha256 = "sha256-jl5JKfJrUyYxGLEgyQccd2xB0wSVy15aMGZVXkwMClc=";
+    hash = "sha256-jl5JKfJrUyYxGLEgyQccd2xB0wSVy15aMGZVXkwMClc=";
   };
   playfair = mkFont {
     name = "playfair";
     url = "https://github.com/clauseggers/Playfair/archive/refs/heads/master.zip";
-    sha256 = "sha256-61uqPXoA8sgOJx/dW55ClshCwwPT4DQXSfDBmYoSqEw";
+    hash = "sha256-9jSTYo76g/15gYQhPWJRWHDlZ3Abp/WjESEPFYileMA=";
     sourceRoot = "Playfair-master/fonts/VF-TTF";
   };
   along-sans = mkFont {
     name = "along-sans";
     url = "https://dl.dafont.com/dl/?f=along_sans";
-    sha256 = "sha256-3rixZaoWlQaNBIjDUEdGMkrx8Z1rln7ueno60hA1mYw=";
+    hash = "sha256-3rixZaoWlQaNBIjDUEdGMkrx8Z1rln7ueno60hA1mYw=";
   };
   new-heterodox-mono = mkFont {
     name = "new-heterodox-mono";
     url = "https://github.com/hckiang/font-new-heterodox-mono/archive/refs/heads/master.zip";
-    sha256 = "sha256-oXEGF77bEBkmsz0tzMvTk+V9RHw1hVhL9zHqh8BPdhE=";
+    hash = "sha256-oXEGF77bEBkmsz0tzMvTk+V9RHw1hVhL9zHqh8BPdhE=";
+  };
+  iosevka-term = pkgs.iosevka.override {
+    set = "term";
+    privateBuildPlan = {
+      family = "Iosevka Term";
+      design = [
+        "term"
+        "v-l-italic"
+        "v-i-italic"
+        "v-g-singlestorey"
+      ];
+    };
   };
 in
 {
   fonts.fontconfig.enable = lib.mkForce true;
   home.packages = with pkgs; [
     (nerdify { font = inter; file = "share/fonts/opentype/Inter-Regular.otf"; })
+    (nerdify { font = iosevka-term; file = "share/fonts/truetype/iosevka-term-extendedlight.ttf"; mono = true; })
     (nerdify { font = new-heterodox-mono; file = "share/fonts/opentype/new-heterodox-mono/NewHeterodoxMono-Book.otf"; mono = true; })
     agave
     along-sans

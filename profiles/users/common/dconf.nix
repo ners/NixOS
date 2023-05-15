@@ -1,5 +1,4 @@
 { nixosConfig
-, pkgs
 , lib
 , ...
 }:
@@ -19,13 +18,14 @@ in
         lib.dconfFlatten
           {
             org.gnome = {
+              Console.theme = "auto";
               desktop = {
                 interface = {
                   font-antialiasing = "grayscale";
                   font-hinting = "full";
                   gtk-im-module = "gtk-im-context-simple";
-                  gtk-theme = "Adwaita-dark";
-                  color-scheme = "prefer-dark";
+                  gtk-theme = "Adwaita";
+                  color-scheme = "prefer-light";
                 };
                 peripherals = {
                   touchpad = {

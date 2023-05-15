@@ -8,7 +8,7 @@ lib.pipe ./. [
   (mapAttrs (name: path:
     let
       system = with lib; pipe (path + "/system") [ readFile lines head ];
-      pkgs = import nixpkgs-stable { inherit system overlays; };
+      pkgs = import nixpkgs-unstable { inherit system overlays; };
     in
     lib.nixosSystem {
       inherit system;

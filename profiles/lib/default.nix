@@ -1,5 +1,5 @@
 { inputs
-, lib ? inputs.nixpkgs-stable.lib
+, lib ? inputs.nixpkgs-unstable.lib
 , flake-utils-lib ? inputs.flake-utils.lib
 , ...
 }:

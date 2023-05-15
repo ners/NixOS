@@ -34,4 +34,6 @@ let lan = "eno2"; in
   environment.systemPackages = with pkgs; [
     wally-cli
   ];
+
+  services.printing.drivers = with pkgs.unstable; [ brlaser ];
 }
