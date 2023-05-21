@@ -43,7 +43,7 @@
           lib = lib // inputs.home-manager.lib;
           nixosConfig = config;
         };
-        users.${username} = import ./home.nix;
+        users.${username} = import ./home.nix { inherit inputs pkgs lib username homeDirectory; };
       };
     }
     (lib.mkIf pkgs.parsedSystem.isLinux {

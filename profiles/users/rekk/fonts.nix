@@ -68,7 +68,7 @@ let
     url = "https://web.archive.org/web/20120828195558/http://www.dotcolon.net/DL/font/vegur.zip";
     sha256 = "sha256-cvBdg26K8GGVvMcSaa9dLWVtMVhifAt90Rjn8q8yJgo=";
   };
-  
+
 in
 {
   fonts.fontconfig.enable = lib.mkForce true;

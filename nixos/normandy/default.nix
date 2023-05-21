@@ -10,6 +10,7 @@ let lan = "eno2"; in
     nixos-hardware.nixosModules.common-pc-ssd
     self.roles.desktop
     self.profiles.users.ners
+    self.profiles.users.rekk
   ];
 
   systemd.network = {

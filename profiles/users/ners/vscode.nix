@@ -4,7 +4,8 @@
   home.packages = [
     (pkgs.master.vscode-insiders-with-extensions.override {
       vscodeExtensions = with pkgs.master.vscode-insiders-extensions; [
-        arrterian.nix-env-selector
+        #arrterian.nix-env-selector
+        mkhl.direnv
         bierner.markdown-mermaid
         haskell.haskell
         jnoortheen.nix-ide

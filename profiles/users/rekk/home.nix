@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   home.packages = with pkgs; [
@@ -12,8 +12,8 @@
   ];
 
   imports = [
-    ./git
     ./fonts.nix
+    ./git
     ./neovim
     ./skhd
     ./yabai

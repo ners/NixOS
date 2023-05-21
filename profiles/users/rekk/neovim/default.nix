@@ -62,8 +62,9 @@ let
     vim-startify # Startup splash screen
     vim-surround # Add shortcuts to surround text with characters (parens, quotes...)
     vim-swap # Add shortcuts to swap delimited items (function args...)
-    ];
-in {
+  ];
+in
+{
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Cousine" "RobotoMono" "FiraCode" ]; })
     clojure-lsp

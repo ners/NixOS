@@ -1,6 +1,6 @@
-{ ... }:
+{ pkgs, lib, ... }:
 
-{
+lib.mkIf pkgs.parsedSystem.isDarwin {
   xdg.configFile."../.yabairc".text = ''
     #!/usr/bin/env sh
 

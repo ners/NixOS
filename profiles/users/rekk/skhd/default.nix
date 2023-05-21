@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   yabai = "${pkgs.yabai}/bin/yabai";
 in
-{
+lib.mkIf pkgs.parsedSystem.isDarwin {
   xdg.configFile."../.skhdrc".text = ''
     # focus window
     cmd - left  : ${yabai} -m window --focus west || ${yabai} -m display --focus west
