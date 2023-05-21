@@ -31,10 +31,9 @@ cmp.setup({
             end
         end, {'i', 's'}),
         ['<S-Tab>'] = cmp.mapping(function (fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
+            local copilot_keys = vim.fn["copilot#Accept"]()
+            if copilot_keys ~= "" then
+                vim.api.nvim_feedkeys(copilot_keys, "i", true)
             else
                 fallback()
             end

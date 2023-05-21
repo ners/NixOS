@@ -3,10 +3,12 @@
 {
   home.packages = with pkgs; [
     cmake
+    comma
     dotnet-runtime
     ffmpeg
+    ncdu
     tailscale
-    #    (difftastic.overrideAttrs (_: { version = "0.42.0"; }))
+    mpv
   ];
 
   imports = [

@@ -6,37 +6,41 @@ let
     set rtp+=${plugin}/after
   '';
   plugins = with pkgs.vimPlugins; [
+    # colorizer # Preview hex colours. Extremely slow performance on large files
+    # completion-nvim # Completion engine similar to cmp
+    # haskell-vim # Haskell highlighting?
+    # neoscroll-nvim # Smooth scrolling
+    # null-ls-nvim # Allow non-LSP sources to hook into LSP client
+    # psc-ide-vim # Purescript
+    # sonokai # Theme
+    # vim-commentary # Language-agnostic comment toggling
+    # vim-devicons # Add file type icons to file browser
+    # vim-ormolu # Automatically run ormolu
+    # vim-terraform # Terraform syntax highlighting
     # which-key-nvim
-    vim-abolish # Preserve case when substituting
-    barbar-nvim # Improved tabs
+    # yats-vim # Typescript syntax highlighting
 
-    # cmp sources
+    barbar-nvim # Improved tabs
     cmp-buffer # Current buffer words
     cmp-cmdline # Commands
     cmp-nvim-lsp # LSP
-
     coc-eslint # CoC should be replaced by LSP - but tsserver still works better
     coc-nvim
     coc-prettier
     coc-tsserver
-
-    # colorizer # Preview hex colours. Extremely slow performance on large files
-    # completion-nvim # Completion engine similar to cmp
     conflict-marker-vim # Git merge conflicts utils and visualisation
     conjure # Clojure evaluation
+    copilot-vim # Github Copilot integration
     edge # Theme
     fzf-checkout-vim # Manage Git branches with fzf
-    fzf-vim # integrate fzf
-    fzfWrapper # integrate fzf
-    # haskell-vim # Haskell highlighting?
+    # fzf-vim # integrate fzf
+    # fzfWrapper # integrate fzf
+    fzf-lua # fzf integration rewritten in lua
     impatient-nvim # Speed up startup time
     lexima-vim # Auto close brackets, tags, etc.
     lsp_signature-nvim # Open floating window with function signature when calling functions
     luasnip # Snippet engine used by cmp
-    # neoscroll-nvim # Smooth scrolling
-    # null-ls-nvim # Allow non-LSP sources to hook into LSP client
     nvim-base16 # Theme
-    # sonokai # Theme
     nvim-bqf # Better quickfix window
     nvim-cmp # Completion engine
     nvim-code-action-menu # Better code action menu
@@ -45,26 +49,21 @@ let
     nvim-treesitter # Enable AST-aware highlighting and actions
     nvim-treesitter-refactor # Enable renaming symbols (AST-aware)
     nvim-ts-rainbow # Coloured parentheses
-    # psc-ide-vim # Purescript
+    sort-nvim # Better sorting with :Sort
+    vim-abolish # Preserve case when substituting
     vim-airline # New bottom status line
     vim-airline-themes # Themes for bottom status line
-    # vim-commentary # Language-agnostic comment toggling
-    # vim-devicons # Add file type icons to file browser
-    vim-easymotion # Jump anywhere on screen by searching for characters
+    # vim-easymotion # Jump anywhere on screen by searching for characters
     vim-fugitive # Git integration (staging, committing, reverting...)
     vim-gitgutter # Highlight unstaged Git changes
-    # vim-graphql # GraphQL syntax highlighting
-    # vim-nix # Nix syntax highlighting
-    # vim-ormolu # Automatically run ormolu
+    vim-graphql # GraphQL syntax highlighting
+    vim-nix # Nix syntax highlighting
     vim-projectionist # Jump between files with the same prefix
     vim-startify # Startup splash screen
     vim-surround # Add shortcuts to surround text with characters (parens, quotes...)
     vim-swap # Add shortcuts to swap delimited items (function args...)
-    # vim-terraform # Terraform syntax highlighting
-    # yats-vim # Typescript syntax highlighting
-  ];
-in
-{
+    ];
+in {
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Cousine" "RobotoMono" "FiraCode" ]; })
     clojure-lsp

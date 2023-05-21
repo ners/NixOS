@@ -207,23 +207,43 @@ let g:omni_sql_default_compl_type = 'syntax'
 
 " shift + f to search
 " nnoremap F :Ack<enter>
-"
+
 " /////////
-" FZF
+" fugitive
+" /////////
+"
+" ctrl + g for git menu
+nnoremap <c-g> :G<enter>
+" /////////
+" fzf-lua
 " /////////
 "
 " F for fuzzy search
-nnoremap F :Rg<enter>
-" alt + o for fuzzy file search
-nnoremap ø :GFiles<enter>
-" ctrl + g for git menu
-nnoremap <c-g> :G<enter>
+nnoremap F :FzfLua grep<enter><enter>
+" f for fuzzy file search
+nnoremap f :FzfLua git_files<enter>
 " g + l for git log
-nnoremap gl :Commits<enter>
+nnoremap gl :FzfLua git_commits<enter>
 " g + c for git conflict resolution
 nnoremap gc :Gdiffsplit!<enter>
 " g + b for git branches
-nnoremap gb :GBranches<enter>
+nnoremap gb :FzfLua git_branches<enter>
+" /////////
+" FZF (old)
+" /////////
+"
+" F for fuzzy search
+" nnoremap F :Rg<enter>
+" alt + o for fuzzy file search
+" nnoremap ø :GFiles<enter>
+" ctrl + g for git menu
+" nnoremap <c-g> :G<enter>
+" g + l for git log
+" nnoremap gl :Commits<enter>
+" g + c for git conflict resolution
+" nnoremap gc :Gdiffsplit!<enter>
+" g + b for git branches
+" nnoremap gb :GBranches<enter>
 
 " /////////
 " Closetag
@@ -257,7 +277,7 @@ let g:coc_node_path = '/Users/rekk/.nix-profile/bin/node'
 " autocmd FileType typescriptreact noremap <silent> ` :call CocActionAsync('doHover')<CR>
 
 " Use , to run CocAction
-map , :CodeActionMenu<CR>
+" map , :CodeActionMenu<CR>
 autocmd FileType typescriptreact map , <Plug>(coc-codeaction)
 
 " use <tab> for trigger completion and navigate to the next complete item
@@ -315,3 +335,7 @@ let g:startify_custom_header =
 
 " Run this to start profiling
 " :profile start profile.log | profile func * | profile file *
+
+let g:copilot_no_tab_map = v:true
+let g:copilot_assume_mapped = v:true
+let g:copilot_tab_fallback = ""

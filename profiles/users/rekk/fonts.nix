@@ -28,7 +28,7 @@ let
   oswald = mkFont {
     name = "oswald";
     url = "https://github.com/googlefonts/OswaldFont/archive/refs/heads/main.zip";
-    sha256 = "sha256-I0qJXb7dW6Hz77YwgUVxwy6c5ry4cnkj6Sqmb1Wcu1w=";
+    sha256 = "sha256-zd7eW7+ni6swa3qhh3R4ADPapxH+9sLAJOKnyviSZEM=";
     sourceRoot = "OswaldFont-main/fonts";
   };
   radley = mkFont {
@@ -50,7 +50,7 @@ let
   playfair = mkFont {
     name = "playfair";
     url = "https://github.com/clauseggers/Playfair/archive/refs/heads/master.zip";
-    sha256 = "sha256-61uqPXoA8sgOJx/dW55ClshCwwPT4DQXSfDBmYoSqEw";
+    sha256 = "sha256-9jSTYo76g/15gYQhPWJRWHDlZ3Abp/WjESEPFYileMA";
     sourceRoot = "Playfair-master/fonts/VF-TTF";
   };
   along-sans = mkFont {
@@ -63,6 +63,12 @@ let
     url = "https://github.com/hckiang/font-new-heterodox-mono/archive/refs/heads/master.zip";
     sha256 = "sha256-oXEGF77bEBkmsz0tzMvTk+V9RHw1hVhL9zHqh8BPdhE=";
   };
+  vegur = mkFont {
+    name = "vegur";
+    url = "https://web.archive.org/web/20120828195558/http://www.dotcolon.net/DL/font/vegur.zip";
+    sha256 = "sha256-cvBdg26K8GGVvMcSaa9dLWVtMVhifAt90Rjn8q8yJgo=";
+  };
+  
 in
 {
   fonts.fontconfig.enable = lib.mkForce true;
@@ -84,5 +90,7 @@ in
     paratype-pt-serif
     playfair
     radley
+    source-sans-pro
+    vegur
   ];
 }
