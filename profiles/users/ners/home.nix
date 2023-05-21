@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -58,7 +58,7 @@
   services.udiskie.enable = true;
 
   home.file.".face".source = ./images/ners.jpg;
-  home.file.".background".source = ./images/nix-wallpaper-nineish.png;
+  home.file.".background".source = ./images/nix-wallpaper-nineish-dark-gray.png;
   dconf.settings = {
     "org/gnome/desktop/background" = { picture-uri = ".background"; };
     "org/gnome/desktop/screensaver" = { picture-uri = ".background"; };

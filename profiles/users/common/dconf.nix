@@ -24,8 +24,9 @@ in
                   font-antialiasing = "grayscale";
                   font-hinting = "full";
                   gtk-im-module = "gtk-im-context-simple";
-                  gtk-theme = "Adwaita";
-                  color-scheme = "prefer-light";
+                  gtk-theme = "Adwaita-dark";
+                  color-scheme = "prefer-dark";
+                  monospace-font-name = "Iosevka Nerd Font Mono Regular 12";
                 };
                 peripherals = {
                   touchpad = {

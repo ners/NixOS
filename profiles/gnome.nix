@@ -15,6 +15,7 @@
       core-os-services.enable = true;
       core-shell.enable = true;
       evolution-data-server.enable = true;
+      gnome-browser-connector.enable = true;
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
       sushi.enable = true;

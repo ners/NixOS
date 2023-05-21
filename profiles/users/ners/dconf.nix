@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 
 {
   dconf.settings = lib.dconfFlatten {
