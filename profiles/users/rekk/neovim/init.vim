@@ -220,6 +220,7 @@ nnoremap <c-g> :G<enter>
 "
 " F for fuzzy search
 nnoremap F :FzfLua grep<enter><enter>
+vnoremap F :FzfLua grep_visual<enter><enter>
 " f for fuzzy file search
 nnoremap f :FzfLua git_files<enter>
 " g + l for git log
@@ -310,28 +311,28 @@ highlight ConflictMarkerEnd guibg=#2f628e
 highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
 
 " very important startify dragon
-let g:ascii = [
-\'           \                    ^    /^',
-\'            \                  / \  // \',
-\'             \   |\___/|      /   \//  .\',
-\'              \  /O  O  \__  /    //  | \ \           *----*',
-\'                /     /  \/_/    //   |  \  \          \   |',
-\'                @___@`    \/_   //    |   \   \         \/\ \',
-\'               0/0/|       \/_ //     |    \    \         \  \',
-\'           0/0/0/0/|        \///      |     \     \       |  |',
-\'        0/0/0/0/0/_|_ /   (  //       |      \     _\     |  /',
-\'     0/0/0/0/0/0/`/,_ _ _/  ) ; -.    |    _ _\.-~       /   /',
-\'                 ,-}        _      *-.|.-~-.           .~    ~',
-\'                  `/\      /                 ~-. _ .-~      /',
-\'                     *.   }            {                   /',
-\'                    .----~-.\        \-`                 .~',
-\'                    ///.----..<        \             _ -~',
-\'                       ///-._ _ _ _ _ _ _{^ - - - - ~',
-\''
-\]
-
-let g:startify_custom_header =
-      \ 'startify#pad(startify#fortune#boxed() + g:ascii)'
+" let g:ascii = [
+" \'           \                    ^    /^',
+" \'            \                  / \  // \',
+" \'             \   |\___/|      /   \//  .\',
+" \'              \  /O  O  \__  /    //  | \ \           *----*',
+" \'                /     /  \/_/    //   |  \  \          \   |',
+" \'                @___@`    \/_   //    |   \   \         \/\ \',
+" \'               0/0/|       \/_ //     |    \    \         \  \',
+" \'           0/0/0/0/|        \///      |     \     \       |  |',
+" \'        0/0/0/0/0/_|_ /   (  //       |      \     _\     |  /',
+" \'     0/0/0/0/0/0/`/,_ _ _/  ) ; -.    |    _ _\.-~       /   /',
+" \'                 ,-}        _      *-.|.-~-.           .~    ~',
+" \'                  `/\      /                 ~-. _ .-~      /',
+" \'                     *.   }            {                   /',
+" \'                    .----~-.\        \-`                 .~',
+" \'                    ///.----..<        \             _ -~',
+" \'                       ///-._ _ _ _ _ _ _{^ - - - - ~',
+" \''
+" \]
+" 
+" let g:startify_custom_header =
+"       \ 'startify#pad(startify#fortune#boxed() + g:ascii)'
 
 " Run this to start profiling
 " :profile start profile.log | profile func * | profile file *
