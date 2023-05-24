@@ -8,13 +8,17 @@ let
   plugins = with pkgs.vimPlugins; [
     # colorizer # Preview hex colours. Extremely slow performance on large files
     # completion-nvim # Completion engine similar to cmp
+    # fzf-vim # integrate fzf
+    # fzfWrapper # integrate fzf
     # haskell-vim # Haskell highlighting?
     # neoscroll-nvim # Smooth scrolling
     # null-ls-nvim # Allow non-LSP sources to hook into LSP client
     # psc-ide-vim # Purescript
     # sonokai # Theme
+    # sort-nvim # Better sorting with :Sort
     # vim-commentary # Language-agnostic comment toggling
     # vim-devicons # Add file type icons to file browser
+    # vim-easymotion # Jump anywhere on screen by searching for characters
     # vim-ormolu # Automatically run ormolu
     # vim-terraform # Terraform syntax highlighting
     # which-key-nvim
@@ -33,8 +37,6 @@ let
     copilot-vim # Github Copilot integration
     edge # Theme
     fzf-checkout-vim # Manage Git branches with fzf
-    # fzf-vim # integrate fzf
-    # fzfWrapper # integrate fzf
     fzf-lua # fzf integration rewritten in lua
     impatient-nvim # Speed up startup time
     lexima-vim # Auto close brackets, tags, etc.
@@ -49,11 +51,9 @@ let
     nvim-treesitter # Enable AST-aware highlighting and actions
     nvim-treesitter-refactor # Enable renaming symbols (AST-aware)
     nvim-ts-rainbow # Coloured parentheses
-    sort-nvim # Better sorting with :Sort
     vim-abolish # Preserve case when substituting
     vim-airline # New bottom status line
     vim-airline-themes # Themes for bottom status line
-    # vim-easymotion # Jump anywhere on screen by searching for characters
     vim-fugitive # Git integration (staging, committing, reverting...)
     vim-gitgutter # Highlight unstaged Git changes
     vim-graphql # GraphQL syntax highlighting

@@ -47,6 +47,7 @@
       "uvtools"
       "vimr"
       "virtualbox-beta"
+      "visual-studio-code"
       "vnc-viewer"
       "wine-stable"
       "zoom"
