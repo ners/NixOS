@@ -220,7 +220,7 @@ nnoremap <c-g> :G<enter>
 "
 " F for fuzzy search
 nnoremap F :FzfLua grep<enter><enter>
-vnoremap F :FzfLua grep_visual<enter><enter>
+vnoremap F <cmd>FzfLua grep_visual<enter><enter>
 " f for fuzzy file search
 nnoremap f :FzfLua git_files<enter>
 " g + l for git log
@@ -330,9 +330,18 @@ highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
 " \'                       ///-._ _ _ _ _ _ _{^ - - - - ~',
 " \''
 " \]
-" 
-" let g:startify_custom_header =
-"       \ 'startify#pad(startify#fortune#boxed() + g:ascii)'
+
+let g:ascii = [
+\' ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
+\' ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
+\' ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
+\' ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
+\' ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
+\' ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ '
+\ ]
+
+let g:startify_custom_header =
+      \ 'startify#pad(g:ascii)'
 
 " Run this to start profiling
 " :profile start profile.log | profile func * | profile file *
