@@ -264,7 +264,7 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 highlight BufferCurrent   guifg=white
 
 " setup CoC for tsserver
-let g:coc_node_path = '/Users/rekk/.nix-profile/bin/node'
+" let g:coc_node_path = '/Users/rekk/.nix-profile/bin/node'
 " /////////
 " CoC
 " /////////
@@ -278,8 +278,8 @@ let g:coc_node_path = '/Users/rekk/.nix-profile/bin/node'
 " autocmd FileType typescriptreact noremap <silent> ` :call CocActionAsync('doHover')<CR>
 
 " Use , to run CocAction
-" map , :CodeActionMenu<CR>
-autocmd FileType typescriptreact map , <Plug>(coc-codeaction)
+map , :CodeActionMenu<CR>
+" autocmd FileType typescriptreact map , <Plug>(coc-codeaction)
 
 " use <tab> for trigger completion and navigate to the next complete item
 " function! s:check_back_space() abort
@@ -293,8 +293,8 @@ autocmd FileType typescriptreact map , <Plug>(coc-codeaction)
 " \ coc#refresh()
 
 " formatting with prettier
-command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-autocmd FileType * let b:coc_suggest_disable = 1
+" command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+" autocmd FileType * let b:coc_suggest_disable = 1
 
 " Mark conflicts
 " disable the default highlight group

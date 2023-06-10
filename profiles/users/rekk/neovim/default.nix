@@ -6,13 +6,17 @@ let
     set rtp+=${plugin}/after
   '';
   plugins = with pkgs.vimPlugins; [
+
+    # coc-eslint # CoC should be replaced by LSP - but tsserver still works better
+    # coc-nvim
+    # coc-prettier
+    # coc-tsserver
     # colorizer # Preview hex colours. Extremely slow performance on large files
     # completion-nvim # Completion engine similar to cmp
     # fzf-vim # integrate fzf
     # fzfWrapper # integrate fzf
     # haskell-vim # Haskell highlighting?
     # neoscroll-nvim # Smooth scrolling
-    # null-ls-nvim # Allow non-LSP sources to hook into LSP client
     # psc-ide-vim # Purescript
     # sonokai # Theme
     # sort-nvim # Better sorting with :Sort
@@ -28,10 +32,6 @@ let
     cmp-buffer # Current buffer words
     cmp-cmdline # Commands
     cmp-nvim-lsp # LSP
-    coc-eslint # CoC should be replaced by LSP - but tsserver still works better
-    coc-nvim
-    coc-prettier
-    coc-tsserver
     conflict-marker-vim # Git merge conflicts utils and visualisation
     conjure # Clojure evaluation
     copilot-vim # Github Copilot integration
@@ -42,6 +42,7 @@ let
     lexima-vim # Auto close brackets, tags, etc.
     lsp_signature-nvim # Open floating window with function signature when calling functions
     luasnip # Snippet engine used by cmp
+    null-ls-nvim # Allow non-LSP sources to hook into LSP client (e.g. formatters)
     nvim-base16 # Theme
     nvim-bqf # Better quickfix window
     nvim-cmp # Completion engine
@@ -51,6 +52,7 @@ let
     nvim-treesitter # Enable AST-aware highlighting and actions
     nvim-treesitter-refactor # Enable renaming symbols (AST-aware)
     nvim-ts-rainbow # Coloured parentheses
+    plenary-nvim # Additional Lua utils
     vim-abolish # Preserve case when substituting
     vim-airline # New bottom status line
     vim-airline-themes # Themes for bottom status line
@@ -62,6 +64,7 @@ let
     vim-startify # Startup splash screen
     vim-surround # Add shortcuts to surround text with characters (parens, quotes...)
     vim-swap # Add shortcuts to swap delimited items (function args...)
+
   ];
 in
 {
@@ -69,6 +72,7 @@ in
     (nerdfonts.override { fonts = [ "Cousine" "RobotoMono" "FiraCode" ]; })
     clojure-lsp
     lua
+    nixfmt
     nodePackages.typescript-language-server
     nodejs
     python3
