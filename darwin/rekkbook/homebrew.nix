@@ -41,6 +41,7 @@
       "preform"
       "prusaslicer"
       "slack"
+      "shutter-encoder"
       "teamviewer"
       "telegram-desktop"
       "tunnelblick"

@@ -1,3 +1,7 @@
+" /////////
+" Global
+" /////////
+
 syntax on
 set t_Co=256
 set t_ut=
@@ -13,11 +17,10 @@ set rtp+=/Users/rekk/.nix-profile/bin
 set scrolloff=0
 set cursorline
 set inccommand=nosplit
+set completeopt=menu,menuone,noselect
 
 " use fourmolu
 let g:ormolu_command="fourmolu"
-
-set completeopt=menu,menuone,noselect
 
 " Filetype detection
 filetype on
@@ -32,43 +35,6 @@ au FocusGained * :checktime
 :nmap <c-s> :w<CR>
 :imap <c-s> <Esc>:w<CR>a
 
-" /////////
-" Nvim-Tree.lua settings
-" /////////
-
-" ctrl + n to open 
-map <C-n> :NvimTreeToggle<CR>
-
-" Use ctrl + , to find current file in tree
-map <C-,> :NvimTreeFindFile<CR>
-
-" Use h and l to navigate NERDTree subdirs
-autocmd FileType nvimtree nmap <buffer> h o
-autocmd FileType nvimtree nmap <buffer> l o
-
-" NERDTree settings (deprecated)
-" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-" let g:DevIconsEnableFoldersOpenClose = 1
-" let g:DevIconsEnableFolderExtensionPatternMatching = 1
-" let g:DevIconsDefaultFolderOpenSymbol='ﱮ'
-" let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
-" let g:NERDTreeDirArrowExpandable = ""
-" let g:NERDTreeDirArrowCollapsible = ""
-" let g:NERDTreeAutoDeleteBuffer = 1
-" let g:NERDTreeMinimalUI = 1
-" let g:NERDTreeDirArrows = 0
-" let g:NERDTreeGitStatusUseNerdFonts = 1
-" let g:NERDTreeShowHidden=1
-
-let g:fzf_checkout_git_options = '--sort=-committerdate'
-
-" fzf selected file actions 
-let g:fzf_action = {
-  \ 'ctrl-d': 'vert diffs',
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
 " Persistent undo
 set undofile
 set undolevels=1000
@@ -77,7 +43,6 @@ set undoreload=10000
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " set list listchars=tab:›\ ,trail:~,extends:»,precedes:«,nbsp:_
 set tabstop=2
-map f <Plug>(easymotion-sn)
 
 " Theme
 colorscheme edge
@@ -92,23 +57,10 @@ let bufferline.icons = 'buffer_number'
 let bufferline.animation = v:true
 let bufferline.clickable = v:true
 
-" fzf window height and colours
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
-let g:fzf_colors = { 'fg': ['fg', 'CursorLine'], 'bg': ['bg', 'CursorLine'] }
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-
 " after a re-source, fix syntax matching issues (concealing brackets):
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
-
-" Conjure - backslash as local leader
-let maplocalleader="\\"
-let g:conjure#mapping#eval_current_form = "<localleader><localleader>"
-let g:conjure#mapping#eval_root_form = "<localleader>r"
-" /////////
-" Global
-" /////////
 
 " navigate splits with ctrl + j/l/h/k
 nnoremap <C-J> <C-W><C-J>
@@ -180,6 +132,50 @@ let g:omni_sql_default_compl_type = 'syntax'
 " set nofoldenable
 " set foldlevel=2
 
+" Run this to start profiling
+" :profile start profile.log | profile func * | profile file *
+
+" /////////
+" Plugin-specific settings
+" /////////
+
+" /////////
+" Conjure
+" /////////
+
+" backslash as local leader
+let maplocalleader="\\"
+let g:conjure#mapping#eval_current_form = "<localleader><localleader>"
+let g:conjure#mapping#eval_root_form = "<localleader>r"
+
+" /////////
+" Nvim-Tree
+" /////////
+
+" ctrl + n to open 
+map <C-n> :NvimTreeToggle<CR>
+
+" Use ctrl + , to find current file in tree
+map <C-,> :NvimTreeFindFile<CR>
+
+" Use h and l to navigate NERDTree subdirs
+autocmd FileType nvimtree nmap <buffer> h o
+autocmd FileType nvimtree nmap <buffer> l o
+
+" NERDTree settings (deprecated)
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+" let g:DevIconsEnableFoldersOpenClose = 1
+" let g:DevIconsEnableFolderExtensionPatternMatching = 1
+" let g:DevIconsDefaultFolderOpenSymbol='ﱮ'
+" let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
+" let g:NERDTreeDirArrowExpandable = ""
+" let g:NERDTreeDirArrowCollapsible = ""
+" let g:NERDTreeAutoDeleteBuffer = 1
+" let g:NERDTreeMinimalUI = 1
+" let g:NERDTreeDirArrows = 0
+" let g:NERDTreeGitStatusUseNerdFonts = 1
+" let g:NERDTreeShowHidden=1
+
 " /////////
 " NERDTree (deprecated)
 " /////////
@@ -199,7 +195,7 @@ let g:omni_sql_default_compl_type = 'syntax'
 " autocmd FileType nerdtree nmap <buffer> l o
 
 " /////////
-" AG
+" AG (deprecated)
 " /////////
 
 " use Ag with ack.vim
@@ -211,13 +207,13 @@ let g:omni_sql_default_compl_type = 'syntax'
 " /////////
 " fugitive
 " /////////
-"
+
 " ctrl + g for git menu
 nnoremap <c-g> :G<enter>
 " /////////
 " fzf-lua
 " /////////
-"
+
 " F for fuzzy search
 nnoremap F :FzfLua grep<enter><enter>
 vnoremap F <cmd>FzfLua grep_visual<enter><enter>
@@ -229,10 +225,25 @@ nnoremap gl :FzfLua git_commits<enter>
 nnoremap gc :Gdiffsplit!<enter>
 " g + b for git branches
 nnoremap gb :FzfLua git_branches<enter>
+
+let g:fzf_checkout_git_options = '--sort=-committerdate'
+
+" fzf selected file actions 
+let g:fzf_action = {
+  \ 'ctrl-d': 'vert diffs',
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" fzf window height and colours
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
+let g:fzf_colors = { 'fg': ['fg', 'CursorLine'], 'bg': ['bg', 'CursorLine'] }
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
 " /////////
 " FZF (old)
 " /////////
-"
+
 " F for fuzzy search
 " nnoremap F :Rg<enter>
 " alt + o for fuzzy file search
@@ -263,8 +274,12 @@ highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 highlight BufferCurrent   guifg=white
 
-" setup CoC for tsserver
-" let g:coc_node_path = '/Users/rekk/.nix-profile/bin/node'
+" /////////
+" Code Action Menu
+" /////////
+
+map , :CodeActionMenu<CR>
+
 " /////////
 " CoC
 " /////////
@@ -278,8 +293,10 @@ highlight BufferCurrent   guifg=white
 " autocmd FileType typescriptreact noremap <silent> ` :call CocActionAsync('doHover')<CR>
 
 " Use , to run CocAction
-map , :CodeActionMenu<CR>
 " autocmd FileType typescriptreact map , <Plug>(coc-codeaction)
+
+" setup CoC for tsserver
+" let g:coc_node_path = '/Users/rekk/.nix-profile/bin/node'
 
 " use <tab> for trigger completion and navigate to the next complete item
 " function! s:check_back_space() abort
@@ -296,6 +313,10 @@ map , :CodeActionMenu<CR>
 " command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 " autocmd FileType * let b:coc_suggest_disable = 1
 
+" /////////
+" conflict-marker-vim
+" /////////
+
 " Mark conflicts
 " disable the default highlight group
 let g:conflict_marker_highlight_group = ''
@@ -309,6 +330,11 @@ highlight ConflictMarkerOurs guibg=#2e5049
 highlight ConflictMarkerTheirs guibg=#344f69
 highlight ConflictMarkerEnd guibg=#2f628e
 highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
+
+
+" /////////
+" vim-startify
+" /////////
 
 " very important startify dragon
 " let g:ascii = [
@@ -343,8 +369,9 @@ let g:ascii = [
 let g:startify_custom_header =
       \ 'startify#pad(g:ascii)'
 
-" Run this to start profiling
-" :profile start profile.log | profile func * | profile file *
+" /////////
+" copilot-vim
+" /////////
 
 let g:copilot_no_tab_map = v:true
 let g:copilot_assume_mapped = v:true
