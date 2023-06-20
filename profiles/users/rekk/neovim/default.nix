@@ -23,11 +23,14 @@ let
     # vim-commentary # Language-agnostic comment toggling
     # vim-devicons # Add file type icons to file browser
     # vim-easymotion # Jump anywhere on screen by searching for characters
+    # vim-graphql # GraphQL syntax highlighting
     # vim-ormolu # Automatically run ormolu
     # vim-terraform # Terraform syntax highlighting
+    # vim-nix # Nix syntax highlighting
     # which-key-nvim
     # yats-vim # Typescript syntax highlighting
 
+    lsp_lines-nvim # Fully display diagnostics
     barbar-nvim # Improved tabs
     cmp-buffer # Current buffer words
     cmp-cmdline # Commands
@@ -49,7 +52,7 @@ let
     nvim-code-action-menu # Better code action menu
     nvim-lspconfig # All sorts of language-specific LSP configs
     nvim-tree-lua # File browser
-    nvim-treesitter # Enable AST-aware highlighting and actions
+    nvim-treesitter.withAllGrammars # Enable AST-aware highlighting and actions
     nvim-treesitter-refactor # Enable renaming symbols (AST-aware)
     nvim-ts-rainbow # Coloured parentheses
     plenary-nvim # Additional Lua utils
@@ -58,8 +61,6 @@ let
     vim-airline-themes # Themes for bottom status line
     vim-fugitive # Git integration (staging, committing, reverting...)
     vim-gitgutter # Highlight unstaged Git changes
-    vim-graphql # GraphQL syntax highlighting
-    vim-nix # Nix syntax highlighting
     vim-projectionist # Jump between files with the same prefix
     vim-startify # Startup splash screen
     vim-surround # Add shortcuts to surround text with characters (parens, quotes...)
