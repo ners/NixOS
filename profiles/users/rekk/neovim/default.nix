@@ -55,6 +55,7 @@ let
     nvim-treesitter.withAllGrammars # Enable AST-aware highlighting and actions
     nvim-treesitter-refactor # Enable renaming symbols (AST-aware)
     nvim-ts-rainbow # Coloured parentheses
+    typescript-nvim # Additional LSP features for TS (`import all`...)
     plenary-nvim # Additional Lua utils
     vim-abolish # Preserve case when substituting
     vim-airline # New bottom status line

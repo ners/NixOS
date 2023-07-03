@@ -8,6 +8,7 @@
       cleanup = "uninstall";
     };
     brews = [
+      "briss"
       "mailcatcher"
       {
         name = "yabai";
@@ -40,17 +41,19 @@
       "plexamp"
       "preform"
       "prusaslicer"
-      "slack"
+      "qfinder-pro"
       "shutter-encoder"
+      "slack"
       "teamviewer"
       "telegram-desktop"
       "tunnelblick"
+      "transmission"
       "ultimaker-cura"
       "uvtools"
-      "vlc"
       "vimr"
       "virtualbox-beta"
       "visual-studio-code"
+      "vlc"
       "vnc-viewer"
       "wine-stable"
       "zoom"
