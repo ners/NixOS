@@ -52,10 +52,10 @@ let g:airline_section_y = ''
 let g:airline_section_z = ''
 
 " Bufferline settings (barbar)
-let bufferline = get(g:, 'bufferline', {})
-let bufferline.icons = 'buffer_number'
-let bufferline.animation = v:true
-let bufferline.clickable = v:true
+" let bufferline = get(g:, 'bufferline', {})
+" let bufferline.icons = 'buffer_number'
+" let bufferline.animation = v:true
+" let bufferline.clickable = v:true
 
 " after a re-source, fix syntax matching issues (concealing brackets):
 if exists('g:loaded_webdevicons')

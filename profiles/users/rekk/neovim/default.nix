@@ -32,6 +32,7 @@ let
 
     lsp_lines-nvim # Fully display diagnostics
     barbar-nvim # Improved tabs
+    nvim-web-devicons # Icons for barbar
     cmp-buffer # Current buffer words
     cmp-cmdline # Commands
     cmp-nvim-lsp # LSP

@@ -42,6 +42,7 @@
       "preform"
       "prusaslicer"
       "qfinder-pro"
+      "synthesia"
       "shutter-encoder"
       "slack"
       "teamviewer"
