@@ -29,6 +29,7 @@ let
     # vim-nix # Nix syntax highlighting
     # which-key-nvim
     # yats-vim # Typescript syntax highlighting
+    # nvim-ts-rainbow # Coloured parentheses
 
     lsp_lines-nvim # Fully display diagnostics
     barbar-nvim # Improved tabs
@@ -42,7 +43,6 @@ let
     edge # Theme
     fzf-checkout-vim # Manage Git branches with fzf
     fzf-lua # fzf integration rewritten in lua
-    impatient-nvim # Speed up startup time
     lexima-vim # Auto close brackets, tags, etc.
     lsp_signature-nvim # Open floating window with function signature when calling functions
     luasnip # Snippet engine used by cmp
@@ -55,7 +55,6 @@ let
     nvim-tree-lua # File browser
     nvim-treesitter.withAllGrammars # Enable AST-aware highlighting and actions
     nvim-treesitter-refactor # Enable renaming symbols (AST-aware)
-    nvim-ts-rainbow # Coloured parentheses
     typescript-nvim # Additional LSP features for TS (`import all`...)
     plenary-nvim # Additional Lua utils
     vim-abolish # Preserve case when substituting
@@ -72,15 +71,15 @@ let
 in
 {
   home.packages = with pkgs; [
+    # nodejs
+    # yarn
     (nerdfonts.override { fonts = [ "Cousine" "RobotoMono" "FiraCode" ]; })
     clojure-lsp
     lua
     nixfmt
     nodePackages.typescript-language-server
-    nodejs
     python3
     rnix-lsp
-    yarn
   ];
 
   programs.neovim = {
